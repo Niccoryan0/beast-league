@@ -1,0 +1,45 @@
+* {
+  border-radius: 5px;
+}
+
+body {
+  margin: 5% 15%;
+}
+
+header{
+  display: flex;
+  justify-content: space-between;
+  border: 1px solid black;
+  padding: 10px;
+}
+
+header > h1 {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 20px;
+  margin: auto 20px;
+}
+
+main {
+  margin-top: 30px;
+  display: flex;
+}
+
+main > p {
+  margin: 30px 80px;
+  height: 380px;
+  overflow: auto;
+  border: 1px solid black;
+  padding: 20px 40px;
+}
+
+footer {
+  display: flex;
+  justify-content: space-between;
+}
+footer > p {
+  margin: 30px 5px;
+  height: 300px;
+  overflow: auto;
+  border: 1px solid black;
+  padding: 10px;
+}
