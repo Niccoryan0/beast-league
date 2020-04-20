@@ -1,8 +1,12 @@
 // This will actually take inputs from the user, will get info from gameplay.js and pass it through necessary logic
+// var userMonster = JSON.parse(localStorage.getItem('userMonster'));
 
-
-// TODO: User input for attacks
-function attack(event){
-  if(event.keyCode === 97 || event.keyCode === 49)
-  
+function userAttack(event){
+  if (event.keyCode === 97 || event.keyCode === 49) {
+    game.executeTurn(0);
+  }else if (event.keyCode === 98 || event.keyCode === 50) {
+    game.executeTurn(1);
+  }
 }
+
+document.addEventListener('keyDown', userAttack);

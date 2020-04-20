@@ -1,8 +1,9 @@
+'use strict';
 // Initialize data for monsters, save/load data for monsters, handle events outside of game function
-// THIS WILL BE THE SECOND FILE THAT GETS RUN
+// THIS WILL BE THE SECOND FILE THAT GETS RUN ONLY ON THE HOMEPAGE
 
 // Array
-var monsterDatabase;
+var userMonster;
 
 
 // Gets a random monster from the Monster array
@@ -17,7 +18,7 @@ resetButton.addEventListener('click', function(){
     localStorage.clear();
     location.reload();
   }
-  var userMonster = getRandomMonster();
+  userMonster = getRandomMonster();
   var userMonsterStringy = JSON.stringify(userMonster);
   localStorage.setItem('userMonster', userMonsterStringy);
 })
