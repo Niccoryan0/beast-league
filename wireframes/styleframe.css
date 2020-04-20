@@ -100,6 +100,8 @@ footer > p {
 
 #userMonsterProfile {
   border: 1px solid black;
+  width: 250px;
+  height: 250px
 }
 
 #userMonsterDescription {
@@ -107,5 +109,6 @@ footer > p {
   border: 1px solid black;
   border-radius:0px;
   margin: 0px 10px 10px;
-
+  overflow: auto;
+  height:100px
 }
