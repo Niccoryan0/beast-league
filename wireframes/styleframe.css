@@ -74,7 +74,7 @@ footer > p {
 .monsterInfoandImg {
   display: flex;
   flex-direction: row;
-  border: 1px solid black;
+  /* border: 1px solid black; */
   padding: 15px;
 }
 
@@ -91,4 +91,21 @@ footer > p {
   border: 1px solid black;
   border-radius: 0px;
   margin-top: 30px;
+}
+
+#userMonsterImg {
+  height: 80px;
+  width: 80px;
+}
+
+#userMonsterProfile {
+  border: 1px solid black;
+}
+
+#userMonsterDescription {
+  padding: 10px;
+  border: 1px solid black;
+  border-radius:0px;
+  margin: 0px 10px 10px;
+
 }
