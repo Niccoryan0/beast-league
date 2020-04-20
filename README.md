@@ -10,3 +10,10 @@ Team Name: Monsters Inc.
 
 ### Team name: Monsters Inc.
 Members: Nicco Ryan, Ryan Creamer, Babe Habib
+
+
+## Domain model:
+
+https://awwapp.com/b/up5mxhyyodxl3/#
+
+<img src="assets/domain-model.png">
