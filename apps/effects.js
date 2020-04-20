@@ -6,7 +6,8 @@
 */
 function Effect(executionChance, customValues, effectMethod) {
   this.executionChance = executionChance;
-  this.customValues = customValues;
+  this.customValues = customValues; 
+  //CUSTOM VALUES guide: 'damage' = damage value, 'statBuff' = specific stat buff, 'statDebuff' = specific stat debuff
   this.effectMethod = effectMethod;
 }
 
@@ -15,5 +16,5 @@ var EffectMethodsDatabase = [];
 EffectMethodsDatabase['damageEffect'] = new function(user, target) {
   var damageRoll = Math.floor((Math.random() * this.customValues.damage) + (this.customValues.damage * 0.5));
   target.takeDamage(this.customValues.damage, user.attack);
-  // Call rendering function for attacking
+  // Sends function to View for rendering effect
 };

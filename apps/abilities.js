@@ -4,7 +4,6 @@
   >> Execute calls each effect's method, passing in the user and target data
 */
 function Ability(effects){
-  //Keying guide: 'damage' = damage value, 'statBuff' = specific stat buff, 'statDebuff' = specific stat debuff
   this.effects = effects;
 }
 
@@ -14,7 +13,6 @@ Ability.prototype.execute = function(user, target) {
   for(var eff in effects) {
     randomExecutionRoll = Math.round(Math.floor(Math.random * 100));
     if(randomExecutionRoll) eff.effectMethod(user, target);
-    //else calls function to view saying that effect failed
   }
 };
 
