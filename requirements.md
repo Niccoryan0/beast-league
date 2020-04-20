@@ -1,14 +1,6 @@
 ## Vision
-Minimum Length: 3-5 sentences
 
-<!-- What is the vision of this product? -->
-This product was designed to emulate the early Pokemon games that sold amazingly well across the world. 
-
-<!-- What pain point does this project solve? -->
-There has been a hole in gamer's hearts since Nintendo has taken the Pokemon franchise in a new direction. We aim to recapture the experience of the initial wonderment felt playing the early Pokemon titles.
-
-<!-- Why should we care about your product? -->
-People should care about this game because it will be fun and also educational, teaching kids about mythological monsters, or perhaps some real ones??
+This product was designed to emulate the early Pokemon games that sold amazingly well across the world.  There has been a hole in gamer's hearts since Nintendo has taken the Pokemon franchise in a new direction. We aim to recapture the experience of the initial wonderment felt playing the early Pokemon titles. People should care about this game because it will be fun and also educational, teaching kids about mythological monsters, or perhaps some real ones??
 
 
 ## Scope (In/Out)
