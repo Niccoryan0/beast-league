@@ -1,7 +1,7 @@
 // Ability class
 /*
   >> Takes an array of effects
-  >> Execute calls each effect's method, passing in the user and target data
+  >> Execute() calls each effect's method, passing in the user and target data
 */
 function Ability(effects){
   this.effects = effects;
@@ -16,11 +16,11 @@ Ability.prototype.execute = function(user, target) {
   }
 };
 
-var AbilityDatabase = [];
+var AbilityDatabase = {};
 AbilityDatabase['Trample'] = new Ability([
-  new Effect(100, {'damage' : 5}, EffectMethodsDatabase['damageEffect']),
-  new Effect(100, {'damage' : 5}, EffectMethodsDatabase['damageEffect'])
+  new Effect(100, {'damage' : 5}, eff_damageEffect),
+  new Effect(100, {'damage' : 5}, eff_damageEffect)
 ]);
 AbilityDatabase['Body Slam'] = new Ability([
-  new Effect(80, {'damage' : 12}, EffectMethodsDatabase['damageEffect'])
+  new Effect(80, {'damage' : 12}, eff_damageEffect)
 ]);

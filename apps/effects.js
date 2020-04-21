@@ -11,9 +11,7 @@ function Effect(executionChance, customValues, effectMethod) {
   this.effectMethod = effectMethod;
 }
 
-var EffectMethodsDatabase = [];
-
-EffectMethodsDatabase['damageEffect'] = new function(user, target) {
+var eff_damageEffect = new function(user, target) {
   var damageRoll = Math.floor((Math.random() * this.customValues.damage) + (this.customValues.damage * 0.5));
   target.takeDamage(this.customValues.damage, user.attack);
   // Sends function to View for rendering effect
