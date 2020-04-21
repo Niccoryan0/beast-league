@@ -14,13 +14,35 @@ function MonsterData(name, description, imgSrc, attack, defense, speed, abilityS
   this.abilitySet = abilitySet;
 }
 
-function MonsterBattler(monsterData, imgElement) {
+function MonsterBattler(monsterData) {
   this.monsterData = monsterData;
   this.initiativeRoll;
-  this.currentHealth = 80;
-  this.maximumHealth = currentHealth;
-  this.imgElement = imgElement;
+  this.currentHealth;
+  this.maximumHealth = 80;
+  this.imgElement;
+  this.nextAction;
+  this.abilitySet = [];
   this.takeDamage = function (damage, enemyAttackValue) {
-    damage = damage * (enemyAttackValue / this.defense);
+    damage = Math.round(damage * (enemyAttackValue / this.monsterData.defense));
+    this.currentHealth -= damage;
+    if(this.currentHealth < 0 ){
+      this.currentHealth = 0;
+    }
+    console.log('delt ' + damage);
+    console.log('current health is: ' + this.currentHealth);
+    renderQueue.push(new RenderQueueEntry(this.imgElement, 'animShake'));
   };
 }
+
+function getRandomMonster(){
+  var monKeyArray = Object.keys(monsterDatabase);
+  var randNum = Math.floor(Math.random() * (monKeyArray.length));
+  var randKey = monKeyArray[randNum];
+  return monsterDatabase[randKey];
+}
+
+var monsterDatabase = {
+  mKrapken: new MonsterData('Krapken', 'x', 'assets/sprites/Krapken_160px_transparent.png', 30, 20, 40, ['Wrap', 'Lure']),
+  mManWolfPig: new MonsterData('ManWolfPig', 'x', 'assets/sprites/MWP_160px_transparent.png', 30, 30, 30, ['Chomp', 'Trample'])
+}
+
