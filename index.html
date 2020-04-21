@@ -3,40 +3,45 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Home Wireframe</title>
-  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <title>Home Page</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Mono&family=Press+Start+2P&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/../styles/reset.css">
-  <link rel="stylesheet" href="wireframes/styleframe.css">
+  <link rel="stylesheet" href="styles/style.css">
 </head>
 <body>
   <header>
-    <h1>Myths & Monsters</h1>
-    <img src="https://placehold.it/90x90/111" alt="Link to Home, could be text but an image could be nice">
+    <h1>BEAST LEAGUE</h1>
+    <a href="about.html"><img src="https://placehold.it/90x90/111" alt="Link to Home, could be text but an image could be nice"></a>
 </header>
 <main>
-  <img src="https://placehold.it/90x500/111" alt="Sprite tray left">
+  <section class='spriteTray'>
+    <img src="assets/sprites/Krapken_160px_transparent.png" alt="Krapken Sprite">
+  </section>
   <div class='buttons&Info'>
 
     <section class="buttons">
-      <button>Start Game</button>
-      <button id='resetButton'>Reset your Monster</button>
+      <button id='startButton'>Start Game</button>
+      <button id='resetButton'>Get a New Monster</button>
     </section>
     <section id="userMonsterProfile">
       <section class="monsterInfoandImg">
-        <section id="picTray">
-          <!-- <img src="https://placehold.it/80x80/111" alt="Monster Image" id="userMonsterImg"> -->
-        </section>
+        <section id="picTray"></section>
           <div class='monsterInfo'>
             <h2 id='userMonsterName'></h2>
-            <p id='userMonsterStats'></p>
+            <section id='monsterStats'>
+              <p id='userMonsterAtk'></p>
+              <p id='userMonsterDef'></p>
+              <p id='userMonsterSpd'></p>
+            </section>
           </div>
         </section>
-        <p id="userMonsterDescription">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate et placeat in minus, veniam adipisci tempore nobis cupiditate commodi earum dolore nesciunt facilis modi aut eum praesentium nostrum dolorum eveniet qui ad unde rerum. Quae maiores magni nam nemo. Exercitationem iste fugiat, pariatur illo nostrum sequi corporis quia ad reprehenderit suscipit maiores blanditiis vitae adipisci delectus quibusdam. Dignissimos deleniti illum sed iusto velit soluta, sit aperiam amet fugit, reprehenderit labore impedit adipisci non aspernatur laboriosam. Ducimus odit asperiores ipsam, ad quisquam nam aliquam obcaecati veritatis, itaque at, perspiciatis aut beatae minima aliquid possimus tempore? Et hic quos odit maxime eos.</p>
-    </section>
+        <p id="userMonsterDescription"></p>
+      </section>
   </div>
-
-  <img src="https://placehold.it/90x500/111" alt="Sprite tray right">
+  <section class='spriteTray'>
+    <img src="assets/sprites/MWP_160px_transparent.png" alt="MWP Sprite">
+  </section>
 </main>
-<script src="apps/gameview.js"></script>
+<script src="apps/gamemanager.js"></script>
 </body>
 </html>
