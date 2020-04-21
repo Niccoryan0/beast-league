@@ -1,5 +1,4 @@
-// This will actually take inputs from the user, will get info from gameplay.js and pass it through necessary logic
-// var userMonster = JSON.parse(localStorage.getItem('userMonster'));
+// This is just an event listener that will call executeTurn passing in a value corresponding to the key pressed by the player
 
 function userAttack(event){
   if (event.keyCode === 97 || event.keyCode === 49) {
