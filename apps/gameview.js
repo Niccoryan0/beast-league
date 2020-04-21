@@ -2,10 +2,7 @@
 'use strict';
 // TODO: Maybe get userMonster from localStorage, talk to Bade about file order
 
-var userImgPath = userMonster.imgPath; // CHECK THIS LINE WITH BADE!!!
-var userImgEl = document.createElement('img');
-userImgEl.src = userImgPath;
-userImgEl.height = 80;
+var userImgSrc = userMonster.imgSrc; // CHECK THIS LINE WITH BADE!!!
 
 // TODO: Pull monster from local storage for user monster
 
@@ -13,9 +10,8 @@ userImgEl.height = 80;
 function renderUserSpriteHomepage(){
   var target = document.getElementById('picTray');
 
-  var userImgPath = userMonster.imgPath; // CHECK THIS LINE WITH BADE!!!
   var userImgEl = document.createElement('img');
-  userImgEl.src = userImgPath;
+  userImgEl.src = userimgSrc;
   userImgEl.height = 80;
   target.appendChild(userImgEl);
 
@@ -28,16 +24,15 @@ function renderUserSpriteHomepage(){
 function renderBattleSprites(){
   // THIS IS TO RENDER THE USERS SPRITE FIRST
   var userTarget = document.getElementById('userBattlePosition');
-  var userImgPath = userMonster.imgPath; // CHECK THIS LINE WITH BADE!!!
   var userImgEl = document.createElement('img');
-  userImgEl.src = userImgPath;
+  userImgEl.src = userImgSrc;
   userImgEl.height = 80;
   userTarget.appendChild(userImgEl);
 
   // THIS RENDERS THE ENEMY SPRITE
   var enemyTarget = document.getElementById('enemyBattlePosition');
   var enemyMonsterImg = document.createElement('img');
-  enemyMonsterImg.src = enemyMonster.imgPath; // CHECK THIS WITH BADE, WILL ENEMY MONSTER BE DEFINED?
+  enemyMonsterImg.src = enemyMonster.imgSrc; // CHECK THIS WITH BADE, WILL ENEMY MONSTER BE DEFINED?
   enemyMonsterImg.height = 80;
   enemyTarget.appendChild(enemyMonsterImg);
 }
