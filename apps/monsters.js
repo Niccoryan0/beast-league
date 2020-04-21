@@ -2,19 +2,21 @@
 // This is for constructor functions for monsters, abilities, all stats and methods related to monsters
 
 // TODO: Class for monsters, include stats
-function MonsterData(attack, defense, speed, abilitySet, imgSrc){
+function MonsterData(name, description, imgSrc, attack, defense, speed, abilitySet){
+  this.name = name;
+  this.description = description;
+  this.imgSrc = imgSrc;
+
   // Stat values are equal to 30 base
   this.attack = attack;
   this.speed = speed;
   this.defense = defense;
   this.abilitySet = abilitySet;
-  this.imgSrc = imgSrc;
 }
 
-function MonsterBattler(monsterData, imgSrc, imgElement) {
+function MonsterBattler(monsterData, imgElement) {
   this.monsterData = monsterData;
   this.initiativeRoll;
-  this.isActing;
   this.currentHealth = 80;
   this.maximumHealth = currentHealth;
   this.imgElement = imgElement;
