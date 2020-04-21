@@ -10,3 +10,6 @@ function userAttack(event){
 }
 
 document.addEventListener('keyDown', userAttack);
+
+// Status effects functions, start with buffs and debuffs, but grow out to include other kinds like DoTs, freezing, stun.
+
