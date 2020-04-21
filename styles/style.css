@@ -142,12 +142,12 @@ height:100px
     border: 1px solid black;
 }
 
-#enemy {
+#enemyBattlePosition {
     margin-top: 25px;
     margin-left: 500px;
 }
 
-#user {
+#userBattlePosition {
     margin-top: 240px;
     margin-left: 50px;
 }
