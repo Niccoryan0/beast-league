@@ -169,9 +169,10 @@ main > p {
 #battlePositions {
     display: flex;
     justify-content: space-between;
-    margin-top: 80px;
+    margin-top: 140px;
     margin-left: 50px;
     margin-right: 50px;
+    /* margin-bottom: 10px; */
 }
 
 
@@ -196,7 +197,7 @@ main > p {
 #abilitiesAndDialogue {
     display: flex;
     justify-content: space-between;
-    margin: 40px 20px 0px 20px;
+    margin: 15px 20px 0px 20px;
 }
 
 .spriteTray {
@@ -270,14 +271,23 @@ header, .spriteTray > img, #userMonsterProfile, p {
 #dialogueTrayDiv {
     height: 150px;
     overflow: auto;
+    margin-left: 10px;
+
 }
 
-#dialogueTrayDiv > h3 {
+#dialogueTrayDiv > ul > li  {
+    background-color: rgba(255, 255, 255, 0.8);
+    padding:5px;
+    margin-bottom: 5px;
+}
+
+
+#dialogueTrayDiv > ul > li > h3 {
     background-color: blanchedalmond;
     font-size: 22px;
 }
 
-#dialogueTrayDiv > p {
+#dialogueTrayDiv > ul > li > p {
     background-color: blanchedalmond;
     margin-top: 8px;
 }

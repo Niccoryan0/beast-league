@@ -87,19 +87,29 @@ function userAttack(event){
   }else if (event.keyCode === 98 || event.keyCode === 50) {
     executeTurn(1);
   }
+  // Call dialoguebox and pass in turnTimer then increase it
   dialogueBox(turnTimer);
   turnTimer++;
 }
 
+// This function is to render the dialogue box to the screen each turn, it is called in the userAttack function
 var dialogueBoxEl = document.getElementById('dialogueTrayDiv');
+var dialogueUlEl = document.createElement('ul');
 function dialogueBox(turnNumber){
+  dialogueBoxEl.appendChild(dialogueUlEl);
+  // This is all placed in one list item so that we can control where in the list it is placed with the insertBefore method at the end of this function
+  var dialogueLiEl = document.createElement('li');
   var headerEl = document.createElement('h3');
   var userParaEl = document.createElement('p');
   var enemyParaEl = document.createElement('p');
+
   headerEl.textContent = 'Turn Number: ' + turnNumber;
-  dialogueBoxEl.appendChild(headerEl);
   userParaEl.textContent = userMonster.monsterData.name + ' (player) used ' + userMonster.nextAction.name;
-  dialogueBoxEl.appendChild(userParaEl);
   enemyParaEl.textContent = enemyMonster.monsterData.name + ' (enemy) used ' + enemyMonster.nextAction.name;
-  dialogueBoxEl.appendChild(enemyParaEl);
+
+  dialogueLiEl.appendChild(headerEl);
+  dialogueLiEl.appendChild(userParaEl);
+  dialogueLiEl.appendChild(enemyParaEl);
+  // Place the new item at the top of the list, this came from W3 schools on the insertBefore method, STILL WORKING OUT KINKS
+  dialogueUlEl.insertBefore(dialogueLiEl, dialogueUlEl.childNodes[0]);
 }
