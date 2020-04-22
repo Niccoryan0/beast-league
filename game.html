@@ -7,29 +7,20 @@
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles/reset.css">
   <link rel="stylesheet" href="styles/style.css">
+  <link rel="stylesheet" href="styles/gamestyle.css">
 </head>
 <body>
   <header>
-    <img src="assets/logo_transparent.png" alt="Logo" id='logo'>
+    <a href="index.html"><img src="assets/logo_transparent.png" alt="Logo" id='logo'></a>
 </header>
 <main>
 
   <section id="gameScreen">
     <section id='battlePositions'>
 
-      <section class='battlePositionContainer'>
-        <div class = 'healthBarOuter'>
-          <div class='healthBarInner' id= 'userHealth'></div>
-        </div>
-        <div id="userBattlePosition"></div>
-      </section>
+      <section class='battlePositionContainer' id="userBattleContainer"></section>
 
-      <section class='battlePositionContainer'>
-        <div class = 'healthBarOuter'>
-          <div class='healthBarInner' id='enemyHealth'></div>
-        </div>
-        <div id="enemyBattlePosition"></div>
-      </section>
+      <section class='battlePositionContainer' id = 'enemyBattleContainer'></section>
 
     </section>
     <section id='abilitiesAndDialogue'>
@@ -40,9 +31,7 @@
     </section>  
 
   </section>
-
-  <section id="dataTrayR">
-  </section>
+  <h1 class = 'directions'>Press a number on the keyboard to choose an attack</h1>
 </main>
 <script src="apps/monsters.js"></script>
 <script src="apps/effects.js"></script>

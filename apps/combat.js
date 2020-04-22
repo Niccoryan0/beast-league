@@ -15,6 +15,8 @@
       a. If battler slain, play death animation
       b. At end of death animation, spawn buttons for continue or return to home
 */
+var userBattleContainer = document.getElementById('userBattleContainer');
+var enemyBattleContainer = document.getElementById('enemyBattleContainer');
 
 var userMonster, enemyMonster, userScore, startCombat, turnTimer = 0;
 
@@ -25,8 +27,33 @@ function initializeCombat() {
     userMonster = new MonsterBattler(getRandomMonster());
     localStorage.setItem('userMonster', JSON.stringify(userMonster));
   }
+  // Create health bars and battle positions at start
+  // Users info first:
+
+  var userHealthOuter = document.createElement('div');
+  userHealthOuter.className = 'healthBarOuter';
+  var userHealthInner = document.createElement('div');
+  userHealthInner.id = 'userHealth';
+  userHealthInner.className = 'healthBarInner';
+  userHealthOuter.appendChild(userHealthInner);
+  var userBattlePositon = document.createElement('div');
+  userBattlePositon.id = 'userBattlePosition';
+  userBattleContainer.appendChild(userHealthOuter);
+  userBattleContainer.appendChild(userBattlePositon);
+
+  var enemyHealthOuter = document.createElement('div');
+  enemyHealthOuter.className = 'healthBarOuter';
+  var enemyHealthInner = document.createElement('div');
+  enemyHealthInner.id = 'enemyHealth';
+  enemyHealthInner.className = 'healthBarInner';
+  enemyHealthOuter.appendChild(enemyHealthInner);
+  var enemyBattlePositon = document.createElement('div');
+  enemyBattlePositon.id = 'enemyBattlePosition';
+  enemyBattleContainer.appendChild(enemyHealthOuter);
+  enemyBattleContainer.appendChild(enemyBattlePositon);
 
 
+  // Instantiate enemy monster
   enemyMonster = new MonsterBattler(getRandomMonster());
   while(enemyMonster.monsterData.name === userMonster.monsterData.name) {
     enemyMonster = new MonsterBattler(getRandomMonster());
@@ -45,7 +72,6 @@ function initializeCombat() {
     userMonster.abilitySet.push( AbilityDatabase[userMonster.monsterData.abilitySet[i]] );
   }
 
-  console.log(userMonster);
   enemyMonster.target = userMonster;
   userMonster.target = enemyMonster;
 
@@ -87,7 +113,6 @@ function rollInitiative(monsterData) {
 
 function userAttack(event){
 
-  console.log('did something');
   if (event.keyCode === 97 || event.keyCode === 49) {
     executeTurn(0);
   }else if (event.keyCode === 98 || event.keyCode === 50) {
@@ -99,10 +124,9 @@ function userAttack(event){
 
   // Attempting to get the health bars to change dynamically when an attack happens
   var userHealthBar = document.getElementById('userHealth');
-  userHealthBar.style.width = userMonster.currentHealth / userMonster.maximumHealth;
+  userHealthBar.style = 'width:' + (userMonster.currentHealth / userMonster.maximumHealth) * 100 + '%';
   var enemyHealthBar = document.getElementById('enemyHealth');
-  enemyHealthBar.style.width = enemyMonster.currentHealth / enemyMonster.maximumHealth;
-
+  enemyHealthBar.style = 'width:' + (enemyMonster.currentHealth / enemyMonster.maximumHealth) * 100 + '%';
 }
 
 // This function is to render the dialogue box to the screen each turn, it is called in the userAttack function
