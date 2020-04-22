@@ -15,14 +15,37 @@
       b. At end of death animation, spawn buttons for continue or return to home
 */
 
-var gameWindowEl, userMonster, enemyMonster, userScore, startCombat, turnTimer = 0;
+var userMonster, enemyMonster, userScore, startCombat, turnTimer = 0;
 
 function initializeCombat() {
-  //Get random monsterData, assign enemyMonster to new Battler with data
-  //Get player monsterData, assign userMonster to new Battler with data
+  enemyMonster = new MonsterBattler(getRandomMonster());
+  enemyMonster.currentHealth = enemyMonster.maximumHealth;
+  for (var i in enemyMonster.monsterData.abilitySet){
+    enemyMonster.abilitySet.push( AbilityDatabase[enemyMonster.monsterData.abilitySet[i]] );
+  }
+
+  if (localStorage.getItem('userMonster')){
+    userMonster = new MonsterBattler(JSON.parse(localStorage.getItem('userMonster')));
+  } else {
+    userMonster = new MonsterBattler(getRandomMonster());
+    localStorage.setItem('userMonster', JSON.stringify(userMonster));
+  }
+  
+  userMonster.currentHealth = userMonster.maximumHealth;
+  for (var i in userMonster.monsterData.abilitySet){
+    userMonster.abilitySet.push( AbilityDatabase[userMonster.monsterData.abilitySet[i]] );
+  }
+  console.log(userMonster);
+  renderBattleSprites(userMonster.monsterData.imgSrc, enemyMonster.monsterData.imgSrc);
+  enableAbilityTray();
 };
 
-function executeTurn() {
+function executeTurn(abilitySel) {
+  disableAbilityTray();
+
+  userMonster.nextAction = userMonster.abilitySet[abilitySel];
+  enemyMonster.nextAction = enemyMonster.abilitySet[Math.round(Math.floor(Math.random() * enemyMonster.abilitySet.length))];
+
   var firstBattler, secondBattler;
   userMonster.initiativeRoll = rollInitiative(userMonster.monsterData);
   enemyMonster.initiativeRoll = rollInitiative(enemyMonster.monsterData);
@@ -35,13 +58,22 @@ function executeTurn() {
     secondBattler = userMonster;
   }
 
-  //execute firstBattler action -> adds to render queue
-  //execute secondBattler action -> adds to render queue
-  //check death -> adds to render queue
 
-  //render function
+  firstBattler.nextAction.execute(firstBattler, secondBattler);
+  secondBattler.nextAction.execute(secondBattler, firstBattler);
+
+  renderTurn();
 }
 
 function rollInitiative(monsterData) {
   return randomRoll = Math.floor(Math.random * 100) + monsterData.speed;
+}
+
+function userAttack(event){
+  console.log('did something');
+  if (event.keyCode === 97 || event.keyCode === 49) {
+    executeTurn(0);
+  }else if (event.keyCode === 98 || event.keyCode === 50) {
+    executeTurn(1);
+  }
 }

@@ -3,9 +3,57 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Gameplay Page</title>
+  <title>Game Page</title>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles/reset.css">
+  <link rel="stylesheet" href="styles/style.css">
 </head>
 <body>
-  
+  <header>
+    <h1>Myths & Monsters</h1>
+    <img src="https://placehold.it/90x90/111" alt="Link to Home, could be text but an image could be nice">
+</header>
+<main>
+  <section id="dataTrayL">
+    <!-- <img src="https://placehold.it/90x90/111" alt="Data tray left" class="dataTray"> -->
+  </section>
+
+  <section id="gameScreen">
+    <section id='battlePositions'>
+      <div id="userBattlePosition">
+        <div class='healthBar' id='userHealthBar'>
+          <p id='userHealthNumber'></p>
+        </div>
+      </div>
+      <div id="enemyBattlePosition">
+        <div class='healthBar' id='enemyHealthBar'>
+          <p id='enemyHealthNumber'></p>
+        </div>
+      </div>
+    </section>
+    <section id='abilitiesAndDialogue'>
+      <div id='abilityTrayDiv'>
+        <ul id='abilityTray'></ul>
+        <!-- <img src="https://placehold.it/350x160/111" alt="Ability Tray"> -->
+      </div>
+      <div id='dialogueTray'>
+        <ul id='abilityTray'></ul>
+        <img src="https://placehold.it/220x160/111" alt="Ability Tray">
+      </div>
+
+  </section>  
+
+    <!-- <img src="https://placehold.it/640x480/111" alt="Data tray left" class="gamePlacehold"> -->
+  </section>
+
+  <section id="dataTrayR">
+    <!-- <img src="https://placehold.it/80x80/111" alt="Data tray right" class="dataTray"> -->
+  </section>
+</main>
+<script src="apps/monsters.js"></script>
+<script src="apps/effects.js"></script>
+<script src="apps/abilities.js"></script>
+<script src="apps/combat.js"></script>
+<script src="apps/gameview.js"></script>
 </body>
 </html>

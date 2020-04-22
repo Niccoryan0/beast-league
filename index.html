@@ -3,9 +3,46 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Homepage</title>
+  <title>Home Page</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Mono&family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/../styles/reset.css">
+  <link rel="stylesheet" href="styles/style.css">
 </head>
 <body>
-  
+  <header>
+    <h1>BEAST LEAGUE</h1>
+    <a href="about.html"><img src="https://placehold.it/90x90/111" alt="Link to Home, could be text but an image could be nice"></a>
+</header>
+<main>
+  <section class='spriteTray'>
+    <img src="assets/sprites/Krapken_160px_transparent.png" alt="Krapken Sprite">
+  </section>
+  <div class='buttons&Info'>
+
+    <section class="buttons">
+      <button id='startButton'>Start Game</button>
+      <button id='resetButton'>Get a New Monster</button>
+    </section>
+    <section id="userMonsterProfile">
+      <section class="monsterInfoandImg">
+        <section id="picTray"></section>
+          <div class='monsterInfo'>
+            <h2 id='userMonsterName'></h2>
+            <section id='monsterStats'>
+              <p id='userMonsterAtk'></p>
+              <p id='userMonsterDef'></p>
+              <p id='userMonsterSpd'></p>
+            </section>
+          </div>
+        </section>
+        <p id="userMonsterDescription"></p>
+      </section>
+  </div>
+  <section class='spriteTray'>
+    <img src="assets/sprites/MWP_160px_transparent.png" alt="MWP Sprite">
+  </section>
+</main>
+<script src='apps/monsters.js'></script>
+<script src="apps/gamemanager.js"></script>
 </body>
 </html>
