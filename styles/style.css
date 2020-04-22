@@ -33,7 +33,7 @@ header{
     justify-content: space-between;
     border: 1px solid black;
     padding: 10px;  
-    width:800px;
+    width:250px;
     margin-left: auto;
     margin-right: auto;
 }
@@ -199,12 +199,29 @@ main > p {
     margin: 40px 20px 0px 20px;
 }
 
+.spriteTray {
+    display: flex;
+    flex-direction: column;
+}
+
+#spriteTrayL {
+    margin-left: auto;
+    margin-right: 60px;
+}
+
+#spriteTrayR {
+    margin-right: auto;
+    margin-left: 60px;
+}
+
 .spriteTray > img {
     height:100px;
     border: 1px solid black;
     padding: 5px;
     margin-bottom: 5px;
 }
+
+
 
 header, .spriteTray > img, #userMonsterProfile, p {
     background-color: blanchedalmond;
@@ -243,3 +260,8 @@ header, .spriteTray > img, #userMonsterProfile, p {
     margin: 10px 5px;
 }
 
+#logo {
+    margin-left:auto;
+    margin-right: auto;
+
+}

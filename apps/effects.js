@@ -21,4 +21,8 @@ function eff_damageEffect(user, target) {
   console.log(damageRoll);
   target.takeDamage(damageRoll, user.monsterData.attack);
   // Sends function to View for rendering effect
-};
+}
+
+function eff_debuffEffect(user, target, stat){
+  user.stat -= 5;
+}
