@@ -13,6 +13,10 @@ Ability.prototype.execute = function(user, target) {
   for(var eff in effects) {
     randomExecutionRoll = Math.round(Math.floor(Math.random * 100));
     if(randomExecutionRoll) eff.effectMethod(user, target);
+
+    //renderqueue entries by ability, not effect?
+    //ability sets text content of entries, effect sets imgEl and id
+    //if effect doesn't execute, passes generic miss
   }
 };
 
