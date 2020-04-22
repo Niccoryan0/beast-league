@@ -16,6 +16,7 @@ function Effect(executionChance, customValues, effectMethod) {
 // eslint-disable-next-line no-unused-vars
 function eff_damageEffect(user, target) {
   console.log('damage dealt');
+
   var damageRoll = Math.floor((Math.random() * this.customValues['damage']) + (this.customValues['damage'] * 0.5));
   console.log(damageRoll);
   target.takeDamage(damageRoll, user.monsterData.attack);

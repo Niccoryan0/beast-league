@@ -16,7 +16,9 @@ function renderBattleSprites(userImgSrc, enemyMonsterImgSrc){
   userImgEl.height = 80;
   console.log(userMonster);
   userTarget.appendChild(userImgEl);
+
   console.log(userImgEl);
+
   userMonster.imgElement = userImgEl;
 
   // THIS RENDERS THE ENEMY SPRITE
@@ -59,6 +61,7 @@ function renderTurn(){
 }
 
 
+
 function disableAbilityTray (){
   document.removeEventListener('keydown', userAttack);
   abilityTray.innerHTML = '';
@@ -75,7 +78,9 @@ function enableAbilityTray (){
 }
 
 function animateEffect(imgEl, animateString){
+
   imgEl.className = animateString;
 }
 
 initializeCombat();
+
