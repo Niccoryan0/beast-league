@@ -4,6 +4,8 @@
   >> customValues is an object for any unique values needed by an effect
   >> effectMethod is the function that runs when the effect is used
 */
+
+// eslint-disable-next-line no-unused-vars
 function Effect(executionChance, customValues, effectMethod) {
   this.executionChance = executionChance;
   this.customValues = customValues; 
@@ -11,8 +13,10 @@ function Effect(executionChance, customValues, effectMethod) {
   this.effectMethod = effectMethod;
 }
 
+// eslint-disable-next-line no-unused-vars
 function eff_damageEffect(user, target) {
-  console.log('damage delt')
+  console.log('damage dealt');
+
   var damageRoll = Math.floor((Math.random() * this.customValues['damage']) + (this.customValues['damage'] * 0.5));
   console.log(damageRoll);
   target.takeDamage(damageRoll, user.monsterData.attack);

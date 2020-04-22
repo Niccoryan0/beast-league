@@ -1,128 +1,148 @@
 
 * {
-    /* outline: 1px red dashed;
-    box-sizing: border-box; */
-        border-radius: 10px;
-    }
-    
-    body {
+/* outline: 1px red dashed;
+box-sizing: border-box; */
+    border-radius: 10px;
+    /* font-family: 'Fira Mono', monospace; */
+}
+
+body {
     margin: 5% 30px;
-    }
-    
-    header{
-    display: flex;
-    justify-content: space-between;
-    border: 1px solid black;
-    padding: 10px;  
-    width:auto;
-    }
-    
-    header > h1 {
-    font-family: 'Press Start 2P', cursive;
+    background-color: rgba(116, 37, 37, 0.233);
+}
+
+p {
+    line-height: 25px;
+    font-family: 'Fira Mono', monospace;
+
+}
+
+button {
+    padding:10px;
+    background-color: red;
+    border: 0px;
     font-size: 20px;
-    margin: auto 20px;
-    }
-    
-    main {
-    margin-top: 30px;
-    display: flex;
-    justify-content: space-between;
-    }
-    
-    main > p {
-    margin: 30px 80px;
-    height: 380px;
-    overflow: auto;
-    border: 1px solid black;
-    padding: 20px 40px;
-    }
-    
-    footer {
-    display: flex;
-    justify-content: space-between;
-    }
-    
-    footer > p {
-    margin: 30px 5px;
-    height: 300px;
-    overflow: auto;
-    border: 1px solid black;
+    font-weight: bold;
+}
+
+button:hover {
+    background-color: blue;
+}
+
+header{
+display: flex;
+justify-content: space-between;
+border: 1px solid black;
+padding: 10px;  
+width:800px;
+margin-left: auto;
+margin-right: auto;
+}
+
+header > h1 {
+font-family: 'Press Start 2P', cursive;
+font-size: 20px;
+margin: auto 20px;
+}
+
+main {
+margin-top: 30px;
+display: flex;
+justify-content: space-between;
+}
+
+main > p {
+margin: 30px 60px;
+height: 380px;
+overflow: auto;
+border: 1px solid black;
+padding: 20px 40px;
+}
+
+
+.personalBio {
+margin: 30px 5px;
+height: 300px;
+overflow: auto;
+border: 1px solid black;
+}
+.personalBio > p {
     padding: 10px;
-    }
-    
-    /* #gameScreen {
-    margin: 0px 30px;
-    width: 81.5%;
-    height:720px;
-    } */
-    
-    .dataTray {
-    height: 90px;
-    }
-    
-    
-    /* INDEX PAGE ONLY BELOW */
-    
-    .buttons {
-    display: flex;
-    flex-direction: column;
-    margin: 80px 0px;
-    
-    }
-    
-    #resetButton {
-    margin-top: 20px;
-    }
-    
-    .monsterInfoandImg {
-    display: flex;
-    flex-direction: row;
-    /* border: 1px solid black; */
-    padding: 15px;
-    }
-    
-    .monsterInfo {
-    margin-left: 10px;
-    }
-    
-    .monsterInfo > h2{
-    border: 1px solid black;
-    border-radius: 0px;
-    }
-    
-    .monsterInfo > p {
-    border: 1px solid black;
-    border-radius: 0px;
-    margin-top: 30px;
-    }
-    
-    #userMonsterImg {
-    height: 80px;
-    width: 80px;
-    }
-    
-    #userMonsterProfile {
-    border: 1px solid black;
-    width: 250px;
-    height: 250px
-    }
-    
-    #userMonsterDescription {
-    padding: 5px;
-    border: 1px solid black;
-    border-radius:0px;
-    margin: 0px 10px 10px;
-    overflow: auto;
-    height:95px;
-    }
-    
-    
-    /* this was adapted from w3 schools how to shake and image */
-    #animShake {
-        animation: shake 1s;
-        animation-iteration-count: 1;
-    }
-    
+}
+
+
+.dataTray {
+height: 90px;
+}
+
+
+/* INDEX PAGE ONLY BELOW */
+
+.buttons {
+display: flex;
+flex-direction: column;
+margin: 80px 0px;
+
+}
+
+#resetButton {
+margin-top: 20px;
+}
+
+.monsterInfoandImg {
+display: flex;
+flex-direction: row;
+/* border: 1px solid black; */
+padding: 15px;
+height:100px;
+}
+
+.monsterInfoandImg > p {
+    line-height: 5px;
+}
+
+.monsterInfo {
+margin-left: 10px;
+}
+
+.monsterInfo > h2{
+border: 1px solid black;
+border-radius: 0px;
+}
+
+.monsterInfo > p {
+border: 1px solid black;
+border-radius: 0px;
+margin-top: 30px;
+}
+
+#userMonsterImg {
+height: 80px;
+width: 80px;
+}
+
+#userMonsterProfile {
+border: 1px solid black;
+width: 250px;
+height: 250px
+}
+
+#userMonsterDescription {
+padding: 5px;
+border: 1px solid black;
+border-radius:0px;
+margin: 0px 10px 10px;
+overflow: auto;
+height:95px;
+}
+
+
+/* this was adapted from w3 schools how to shake and image */
+.animShake {
+    animation: shake 1s;
+    animation-iteration-count: 1;
+}
+
     @keyframes shake {
         0% { transform: translate(1px, 1px) rotate(0deg); }
         10% { transform: translate(-1px, -2px) rotate(-1deg); }
@@ -182,3 +202,4 @@
         margin-left:10px;
         margin-right: 10px;
     }
+

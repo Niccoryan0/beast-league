@@ -15,7 +15,7 @@
       b. At end of death animation, spawn buttons for continue or return to home
 */
 
-var gameWindowEl, userMonster, enemyMonster, userScore, startCombat, turnTimer = 0;
+var userMonster, enemyMonster, userScore, startCombat, turnTimer = 0;
 
 function initializeCombat() {
   enemyMonster = new MonsterBattler(getRandomMonster());
@@ -23,12 +23,21 @@ function initializeCombat() {
   for (var i in enemyMonster.monsterData.abilitySet){
     enemyMonster.abilitySet.push( AbilityDatabase[enemyMonster.monsterData.abilitySet[i]] );
   }
-  userMonster = new MonsterBattler(getRandomMonster());
+
+  if (localStorage.getItem('userMonster')){
+    userMonster = new MonsterBattler(JSON.parse(localStorage.getItem('userMonster')));
+  } else {
+    userMonster = new MonsterBattler(getRandomMonster());
+    localStorage.setItem('userMonster', JSON.stringify(userMonster));
+  }
+  
   userMonster.currentHealth = userMonster.maximumHealth;
   for (var i in userMonster.monsterData.abilitySet){
     userMonster.abilitySet.push( AbilityDatabase[userMonster.monsterData.abilitySet[i]] );
   }
-  console.log(userMonster.monsterData);
+
+  console.log(userMonster);
+
   renderBattleSprites(userMonster.monsterData.imgSrc, enemyMonster.monsterData.imgSrc);
   enableAbilityTray();
 };
@@ -70,5 +79,4 @@ function userAttack(event){
     executeTurn(1);
   }
 }
-
 

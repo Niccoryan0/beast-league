@@ -1,9 +1,19 @@
 'use strict';
+/* GLOBAL: getRandomMonster */
 // Initialize data for monsters, save/load data for monsters, handle events outside of game function
 // THIS WILL BE THE SECOND FILE THAT GETS RUN ONLY ON THE HOMEPAGE
 
-// Array
 var userMonster;
+if (localStorage.getItem('userMonster')){
+  userMonster = JSON.parse(localStorage.getItem('userMonster'));
+} else {
+  userMonster = getRandomMonster();
+  localStorage.setItem('userMonster', JSON.stringify(userMonster));
+}
+
+// Array
+
+
 
 // Gets a random monster from the Monster array
 
@@ -15,7 +25,7 @@ var userMonster;
 function renderUserSpriteHomepage(){
   var target = document.getElementById('picTray');
 
-  var userImgSrc = userMonster.imgSrc; // CHECK THIS LINE WITH BADE!!!
+  var userImgSrc = userMonster.imgSrc;
   var userImgEl = document.createElement('img');
   userImgEl.src = userImgSrc;
   userImgEl.height = 80;
@@ -23,20 +33,29 @@ function renderUserSpriteHomepage(){
 
   var userMonsterName = document.getElementById('userMonsterName');
   userMonsterName.textContent = userMonster.name;
-  var userMonsterStats = document.getElementById('userMonsterStats');
-  userMonsterStats.textContent = userMonster.stats
-  var userMonsterdesc = 
-};
+  var userMonsterAtk = document.getElementById('userMonsterAtk');
+  userMonsterAtk.textContent = 'Attack: ' + userMonster.attack;
+  var userMonsterDef = document.getElementById('userMonsterDef');
+  userMonsterDef.textContent = 'Defense: ' + userMonster.defense;
+  var userMonsterSpd = document.getElementById('userMonsterSpd');
+  userMonsterSpd.textContent = 'Speed: ' + userMonster.speed;
+  var userMonsterDesc = document.getElementById('userMonsterDescription');
+  userMonsterDesc.textContent = userMonster.description;
+
+
+}
+renderUserSpriteHomepage();
 
 var resetButton = document.getElementById('resetButton');
 resetButton.addEventListener('click', function(){
-  if (!localStorage.getItem('userMonster')){
-    localStorage.clear();
-    location.reload();
-  }
+  localStorage.clear();
+
   userMonster = getRandomMonster();
   var userMonsterStringy = JSON.stringify(userMonster);
   localStorage.setItem('userMonster', userMonsterStringy);
+
+  location.reload();
+
 });
 
 var startButton = document.getElementById('startButton');

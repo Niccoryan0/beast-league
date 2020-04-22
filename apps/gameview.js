@@ -14,7 +14,11 @@ function renderBattleSprites(userImgSrc, enemyMonsterImgSrc){
   var userImgEl = document.createElement('img');
   userImgEl.src = userImgSrc;
   userImgEl.height = 80;
+  console.log(userMonster);
   userTarget.appendChild(userImgEl);
+
+  console.log(userImgEl);
+
   userMonster.imgElement = userImgEl;
 
   // THIS RENDERS THE ENEMY SPRITE
@@ -33,8 +37,10 @@ function RenderQueueEntry (imgEl, animateString){
 
 
 function clearAnimation (event){
-  event.target.id = '';
+  event.target.className = '';
+  void event.target.offsetWidth;
   event.target.removeEventListener('animationend', clearAnimation);
+  event.target.removeEventListener('animationcancel', clearAnimation);
   renderTurn();
 }
 
@@ -43,6 +49,7 @@ function renderTurn(){
   if(renderQueue.length){
     var nextEntry = renderQueue.pop(0);
     nextEntry.imgEl.addEventListener('animationend', clearAnimation);
+    nextEntry.imgEl.addEventListener('animationcancel', clearAnimation);
     animateEffect(nextEntry.imgEl, nextEntry.animateString);
   }else if(userMonster.currentHealth <= 0 || enemyMonster.currentHealth <= 0){
     var userData = JSON.stringify(userMonster.monsterData)
@@ -52,6 +59,7 @@ function renderTurn(){
     enableAbilityTray();
   }
 }
+
 
 
 function disableAbilityTray (){
@@ -70,9 +78,9 @@ function enableAbilityTray (){
 }
 
 function animateEffect(imgEl, animateString){
-  imgEl.id = animateString;
+
+  imgEl.className = animateString;
 }
 
 initializeCombat();
-
 
