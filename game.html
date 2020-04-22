@@ -10,38 +10,50 @@
 </head>
 <body>
   <header>
-    <h1>BEAST LEAGUE</h1>
+    <h1>Myths & Monsters</h1>
     <img src="https://placehold.it/90x90/111" alt="Link to Home, could be text but an image could be nice">
 </header>
 <main>
   <section id="dataTrayL">
-    <img src="https://placehold.it/90x90/111" alt="Data tray left" class="dataTray">
+    <!-- <img src="https://placehold.it/90x90/111" alt="Data tray left" class="dataTray"> -->
   </section>
 
   <section id="gameScreen">
     <section id='battlePositions'>
-      <div id="enemyBattlePosition">
-        <img src="https://placehold.it/160x160/111" alt="Enemy Monster Sprite">
-      </div>
       <div id="userBattlePosition">
-        <img src="https://placehold.it/160x160/111" alt="User Monster Sprite">
+        <div class='healthBar' id='userHealthBar'>
+          <p id='userHealthNumber'></p>
+        </div>
+      </div>
+      <div id="enemyBattlePosition">
+        <div class='healthBar' id='enemyHealthBar'>
+          <p id='enemyHealthNumber'></p>
+        </div>
       </div>
     </section>
     <section id='abilitiesAndDialogue'>
-      <div id='abilityTray'>
+      <div id='abilityTrayDiv'>
         <ul id='abilityTray'></ul>
-        <img src="https://placehold.it/350x160/111" alt="Ability Tray">
+        <!-- <img src="https://placehold.it/350x160/111" alt="Ability Tray"> -->
       </div>
       <div id='dialogueTray'>
         <ul id='abilityTray'></ul>
         <img src="https://placehold.it/220x160/111" alt="Ability Tray">
       </div>
-  </section>
+
+  </section>  
+
+    <!-- <img src="https://placehold.it/640x480/111" alt="Data tray left" class="gamePlacehold"> -->
   </section>
 
   <section id="dataTrayR">
-    <img src="https://placehold.it/80x80/111" alt="Data tray right" class="dataTray">
+    <!-- <img src="https://placehold.it/80x80/111" alt="Data tray right" class="dataTray"> -->
   </section>
 </main>
+<script src="apps/monsters.js"></script>
+<script src="apps/effects.js"></script>
+<script src="apps/abilities.js"></script>
+<script src="apps/combat.js"></script>
+<script src="apps/gameview.js"></script>
 </body>
 </html>

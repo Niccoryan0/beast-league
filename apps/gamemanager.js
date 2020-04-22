@@ -2,14 +2,13 @@
 /* GLOBAL: getRandomMonster */
 // Initialize data for monsters, save/load data for monsters, handle events outside of game function
 // THIS WILL BE THE SECOND FILE THAT GETS RUN ONLY ON THE HOMEPAGE
-var krapkenDesc = 'A cross between a Japanese Kappa and a Kraken. This monstrous beast has the upper half of a human like turtle creature, the Kappa, with the Eldritch abomination that is it\'s Kraken lower half. Krapken enjoys hanging out in the water, with only his top half exposed, in order to lure in unsuspecting victims to pull them under with him tentacles.';
 
 var userMonster;
 if (localStorage.getItem('userMonster')){
-  userMonster = localStorage.getItem(JSON.parse('userMonster'));
+  userMonster = JSON.parse(localStorage.getItem('userMonster'));
 } else {
-  // userMonster = getRandomMonster();
-  userMonster = {name : 'Krapken', attack : 30, defense: 30, speed: 30, description: krapkenDesc, imgSrc : 'assets/sprites/Krapken_160px_transparent.png'};
+  userMonster = getRandomMonster();
+  localStorage.setItem('userMonster', JSON.stringify(userMonster));
 }
 
 // Array
