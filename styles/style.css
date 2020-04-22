@@ -16,17 +16,6 @@ p {
     font-family: 'Fira Mono', monospace;
 }
 
-button {
-    padding:10px;
-    background-color: red;
-    border: 0px;
-    font-size: 20px;
-    font-weight: bold;
-}
-
-button:hover {
-    background-color: blue;
-}
 
 header{
     display: flex;
@@ -103,7 +92,18 @@ header, .spriteTray > img, #userMonsterProfile, p {
 }
 
 #logo {
-    margin-left:auto;
-    margin-right: auto;
+    margin-left:20px;
 
 }
+
+button {
+    padding:10px;
+    background-color: red;
+    border: 0px;
+    font-size: 20px;
+    font-weight: bold;
+  }
+  
+  button:hover {
+    background-color: blue;
+  }

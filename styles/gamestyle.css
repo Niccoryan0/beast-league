@@ -1,4 +1,7 @@
-
+main {
+  display: flex;
+  flex-direction: column;
+}
 #dialogueTrayDiv {
   height: 150px;
   overflow: auto;
@@ -56,7 +59,10 @@
 
 #abilityTrayDiv > ul > li {
   border: 1px solid black;
-  padding: 30px 40px;
+  font-family: 'Fira Mono', monospace;
+  font-size: 20px;
+  /* font-weight: bold; */
+  padding: 20px 20px;
   margin: 10px 5px;
   background-color: rgba(255, 255, 255, 0.8)
 }
@@ -106,3 +112,31 @@
   margin-right: 50px;
   /* margin-bottom: 10px; */
 }
+
+.directions {
+  text-align:center;
+  font-size: 25px;
+}
+
+#abilityUlEl {
+  font-size: 20px;
+}
+
+#endGameButtons {
+  display: flex;
+  margin-left: 40%;
+  margin-right: 40%;
+  position: relative;
+}
+
+
+
+/* button {
+  background-color: red;
+  font-weight: bold;
+  font-size: 17px;
+}
+
+button:hover {
+  background-color: blue;
+} */
