@@ -19,30 +19,36 @@ Ability.prototype.execute = function(user) {
   }
 };
 
+//All abilities in the game
+//Note: DO YOU LIKE NESTING? I HOPE YOU LIKE NESTING!!!!
+
+/*
+GUIDE TO MAKING A NEW ABILITY:
+1. Think of a concept (what does it do?)
+2. 
+
+*/
 var AbilityDatabase = {};
+
 AbilityDatabase['Trample'] = new Ability([
   new Effect(100, {'damage' : 5}, eff_damageEffect),
   new Effect(100, {'damage' : 5}, eff_damageEffect)
+], 'Trample');
 
-],
-'Trample');
 AbilityDatabase['Body Slam'] = new Ability([
   new Effect(80, {'damage' : 12}, eff_damageEffect)
-],
-'Body Slam');
+], 'Body Slam');
+
 AbilityDatabase['Wrap'] = new Ability([
-  new Effect(80, {'damage' : 12}, eff_damageEffect)
-],
-'Wrap');
+  new Effect(100, {'damage' : 8}, eff_damageEffect)
+],'Wrap');
+
 AbilityDatabase['Lure'] = new Ability([
-  new Effect(80, {'damage' : 12}, eff_damageEffect)
-], 
-'Lure');
+  new Effect(100, {'statusToApply' : StatusEffectDatabase['Lure']}, eff_applyStatusEffect),
+  new Effect(20, {'damage' : 8}, eff_damageEffect)
+], 'Lure');
+
 AbilityDatabase['Chomp'] = new Ability([
   new Effect(80, {'damage' : 12}, eff_damageEffect)
-], 
-'Chomp');
-
-// IF WE'RE MODIFYING STATS USE THESE PARAMS:
-// {'selfEffect' : eff_modifyStatEffect, 'statModify' : 5, 'statToModify' : 'currentSpeed'}
+], 'Chomp');
 

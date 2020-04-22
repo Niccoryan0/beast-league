@@ -1,8 +1,19 @@
-function StatusEffect(name, type, duration = 1){
+function StatusEffect(name, maxDuration = 1, applyEffect, removeEffect) {
   this.name = name;
-  this.type = type;
-  this.duration = duration;
-  this.tickTimer = 0;
+  this.maxDuration = maxDuration;
+  this.currDuration = 0;
+  this.applyEffect = applyEffect;
+  this.removeEffect = removeEffect;
+}
+
+StatusEffect.prototype.tickCondition = function (target) {
+  this.currDuration++;
+  console.log(this.name + ' has ' + (this.maxDuration - this.currDuration) + ' turns remaining.');
+  if (this.currDuration >= this.maxDuration) {
+    this.removeEffect.effectMethod(target);
+    return null;
+  }
+  else return this;
 }
 
 // EVASION RATES ARE SET FOR EACH MONSTER AND CAN BE MODIFIED WITHIN METHODS
@@ -12,3 +23,11 @@ function StatusEffect(name, type, duration = 1){
 // Duration 0 means permanent,
 // We need a way to tick down this number each turn though, as well as max duration and "current tick timer", which counts up to reach max duration
 
+var StatusEffectDatabase = {};
+
+StatusEffectDatabase['Lure'] = new StatusEffect('Lure', 3,
+  new Effect(100, { 'statMod': { 'statName': 'currentDefense', 'statModValue': -10 } }, eff_modifyStatEffect),
+  new Effect(100, {
+    'selfEffect': new Effect(100, { 'statMod': { 'statName': 'currentDefense', 'statModValue': 10 } }, eff_modifyStatEffect)
+  }, eff_selfEffect)
+);

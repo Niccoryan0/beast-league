@@ -19,10 +19,11 @@ var userMonster, enemyMonster, userScore, startCombat, turnTimer = 0;
 
 function initializeCombat() {
   enemyMonster = new MonsterBattler(getRandomMonster());
+
   enemyMonster.currentHealth = enemyMonster.maximumHealth;
-  enemyMonster.currentAttack = enemyMonster.attack;
-  enemyMonster.currentDefense = enemyMonster.defense;
-  enemyMonster.currentSpeed = enemyMonster.speed;
+  enemyMonster.currentAttack = enemyMonster.monsterData.attack;
+  enemyMonster.currentDefense = enemyMonster.monsterData.defense;
+  enemyMonster.currentSpeed = enemyMonster.monsterData.speed;
   for (var i in enemyMonster.monsterData.abilitySet){
     enemyMonster.abilitySet.push( AbilityDatabase[enemyMonster.monsterData.abilitySet[i]] );
   }
@@ -35,6 +36,9 @@ function initializeCombat() {
   }
 
   userMonster.currentHealth = userMonster.maximumHealth;
+  userMonster.currentAttack = userMonster.monsterData.attack;
+  userMonster.currentDefense = userMonster.monsterData.defense;
+  userMonster.currentSpeed = userMonster.monsterData.speed;
   for (var i in userMonster.monsterData.abilitySet){
     userMonster.abilitySet.push( AbilityDatabase[userMonster.monsterData.abilitySet[i]] );
   }
@@ -69,9 +73,9 @@ function executeTurn(abilitySel) {
 
   firstBattler.nextAction.execute(firstBattler);
   secondBattler.nextAction.execute(secondBattler);
+  firstBattler.tickConditions(firstBattler);
+  secondBattler.tickConditions(secondBattler);
 
-  // Two options for stat modifiers:
-  // 1. Add a self-effect that's called in another effect, and passes in the user as the target
   renderTurn();
 }
 
