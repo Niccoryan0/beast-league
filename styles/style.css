@@ -169,7 +169,7 @@ main > p {
 #battlePositions {
     display: flex;
     justify-content: space-between;
-    margin-top: 140px;
+    margin-top: 110px;
     margin-left: 50px;
     margin-right: 50px;
     /* margin-bottom: 10px; */
@@ -250,6 +250,9 @@ header, .spriteTray > img, #userMonsterProfile, p {
     height: 160px;
 }
 
+#userBattlePosition > img {
+    transform: scaleX(-1)
+}
 
 #abilityTrayDiv > ul {
     display: flex;
@@ -272,7 +275,7 @@ header, .spriteTray > img, #userMonsterProfile, p {
     height: 150px;
     overflow: auto;
     margin-left: 10px;
-
+    width:280px;
 }
 
 #dialogueTrayDiv > ul > li  {
@@ -290,4 +293,25 @@ header, .spriteTray > img, #userMonsterProfile, p {
 #dialogueTrayDiv > ul > li > p {
     background-color: blanchedalmond;
     margin-top: 8px;
+}
+
+.battlePositionsContainer {
+    display: flex;
+    flex-direction: column;
+}
+
+.healthBarOuter{
+    margin-bottom: 20px;
+    /* z-index: 1; */
+    width: 160px;
+    height: 20px;
+    background-color: blanchedalmond;
+}
+
+.healthBarInner{
+    background-color: red;
+    /* z-index: 0; */
+
+    /* width:80px;  */
+    height:20px;
 }

@@ -33,8 +33,6 @@ function MonsterBattler(monsterData) {
     if(this.currentHealth < 0 ){
       this.currentHealth = 0;
     }
-    // user.name + ' deals ' + damage
-
     renderQueue.push(new RenderQueueEntry(this.imgElement, 'animShake'));
   };
 }
@@ -53,17 +51,4 @@ var genrathDesc = 'A turtle may not be too terrifying a foe, certainly, but Genr
 var monsterDatabase = {
   mKrapken: new MonsterData('Krapken', krapkenDesc, 'assets/sprites/Krapken_160px_transparent.png', 30, 20, 40, ['Wrap', 'Lure']),
   mManWolfPig: new MonsterData('ManWolfPig', mwpDesc, 'assets/sprites/MWP_160px_transparent.png', 30, 30, 30, ['Chomp', 'Trample'])
-}
-
-var dialogueBoxEl = document.getElementById('dialogueTrayDiv')
-function dialogueBox(turnNumber, move){
-  var headerEl = document.createElement('h3');
-  var userParaEl = document.createElement('p');
-  var enemyParaEl = document.createElement('p');
-  headerEl.textContent = 'Turn Number: ' + turnNumber;
-  dialogueBoxEl.appendChild(headerEl);
-  userParaEl.textContent = userMonster.name + ' used ' + userMonster.nextAction;
-  dialogueBoxEl.appendChild(userParaEl);
-  enemyParaEl.textContent = enemyMonster.name + ' used ' + enemyMonster.nextAction;
-  dialogueBoxEl.appendChild(enemyParaEl)
-}
+};

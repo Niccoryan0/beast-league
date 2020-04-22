@@ -1,3 +1,4 @@
+
 // This is going to contain the core gameplay loop for combat
 /*
   >> Initialize loop: Get random monster and get player monster data
@@ -18,7 +19,18 @@
 var userMonster, enemyMonster, userScore, startCombat, turnTimer = 0;
 
 function initializeCombat() {
+  if (localStorage.getItem('userMonster')){
+    userMonster = new MonsterBattler(JSON.parse(localStorage.getItem('userMonster')));
+  } else {
+    userMonster = new MonsterBattler(getRandomMonster());
+    localStorage.setItem('userMonster', JSON.stringify(userMonster));
+  }
+
+
   enemyMonster = new MonsterBattler(getRandomMonster());
+  while(enemyMonster.monsterData.name === userMonster.monsterData.name) {
+    enemyMonster = new MonsterBattler(getRandomMonster());
+  }
   enemyMonster.currentHealth = enemyMonster.maximumHealth;
   enemyMonster.currentAttack = enemyMonster.attack;
   enemyMonster.currentDefense = enemyMonster.defense;
@@ -27,12 +39,6 @@ function initializeCombat() {
     enemyMonster.abilitySet.push( AbilityDatabase[enemyMonster.monsterData.abilitySet[i]] );
   }
 
-  if (localStorage.getItem('userMonster')){
-    userMonster = new MonsterBattler(JSON.parse(localStorage.getItem('userMonster')));
-  } else {
-    userMonster = new MonsterBattler(getRandomMonster());
-    localStorage.setItem('userMonster', JSON.stringify(userMonster));
-  }
 
   userMonster.currentHealth = userMonster.maximumHealth;
   for (var i in userMonster.monsterData.abilitySet){
@@ -90,6 +96,13 @@ function userAttack(event){
   // Call dialoguebox and pass in turnTimer then increase it
   dialogueBox(turnTimer);
   turnTimer++;
+
+  // Attempting to get the health bars to change dynamically when an attack happens
+  var userHealthBar = document.getElementById('userHealth');
+  userHealthBar.style.width = userMonster.currentHealth / userMonster.maximumHealth;
+  var enemyHealthBar = document.getElementById('enemyHealth');
+  enemyHealthBar.style.width = enemyMonster.currentHealth / enemyMonster.maximumHealth;
+
 }
 
 // This function is to render the dialogue box to the screen each turn, it is called in the userAttack function
@@ -110,6 +123,6 @@ function dialogueBox(turnNumber){
   dialogueLiEl.appendChild(headerEl);
   dialogueLiEl.appendChild(userParaEl);
   dialogueLiEl.appendChild(enemyParaEl);
-  // Place the new item at the top of the list, this came from W3 schools on the insertBefore method, STILL WORKING OUT KINKS
+  // Place the new item at the top of the list, this came from W3 schools on the insertBefore method
   dialogueUlEl.insertBefore(dialogueLiEl, dialogueUlEl.childNodes[0]);
 }
