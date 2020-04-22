@@ -37,9 +37,10 @@ function eff_selfEffect(user) {
 
 function eff_modifyStatEffect(user){
   var statModified = this.customValues['statMod'];
-  user.target[statModified['statName']] += statModified['statModValue'];
+  console.log(statModified['statModValue']);
+  user.target[statModified['statName']] = user.target[statModified['statName']] + statModified['statModValue'];
   if(user.target[statModified['statName']] < 0) user.target[statModified['statName']] = 0;
-  console.log(user.monsterData.name + ' ' + statModified['statName'] + ' now equals ' + user.target[statModified['statName']]);
+  console.log(user.target.monsterData.name + ' ' + statModified['statName'] + ' now equals ' + user.target[statModified['statName']]);
 }
 
 function eff_applyStatusEffect(user) {
