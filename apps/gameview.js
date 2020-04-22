@@ -3,7 +3,7 @@
 // TODO: Maybe get userMonster from localStorage, talk to Bade about file order
 
 var renderQueue = [];
-var abilityTray = document.getElementById('abilityTray');
+var abilityTrayDiv = document.getElementById('abilityTrayDiv');
 
 
 
@@ -64,10 +64,12 @@ function renderTurn(){
 
 function disableAbilityTray (){
   document.removeEventListener('keydown', userAttack);
-  abilityTray.innerHTML = '';
+  abilityTrayDiv.innerHTML = '';
 }
 
 function enableAbilityTray (){
+  var abilityTray = document.createElement('ul');
+  abilityTrayDiv.appendChild(abilityTray);
   document.addEventListener('keydown', userAttack);
   var userMonsterAbilities = userMonster.monsterData.abilitySet; 
   for (var ab in userMonsterAbilities){
