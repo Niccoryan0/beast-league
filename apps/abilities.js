@@ -9,13 +9,13 @@ function Ability(effects, name, desc = 'x'){
   this.desc = desc;
 }
 
-Ability.prototype.execute = function(user, target) {
+Ability.prototype.execute = function(user) {
   var randomExecutionRoll;
   console.log(this.name + ' is used');
   for(var eff in this.effects) {
     randomExecutionRoll = Math.round(Math.floor(Math.random() * 100));
-    if(randomExecutionRoll < this.effects[eff].executionChance) this.effects[eff].effectMethod(user, target);
-    else console.log("FAILED TO EXECUTE");
+    if((randomExecutionRoll + user.target.evasionRate) < this.effects[eff].executionChance) this.effects[eff].effectMethod(user);
+    else console.log('FAILED TO EXECUTE');
   }
 };
 
@@ -24,7 +24,7 @@ AbilityDatabase['Trample'] = new Ability([
   new Effect(100, {'damage' : 5}, eff_damageEffect),
   new Effect(100, {'damage' : 5}, eff_damageEffect)
 
-], 
+],
 'Trample');
 AbilityDatabase['Body Slam'] = new Ability([
   new Effect(80, {'damage' : 12}, eff_damageEffect)
@@ -42,3 +42,7 @@ AbilityDatabase['Chomp'] = new Ability([
   new Effect(80, {'damage' : 12}, eff_damageEffect)
 ], 
 'Chomp');
+
+// IF WE'RE MODIFYING STATS USE THESE PARAMS:
+// {'selfEffect' : eff_modifyStatEffect, 'statModify' : 5, 'statToModify' : 'currentSpeed'}
+

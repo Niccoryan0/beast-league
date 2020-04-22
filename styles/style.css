@@ -160,7 +160,7 @@ main > p {
     height: 480px;
     width: 640px;
     border: 1px solid black;
-    background-color: rgba(255, 255, 255, 0.616);
+    background-image: url('../assets/arena.png');
     margin-left: auto;
     margin-right: auto;
 }
@@ -258,10 +258,26 @@ header, .spriteTray > img, #userMonsterProfile, p {
     border: 1px solid black;
     padding: 30px 40px;
     margin: 10px 5px;
+    background-color: rgba(255, 255, 255, 0.8)
 }
 
 #logo {
     margin-left:auto;
     margin-right: auto;
 
+}
+
+#dialogueTrayDiv {
+    height: 150px;
+    overflow: auto;
+}
+
+#dialogueTrayDiv > h3 {
+    background-color: blanchedalmond;
+    font-size: 22px;
+}
+
+#dialogueTrayDiv > p {
+    background-color: blanchedalmond;
+    margin-top: 8px;
 }

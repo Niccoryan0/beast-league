@@ -30,9 +30,10 @@ function renderBattleSprites(userImgSrc, enemyMonsterImgSrc){
   enemyMonster.imgElement = enemyMonsterImg;
 }
 
-function RenderQueueEntry (imgEl, animateString){
+function RenderQueueEntry (imgEl, animateString, dialogueEntry){
   this.imgEl = imgEl;
   this.animateString = animateString;
+  this.dialogueEntry = dialogueEntry;
 }
 
 
@@ -83,6 +84,8 @@ function animateEffect(imgEl, animateString){
 
   imgEl.className = animateString;
 }
+
+
 
 initializeCombat();
 

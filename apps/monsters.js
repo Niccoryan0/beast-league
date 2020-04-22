@@ -19,17 +19,22 @@ function MonsterBattler(monsterData) {
   this.initiativeRoll;
   this.currentHealth;
   this.maximumHealth = 80;
+  this.currentAttack;
+  this.currentDefense;
+  this.currentSpeed;
   this.imgElement;
   this.nextAction;
   this.abilitySet = [];
+  this.target;
+  this.evasionRate = 0;
   this.takeDamage = function (damage, enemyAttackValue) {
     damage = Math.round(damage * (enemyAttackValue / this.monsterData.defense));
     this.currentHealth -= damage;
     if(this.currentHealth < 0 ){
       this.currentHealth = 0;
     }
-    console.log('delt ' + damage);
-    console.log('current health is: ' + this.currentHealth);
+    // user.name + ' deals ' + damage
+
     renderQueue.push(new RenderQueueEntry(this.imgElement, 'animShake'));
   };
 }
@@ -50,3 +55,15 @@ var monsterDatabase = {
   mManWolfPig: new MonsterData('ManWolfPig', mwpDesc, 'assets/sprites/MWP_160px_transparent.png', 30, 30, 30, ['Chomp', 'Trample'])
 }
 
+var dialogueBoxEl = document.getElementById('dialogueTrayDiv')
+function dialogueBox(turnNumber, move){
+  var headerEl = document.createElement('h3');
+  var userParaEl = document.createElement('p');
+  var enemyParaEl = document.createElement('p');
+  headerEl.textContent = 'Turn Number: ' + turnNumber;
+  dialogueBoxEl.appendChild(headerEl);
+  userParaEl.textContent = userMonster.name + ' used ' + userMonster.nextAction;
+  dialogueBoxEl.appendChild(userParaEl);
+  enemyParaEl.textContent = enemyMonster.name + ' used ' + enemyMonster.nextAction;
+  dialogueBoxEl.appendChild(enemyParaEl)
+}

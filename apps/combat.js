@@ -20,6 +20,9 @@ var userMonster, enemyMonster, userScore, startCombat, turnTimer = 0;
 function initializeCombat() {
   enemyMonster = new MonsterBattler(getRandomMonster());
   enemyMonster.currentHealth = enemyMonster.maximumHealth;
+  enemyMonster.currentAttack = enemyMonster.attack;
+  enemyMonster.currentDefense = enemyMonster.defense;
+  enemyMonster.currentSpeed = enemyMonster.speed;
   for (var i in enemyMonster.monsterData.abilitySet){
     enemyMonster.abilitySet.push( AbilityDatabase[enemyMonster.monsterData.abilitySet[i]] );
   }
@@ -30,21 +33,24 @@ function initializeCombat() {
     userMonster = new MonsterBattler(getRandomMonster());
     localStorage.setItem('userMonster', JSON.stringify(userMonster));
   }
-  
+
   userMonster.currentHealth = userMonster.maximumHealth;
   for (var i in userMonster.monsterData.abilitySet){
     userMonster.abilitySet.push( AbilityDatabase[userMonster.monsterData.abilitySet[i]] );
   }
 
   console.log(userMonster);
+  enemyMonster.target = userMonster;
+  userMonster.target = enemyMonster;
 
   renderBattleSprites(userMonster.monsterData.imgSrc, enemyMonster.monsterData.imgSrc);
   enableAbilityTray();
 };
 
 function executeTurn(abilitySel) {
+  // eslint-disable-next-line no-undef
   disableAbilityTray();
-
+  // turnCounter ++
   userMonster.nextAction = userMonster.abilitySet[abilitySel];
   enemyMonster.nextAction = enemyMonster.abilitySet[Math.round(Math.floor(Math.random() * enemyMonster.abilitySet.length))];
 
@@ -61,9 +67,11 @@ function executeTurn(abilitySel) {
   }
 
 
-  firstBattler.nextAction.execute(firstBattler, secondBattler);
-  secondBattler.nextAction.execute(secondBattler, firstBattler);
+  firstBattler.nextAction.execute(firstBattler);
+  secondBattler.nextAction.execute(secondBattler);
 
+  // Two options for stat modifiers:
+  // 1. Add a self-effect that's called in another effect, and passes in the user as the target
   renderTurn();
 }
 
@@ -72,11 +80,26 @@ function rollInitiative(monsterData) {
 }
 
 function userAttack(event){
+
   console.log('did something');
   if (event.keyCode === 97 || event.keyCode === 49) {
     executeTurn(0);
   }else if (event.keyCode === 98 || event.keyCode === 50) {
     executeTurn(1);
   }
+  dialogueBox(turnTimer);
+  turnTimer++;
 }
 
+var dialogueBoxEl = document.getElementById('dialogueTrayDiv');
+function dialogueBox(turnNumber){
+  var headerEl = document.createElement('h3');
+  var userParaEl = document.createElement('p');
+  var enemyParaEl = document.createElement('p');
+  headerEl.textContent = 'Turn Number: ' + turnNumber;
+  dialogueBoxEl.appendChild(headerEl);
+  userParaEl.textContent = userMonster.monsterData.name + ' (player) used ' + userMonster.nextAction.name;
+  dialogueBoxEl.appendChild(userParaEl);
+  enemyParaEl.textContent = enemyMonster.monsterData.name + ' (enemy) used ' + enemyMonster.nextAction.name;
+  dialogueBoxEl.appendChild(enemyParaEl);
+}
