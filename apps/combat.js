@@ -68,9 +68,8 @@ function initializeCombat() {
   htmlBody.appendChild(directions);
 
   // Create health bars and battle positions at start
-  renderBattleSprites(userMonster.monsterData.imgSrc, enemyMonster.monsterData.imgSrc);
-
   renderHealthBars();
+  renderBattleSprites(userMonster.monsterData.imgSrc, enemyMonster.monsterData.imgSrc);
   enableAbilityTray();
 };
 
