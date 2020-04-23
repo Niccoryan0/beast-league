@@ -92,8 +92,18 @@ function animateEffect(imgEl, animateString){
   imgEl.className = animateString;
 }
 
+var userMonsterImgSrc = userMonster.monsterData.imgSrc;
+var enemyMonsterImgSrc = userMonster.monsterData
+
 function playSongOnStart() {
-  initializeCombat();
+  renderQueue.push(new RenderQueueEntry());
+  // Add event listener that calls initialize combat on animation end and removes the event listener
+
+  // Chnage this name to like renderanimationsinqueue
+  renderTurn();
+
+  // 
+
   var isPlaying = true;
   togglePlay();
 }
@@ -133,11 +143,13 @@ function endGameScreen(){
     });
   }
   homeButton.addEventListener('click', function(){
-    window.location.replace('../index.html');
+    window.location.replace('index.html');
   });
   buttonDiv.appendChild(homeButton);
   buttonOuterSection.appendChild(buttonDiv);
 }
+
+
 
 var audioSection = document.getElementById('audio');
 var audioLoop = document.getElementById('audioLoop');
@@ -159,3 +171,30 @@ audioLoop.onpause = function() {
   isPlaying = false;
   audioSection.id = 'audioIsNotPlaying';
 };
+
+
+
+
+function renderHealthBars() {
+  var userHealthOuter = document.createElement('div');
+  userHealthOuter.className = 'healthBarOuter';
+  var userHealthInner = document.createElement('div');
+  userHealthInner.id = 'userHealth';
+  userHealthInner.className = 'healthBarInner';
+  userHealthOuter.appendChild(userHealthInner);
+  var userBattlePositon = document.createElement('div');
+  userBattlePositon.id = 'userBattlePosition';
+  userBattleContainer.appendChild(userHealthOuter);
+  userBattleContainer.appendChild(userBattlePositon);
+
+  var enemyHealthOuter = document.createElement('div');
+  enemyHealthOuter.className = 'healthBarOuter';
+  var enemyHealthInner = document.createElement('div');
+  enemyHealthInner.id = 'enemyHealth';
+  enemyHealthInner.className = 'healthBarInner';
+  enemyHealthOuter.appendChild(enemyHealthInner);
+  var enemyBattlePositon = document.createElement('div');
+  enemyBattlePositon.id = 'enemyBattlePosition';
+  enemyBattleContainer.appendChild(enemyHealthOuter);
+  enemyBattleContainer.appendChild(enemyBattlePositon);
+}
