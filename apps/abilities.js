@@ -51,6 +51,36 @@ AbilityDatabase['Lure'] = new Ability([
 AbilityDatabase['Chomp'] = new Ability([
   new Effect(60, {'damage' : 14}, eff_damageEffect)
 ], 'Chomp');
+// TODO:
+AbilityDatabase['Fortify'] = new Ability([
+  new Effect(100, {'statusToApply' : StatusEffectDatabase['Fortify']}, eff_applyStatusEffect)
+], 'Fortify')
+
+AbilityDatabase['Tail Whip'] = new Ability([
+  new Effect(100, {'damage' : 10}, eff_damageEffect)
+], 'Tail Whip')
+// TODO:
+AbilityDatabase['Stone Gaze'] = new Ability([
+  new Effect(100, {'statusToApply' : StatusEffectDatabase['Stone Gaze']}, eff_applyStatusEffect)
+], 'Stone Gaze')
+
+AbilityDatabase['Charge'] = new Ability([
+  new Effect(100, {'damage' : 10}, eff_damageEffect),
+  new Effect(20, {'statusToApply' : StatusEffectDatabase['Stun']}, eff_applyStatusEffect)
+], 'Charge')
+// TODO:
+AbilityDatabase['Overdrive'] = new Ability([
+  new Effect(100, {'damage' :})
+], 'OverDrive')
+
+AbilityDatabase['Confuse'] = new Ability([
+  new Effect(100, {'statusToApply' : StatusEffectDatabase['Confuse']}, eff_applyStatusEffect),
+  new Effect(100, {'damage' : 10}, eff_damageEffect)
+], 'Confuse')
+
+AbilityDatabase['Mirror Image'] = new Ability([
+  new Effect(100, {'statusToApply' : StatusEffectDatabase['Mirror Image']}, eff_applyStatusEffect)
+], 'Mirror Image')
 
 // ======================= NICCO WROTE THESE ===========
 
