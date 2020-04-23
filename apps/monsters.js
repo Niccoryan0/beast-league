@@ -2,7 +2,10 @@
 // This is for constructor functions for monsters, abilities, all stats and methods related to monsters
 
 // Class for monsters, include stats
+<<<<<<< HEAD
+=======
 
+>>>>>>> c4d535acd56898441c6a770a95567226607ded2d
 function MonsterData(name, description, imgSrc, attack, defense, speed, abilitySet){
   this.name = name;
   this.description = description;
