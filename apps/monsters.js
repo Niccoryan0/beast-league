@@ -19,17 +19,20 @@ function MonsterBattler(monsterData) {
   this.initiativeRoll;
   this.currentHealth;
   this.maximumHealth = 80;
+  this.currentAttack;
+  this.currentDefense;
+  this.currentSpeed;
   this.imgElement;
   this.nextAction;
   this.abilitySet = [];
+  this.target;
+  this.evasionRate = 0;
   this.takeDamage = function (damage, enemyAttackValue) {
     damage = Math.round(damage * (enemyAttackValue / this.monsterData.defense));
     this.currentHealth -= damage;
     if(this.currentHealth < 0 ){
       this.currentHealth = 0;
     }
-    console.log('delt ' + damage);
-    console.log('current health is: ' + this.currentHealth);
     renderQueue.push(new RenderQueueEntry(this.imgElement, 'animShake'));
   };
 }
@@ -48,5 +51,5 @@ var genrathDesc = 'A turtle may not be too terrifying a foe, certainly, but Genr
 var monsterDatabase = {
   mKrapken: new MonsterData('Krapken', krapkenDesc, 'assets/sprites/Krapken_160px_transparent.png', 30, 20, 40, ['Wrap', 'Lure']),
   mManWolfPig: new MonsterData('ManWolfPig', mwpDesc, 'assets/sprites/MWP_160px_transparent.png', 30, 30, 30, ['Chomp', 'Trample'])
-}
 
+};

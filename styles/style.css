@@ -2,249 +2,108 @@
 * {
     /* outline: 1px red dashed;
     box-sizing: border-box; */
-        border-radius: 10px;
-        /* font-family: 'Fira Mono', monospace; */
-    }
-    
-    body {
-        margin: 5% 30px;
-        background-color: rgba(116, 37, 37, 0.233);
-    }
-    
-    p {
-        line-height: 25px;
-        font-family: 'Fira Mono', monospace;
-    
-    }
-    
-    button {
-        padding:10px;
-        background-color: red;
-        border: 0px;
-        font-size: 20px;
-        font-weight: bold;
-    }
-    
-    button:hover {
-        background-color: blue;
-    }
-    
-    header{
+    border-radius: 10px;
+    /* font-family: 'Fira Mono', monospace; */
+}
+
+body {
+    margin: 5% 30px;
+    background-color: rgba(116, 37, 37, 0.233);
+}
+
+p {
+    line-height: 25px;
+    font-family: 'Fira Mono', monospace;
+}
+
+
+header{
     display: flex;
     justify-content: space-between;
     border: 1px solid black;
     padding: 10px;  
-    width:800px;
+    width:250px;
     margin-left: auto;
     margin-right: auto;
-    }
-    
-    header > h1 {
+}
+
+header > h1 {
     font-family: 'Press Start 2P', cursive;
     font-size: 20px;
     margin: auto 20px;
-    }
-    
-    main {
+}
+
+main {
     margin-top: 30px;
     display: flex;
     justify-content: space-between;
-    }
-    
-    main > p {
+}
+
+.gameBio {
     margin: 30px 60px;
     height: 380px;
     overflow: auto;
     border: 1px solid black;
     padding: 20px 40px;
-    }
-    
-    
-    .personalBio {
+    width: 500px;
+}
+
+
+.personalBio {
     margin: 30px 5px;
     height: 300px;
     overflow: auto;
     border: 1px solid black;
-    }
-    .personalBio > p {
-        padding: 10px;
-    }
-    
-    
-    .dataTray {
+}
+
+.personalBio > p {
+    padding: 10px;
+}
+
+
+.dataTray {
     height: 90px;
-    }
-    
-    
-    /* INDEX PAGE ONLY BELOW */
-    
-    .buttons {
+}
+
+.spriteTray {
     display: flex;
     flex-direction: column;
-    margin: 80px 0px;
-    
-    }
-    
-    #resetButton {
-    margin-top: 20px;
-    }
-    
-    .monsterInfoandImg {
-    display: flex;
-    flex-direction: row;
-    /* border: 1px solid black; */
-    padding: 15px;
+}
+
+.spriteTrayL {
+    margin-left: auto;
+    margin-right: 60px;
+}
+
+.spriteTrayR {
+    margin-right: auto;
+    margin-left: 60px;
+}
+
+.spriteTray > img {
     height:100px;
-    }
-    
-    .monsterInfoandImg > p {
-        line-height: 5px;
-    }
-    
-    .monsterInfo {
-    margin-left: 10px;
-    }
-    
-    .monsterInfo > h2{
     border: 1px solid black;
-    border-radius: 0px;
-    }
-    
-    .monsterInfo > p {
-    border: 1px solid black;
-    border-radius: 0px;
-    margin-top: 30px;
-    }
-    
-    #userMonsterImg {
-    height: 80px;
-    width: 80px;
-    }
-    
-    #userMonsterProfile {
-    border: 1px solid black;
-    width: 250px;
-    height: 250px
-    }
-    
-    #userMonsterDescription {
     padding: 5px;
-    border: 1px solid black;
-    border-radius:0px;
-    margin: 0px 10px 10px;
-    overflow: auto;
-    height:95px;
-    }
-    
-    
-    /* this was adapted from w3 schools how to shake and image */
-    .animShake {
-        animation: shake 1s;
-        animation-iteration-count: 1;
-    }
-    
-    @keyframes shake {
-        0% { transform: translate(1px, 1px) rotate(0deg); }
-        10% { transform: translate(-1px, -2px) rotate(-1deg); }
-        20% { transform: translate(-3px, 0px) rotate(1deg); }
-        30% { transform: translate(3px, 2px) rotate(0deg); }
-        40% { transform: translate(1px, -1px) rotate(1deg); }
-        50% { transform: translate(-1px, 2px) rotate(-1deg); }
-        60% { transform: translate(-3px, 1px) rotate(0deg); }
-        70% { transform: translate(3px, 1px) rotate(-1deg); }
-        80% { transform: translate(-1px, -1px) rotate(1deg); }
-        90% { transform: translate(1px, 2px) rotate(0deg); }
-        100% { transform: translate(1px, -2px) rotate(-1deg); }
-    }
-    
-    #gameScreen {
-        height: 480px;
-        width: 640px;
-        border: 1px solid black;
-        background-color: rgba(255, 255, 255, 0.616)
-    }
-    
-    /* #enemyBattlePosition {
-        margin-top: 25px;
-        margin-left: 500px;
-    } */
-    
-    #battlePositions {
-        display: flex;
-        justify-content: space-between;
-        margin-top: 80px;
-        margin-left: 50px;
-        margin-right: 50px;
-    }
-    
-    
-    #userMonsterName, #picTray {
-        text-align: center;
-        border-radius: 0px;
-    }
-    
-    #monsterStats {
-        border: 1px solid black;
-        /* background-color: bisque; */
-        margin-top: 5px;
-        border-radius: 0px;
-        padding: 5px;
-        text-align: center;
-    }
-    
-    #picTray {
-        border: 1px solid black;
-        padding: 5px;
-    }
-    
-    #abilitiesAndDialogue {
-        display: flex;
-        justify-content: space-between;
-        margin: 40px 20px 0px 20px;
-    }
-    
-    .spriteTray > img {
-        height:100px;
-        border: 1px solid black;
-        padding: 5px;
-        margin-bottom: 5px;
-    }
-    
-    header, .spriteTray > img, #userMonsterProfile, p {
-        background-color: blanchedalmond;
-    }
-    
-    .allBios {
-        display: flex;
-        justify-content: space-between;
-    }
-    
-    .personalBio {
-        width:350px;
-        background-color: blanchedalmond;
-    }
-    
-    .bioPic {
-        border-radius: 50%;
-        float: left;
-        shape-outside: circle;
-        height: 180px;
-        margin: 5px;
-      }
-    
-      #enemyBattlePosition > img, #userBattlePosition > img {
-          height: 160px;
-      }
-    
-      
-    #abilityTray {
-        display: flex;
-    }
-    
-      #abilityTray > li {
-        border: 1px solid black;
-        padding: 30px 40px;
-        margin: 10px 5px;
-      }
-    
-    
+    margin-bottom: 5px;
+}
+
+header, .spriteTray > img, #userMonsterProfile, p {
+    background-color: blanchedalmond;
+}
+
+#logo {
+    margin-left:20px;
+
+}
+
+button {
+    padding:10px;
+    background-color: red;
+    border: 0px;
+    font-size: 20px;
+    font-weight: bold;
+  }
+  
+  button:hover {
+    background-color: blue;
+  }
