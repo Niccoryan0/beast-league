@@ -129,3 +129,20 @@ function endGameScreen(){
   buttonDiv.appendChild(homeButton);
   buttonOuterSection.appendChild(buttonDiv);
 }
+
+var audioLoop = document.getElementById("audioLoop");
+var isPlaying = false;
+
+function togglePlay() {
+  if (isPlaying) {
+    audioLoop.pause();
+  } else {
+    audioLoop.play();
+  }
+}
+audioLoop.onplaying = function() {
+  isPlaying = true;
+};
+audioLoop.onpause = function() {
+  isPlaying = false;
+};
