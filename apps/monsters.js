@@ -2,6 +2,10 @@
 // This is for constructor functions for monsters, abilities, all stats and methods related to monsters
 
 // Class for monsters, include stats
+<<<<<<< HEAD
+=======
+
+>>>>>>> c4d535acd56898441c6a770a95567226607ded2d
 function MonsterData(name, description, imgSrc, attack, defense, speed, abilitySet){
   this.name = name;
   this.description = description;
@@ -11,59 +15,78 @@ function MonsterData(name, description, imgSrc, attack, defense, speed, abilityS
   this.attack = attack;
   this.speed = speed;
   this.defense = defense;
+
+  // This is an array of strings representing what abilities the monster has
   this.abilitySet = abilitySet;
 }
 
+
+// This is the class for monsters in battle
+// >> Used for the main combat loop and applying effects
 function MonsterBattler(monsterData) {
   this.monsterData = monsterData;
-  this.initiativeRoll;
+  this.imgElement;  // HTML element storing sprite
+  this.target;  // Current target for abilities
+  this.initiativeRoll;  // Current initiative roll
+  this.isDefeated = false;
+  this.isStunned = false;
+
   this.currentHealth;
   this.maximumHealth = 100;
   this.currentAttack;
   this.currentDefense;
   this.currentSpeed;
-  this.imgElement;
-  this.nextAction;
-  this.abilitySet = [];
-  this.target;
   this.evasionRate = 0;
   this.globalDamageMultiplier = 1;
   this.globalAttackMultiplier = 1;
-  this.currentStatusEffects = [];
+
+  this.nextAction;  // Action to be used on the current turn of combat
+  this.abilitySet = []; // Array of abilities that can be used
+  this.currentStatusEffects = []; // Array of current status effects applied
+  this.persistentEffects = {};  // Array of persistent effects applied; includes stuns and DoT's
 };
 
-MonsterBattler.prototype.takeDamage = function (damage, enemyAttackValue) {
-  damage = Math.round(damage * (enemyAttackValue / this.currentDefense));
+// This function deals damage to the monster that calls it
+// >> If health is reduced below 0 or to 0, the monster is defeated and doesn't act this turn
+// >> This function is called by effects that call eff_damageEffect()
+MonsterBattler.prototype.takeDamage = function (damage, attackValue) {
+  damage = Math.round(damage * (attackValue / this.currentDefense));
   this.currentHealth -= damage;
-  if(this.currentHealth < 0 ){
+  if(this.currentHealth <= 0 ){
     this.currentHealth = 0;
+    this.isDefeated = true;
   }
-  // user.name + ' deals ' + damage
 
   renderQueue.push(new RenderQueueEntry(this.imgElement, 'animShake'));
 };
 
+// This function ticks the duration of all status effects taken
+// >> Sets status effect at each condition to return value of tickCondition()
+// >> If tickCondition() returns null, it is removed from the array of status effects on the monster
 MonsterBattler.prototype.tickConditions = function() {
   if(this.currentStatusEffects.length > 0) {
     for(var i in this.currentStatusEffects) {
-      this.currentStatusEffects[i] = this.currentStatusEffects[i].tickCondition(this);
-      if(!this.currentStatusEffects[i]) this.currentStatusEffects.pop(i);
+      if(this.currentStatusEffects[i] != null) {
+        this.currentStatusEffects[i] = this.currentStatusEffects[i].tickCondition(this);
+        if(this.currentStatusEffects[i] === null) this.currentStatusEffects.pop(i);
+      }
     }
-
   }
-
-  console.log(this.currentStatusEffects);
 };
 
+// This function adds a new status effect to the monster and applies its effect
+// >> Called when a new status effect is inflicted (MUST BE SELF EFFECT TO WORK PROPERLY)
+// >> This function is called by effects that call eff_applyStatusEffect()
 MonsterBattler.prototype.addNewStatusEffect = function(newStatusEffect) {
-  console.log(this.monsterData.name);
   for(var i in this.currentStatusEffects) {
-    if(this.currentStatusEffects[i].name === newStatusEffect.name) {
-      if(this.currentStatusEffects[i].currDuration > newStatusEffect.currDuration) {
-        this.currentStatusEffects[i].currDuration = newStatusEffect.currDuration;
+    if(this.currentStatusEffects[i] != null) {
+      if(this.currentStatusEffects[i].name === newStatusEffect.name) {
+        if(this.currentStatusEffects[i].currDuration > newStatusEffect.currDuration) {
+          this.currentStatusEffects[i].currDuration = newStatusEffect.currDuration;
+        }
+  
+        return;
       }
-
-      return;
     }
   }
 
@@ -72,7 +95,22 @@ MonsterBattler.prototype.addNewStatusEffect = function(newStatusEffect) {
 };
 
 
+// This function applies all persistent effects currently on the monster
+// >> Called at the start of each turn
+MonsterBattler.prototype.applyPersistentEffects = function() {
+  for(var i in this.persistentEffects) {
+    if(this.persistentEffects.hasOwnProperty(i)) {
+      if(this.persistentEffects[i] !== null) {
+        var enemyMonster = this.target;
+        this.target = this;
+        this.persistentEffects[i].effect.effectMethod(this);
+        this.target = enemyMonster;
+      }
+    }
+  }
+};
 
+// This function returns a random monster from the monsterDatabase object
 function getRandomMonster(){
   var monKeyArray = Object.keys(monsterDatabase);
   var randNum = Math.floor(Math.random() * (monKeyArray.length));
@@ -80,6 +118,8 @@ function getRandomMonster(){
   return monsterDatabase[randKey];
 }
 
+
+//Monster Database
 var krapkenDesc = 'A cross between a Japanese Kappa and a Kraken. This monstrous beast has the upper half of a human like turtle creature, the Kappa, with the Eldritch abomination that is it\'s Kraken lower half. Krapken enjoys hanging out in the water, with only his top half exposed, in order to lure in unsuspecting victims to pull them under with him tentacles.';
 var mwpDesc = 'A horrifying creature, some say it\'s half wolf, half man, others say half wolf half pig. But in truth, it is some mix of all. With the razor sharp teeth and claws of a wolf, the hooves of a pig, and all the intelligence of a man, this is no creature to take lightly.';
 var genrathDesc = 'A turtle may not be too terrifying a foe, certainly, but Genrath is no ordinary turtle. Towering above his enemies, Genrath the Great\'s one giant eye sees all, his giant shell offers subperb protection, and let\'s just say he really knows how to throw his weight around.';
@@ -89,8 +129,8 @@ var wishboneDesc = 'No one claims to know what this creature is, some say it\'s 
 
 
 var monsterDatabase = {
-  mKrapken: new MonsterData('Krapken', krapkenDesc, 'assets/sprites/Krapken_160px_transparent.png', 30, 25, 35, ['Wrap', 'Lure']),
-  mManWolfPig: new MonsterData('ManWolfPig', mwpDesc, 'assets/sprites/MWP_160px_transparent.png', 30, 30, 30, ['Chomp', 'Trample'])
+  mKrapken: new MonsterData('Krapken', krapkenDesc, 'assets/sprites/Krapken_160px_transparent.png', 30, 25, 35, ['Poison', 'Lure']),
+  mManWolfPig: new MonsterData('ManWolfPig', mwpDesc, 'assets/sprites/MWP_160px_transparent.png', 30, 30, 30, ['Poison', 'Trample'])
   // mGenrath: new MonsterData('Genrath' genrathDesc, 'assets/sprites/genrath.png', 30, 40, 20, ['Body Slam', 'Fortify'])
   // mBasitrice: new MonsterData('Basitrice', basitriceDesc, 'assets/sprites/basitrice.png', 40, 20, 30, ['Tail Whip', 'Stone Gaze'])
   // mDaedalus: new MonsterData('Daedalus', daedalusDesc, 'assets/sprites/daedalus.png', 30, 30, 30, ['Charge', 'Overdrive'])

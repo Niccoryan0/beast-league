@@ -1,11 +1,8 @@
 // This will be the render data for the game, sprites, etc.
 'use strict';
-// TODO: Maybe get userMonster from localStorage, talk to Bade about file order
 
 var renderQueue = [];
 var abilityTrayDiv = document.getElementById('abilityTrayDiv');
-
-
 
 // Renders the two sprites for battle to the page
 function renderBattleSprites(userImgSrc, enemyMonsterImgSrc){
@@ -30,15 +27,17 @@ function renderBattleSprites(userImgSrc, enemyMonsterImgSrc){
   enemyMonster.imgElement = enemyMonsterImg;
 }
 
-// Bade please explain this in better detail than I
-// This is essentially a queue that paces out and calls the correct animations at the correct times, images and the "animation string" are parameters indicating which image is moving and how they will be moving, currently only one string availble, "shake"
+// Entry for renderQueue system
+// >> Passes in image element to be animated and a string for the HTML class to be added to it
+// >> HTML class has CSS code written for it to play an animation
 function RenderQueueEntry (imgEl, animateString, dialogueEntry){
   this.imgEl = imgEl;
   this.animateString = animateString;
   this.dialogueEntry = dialogueEntry;
 }
 
-// This is used to remove event listeners that trigger the animations
+// Clears animation data from image element
+// >> Calls renderTurn() to render the next entry in the renderQueue
 function clearAnimation (event){
   event.target.className = '';
   void event.target.offsetWidth;
@@ -49,7 +48,6 @@ function clearAnimation (event){
 
 // Renders the animations for a turn
 function renderTurn(){
-  console.log(renderQueue);
   if(renderQueue.length){
     // Pops entries from the renderQueue to address them and render them one at a time
     var nextEntry = renderQueue.pop(0);
@@ -57,17 +55,19 @@ function renderTurn(){
     nextEntry.imgEl.addEventListener('animationcancel', clearAnimation);
     // Actually animate the item with the img and string passed in
     animateEffect(nextEntry.imgEl, nextEntry.animateString);
+  } else if(userMonster.isDefeated || enemyMonster.isDefeated){
     // Check for game over and if so set monster to local storage and send user back to homepage
-  }else if(userMonster.currentHealth <= 0 || enemyMonster.currentHealth <= 0){
     endGameScreen();
-
-  }else{
+  } else{
     // If there's nothing to render, and no one is dead yet, pop the ability tray back up on the screen
     enableAbilityTray();
   }
 }
 
-
+// Starts an animation on an image elemet
+function animateEffect(imgEl, animateString){
+  imgEl.className = animateString;
+}
 
 function disableAbilityTray (){
   document.removeEventListener('keydown', userAttack);
@@ -87,26 +87,18 @@ function enableAbilityTray (){
   }
 }
 
+
 function animateEffect(imgEl, animateString){
 
   imgEl.className = animateString;
 }
 
-var userMonsterImgSrc = userMonster.monsterData.imgSrc;
-var enemyMonsterImgSrc = userMonster.monsterData
-
 function playSongOnStart() {
-  renderQueue.push(new RenderQueueEntry());
-  // Add event listener that calls initialize combat on animation end and removes the event listener
-
-  // Chnage this name to like renderanimationsinqueue
-  renderTurn();
-
-  // 
-
+  initializeCombat();
   var isPlaying = true;
   togglePlay();
 }
+
 
 var gameScreen = document.getElementById('gameScreen');
 var gameStartButton = document.createElement('button');
@@ -114,6 +106,7 @@ gameStartButton.id = 'gameStartButton';
 gameStartButton.textContent = 'Start the Game!';
 gameScreen.appendChild(gameStartButton);
 gameStartButton.addEventListener('click', playSongOnStart);
+
 
 function endGameScreen(){
   var buttonOuterSection = document.getElementById('abilitiesAndDialogue');
@@ -149,8 +142,6 @@ function endGameScreen(){
   buttonOuterSection.appendChild(buttonDiv);
 }
 
-
-
 var audioSection = document.getElementById('audio');
 var audioLoop = document.getElementById('audioLoop');
 var isPlaying = false;
@@ -173,11 +164,14 @@ audioLoop.onpause = function() {
 };
 
 
-
-
+// Function for rendering the health bars w/ nunbers in the middle, called in initializeCombat() and given values in userAttack() in Combat.js;
 function renderHealthBars() {
   var userHealthOuter = document.createElement('div');
   userHealthOuter.className = 'healthBarOuter';
+  var userHealthNumber = document.createElement('p');
+  userHealthNumber.id = 'userHealthNumber';
+  userHealthNumber.className = 'healthNumber';
+  userHealthOuter.appendChild(userHealthNumber);
   var userHealthInner = document.createElement('div');
   userHealthInner.id = 'userHealth';
   userHealthInner.className = 'healthBarInner';
@@ -189,6 +183,11 @@ function renderHealthBars() {
 
   var enemyHealthOuter = document.createElement('div');
   enemyHealthOuter.className = 'healthBarOuter';
+  var enemyHealthNumber = document.createElement('p');
+  enemyHealthNumber.id = 'enemyHealthNumber';
+  enemyHealthNumber.className = 'healthNumber';
+  enemyHealthOuter.appendChild(enemyHealthNumber);
+
   var enemyHealthInner = document.createElement('div');
   enemyHealthInner.id = 'enemyHealth';
   enemyHealthInner.className = 'healthBarInner';
@@ -198,3 +197,144 @@ function renderHealthBars() {
   enemyBattleContainer.appendChild(enemyHealthOuter);
   enemyBattleContainer.appendChild(enemyBattlePositon);
 }
+
+
+// TODO: Boxes below game screen w/ monsters, stats, and abilities
+
+function updateHealthBars (){
+  var userHealthBar = document.getElementById('userHealth');
+  userHealthBar.style = 'width:' + (userMonster.currentHealth / userMonster.maximumHealth) * 100 + '%';
+  var userHealthNumber = document.getElementById('userHealthNumber');
+  userHealthNumber.textContent = userMonster.currentHealth + ' / ' + userMonster.maximumHealth;
+  var enemyHealthBar = document.getElementById('enemyHealth');
+  enemyHealthBar.style = 'width:' + (enemyMonster.currentHealth / enemyMonster.maximumHealth) * 100 + '%';
+  var enemyHealthNumber = document.getElementById('enemyHealthNumber');
+  enemyHealthNumber.textContent = enemyMonster.currentHealth + ' / ' + enemyMonster.maximumHealth;
+}
+
+// Boxes below game screen w/ monsters, stats, and abilities
+function renderMonsterStats() {
+  var userContainer = document.getElementById('userMonsterInfo');
+  var userMonsterInfoAndImg = document.createElement('section');
+  var userInfoPicTray = document.createElement('section');
+  userInfoPicTray.id = 'userPicTray';
+  userInfoPicTray.className = 'picTray';
+
+  var userMonsterImage = document.createElement('img');
+  userMonsterImage.src = userMonster.monsterData.imgSrc;
+  userMonsterImage.height = 80;
+  userInfoPicTray.appendChild(userMonsterImage);
+
+  var userMonsterInfo = document.createElement('section');
+  userMonsterInfo.className = 'monsterInfo';
+  var userMonsterName = document.createElement('h2');
+  userMonsterName.textContent = userMonster.monsterData.name;
+  var userMonsterStats = document.createElement('ul');
+  userMonsterStats.className = 'monsterStats';
+  var userMonsterAttack = document.createElement('li');
+  userMonsterAttack.id = 'userCurrentAttack';
+  userMonsterAttack.textContent ='Attack: ' + userMonster.monsterData.attack;
+
+  var userMonsterDefense = document.createElement('li');
+  userMonsterDefense.id = 'userCurrentDefense';
+  userMonsterDefense.textContent ='Defense: ' + userMonster.monsterData.defense;
+
+  var userMonsterSpeed = document.createElement('li');
+  userMonsterSpeed.id = 'userCurrentSpeed';
+  userMonsterSpeed.textContent ='Speed: ' + userMonster.monsterData.speed;
+
+  userMonsterStats.appendChild(userMonsterAttack);
+  userMonsterStats.appendChild(userMonsterDefense);
+  userMonsterStats.appendChild(userMonsterSpeed);
+  userMonsterInfo.appendChild(userMonsterName);
+  userMonsterInfo.appendChild(userMonsterStats);
+  userInfoPicTray.appendChild(userMonsterInfo);
+
+  var userMonsterAbilities = document.createElement('ul');
+  userMonsterAbilities.id = 'userMonsterAbilities';
+  userMonsterAbilities.className = 'monsterAbilities';
+
+  for (var ab in userMonster.abilitySet) {
+    var abilityLiEl = document.createElement('li');
+    var abilityName = document.createElement('h3');
+    abilityName.textContent = userMonster.abilitySet[ab].name;
+    abilityLiEl.appendChild(abilityName);
+    userMonsterAbilities.appendChild(abilityLiEl);
+  }
+
+
+  userMonsterInfoAndImg.appendChild(userInfoPicTray);
+  userMonsterInfoAndImg.appendChild(userMonsterAbilities);
+  userContainer.appendChild(userMonsterInfoAndImg);
+
+
+
+  var enemyContainer = document.getElementById('enemyMonsterInfo');
+  var enemyMonsterInfoAndImg = document.createElement('section');
+  var enemyInfoPicTray = document.createElement('section');
+  enemyInfoPicTray.id = 'enemyPicTray';
+  enemyInfoPicTray.className = 'picTray';
+
+  var enemyMonsterImage = document.createElement('img');
+  enemyMonsterImage.src = enemyMonster.monsterData.imgSrc;
+  enemyMonsterImage.height = 80;
+  enemyInfoPicTray.appendChild(enemyMonsterImage);
+
+  var enemyMonsterInfo = document.createElement('section');
+  enemyMonsterInfo.className = 'monsterInfo';
+  var enemyMonsterName = document.createElement('h2');
+  enemyMonsterName.textContent = enemyMonster.monsterData.name;
+  var enemyMonsterStats = document.createElement('ul');
+  enemyMonsterStats.className = 'monsterStats';
+
+  var enemyMonsterAttack = document.createElement('li');
+  enemyMonsterAttack.id = 'enemyCurrentAttack';
+  enemyMonsterAttack.textContent = 'Attack: ' + enemyMonster.monsterData.attack;
+
+  var enemyMonsterDefense = document.createElement('li');
+  enemyMonsterDefense.id = 'enemyCurrentDefense';
+  enemyMonsterDefense.textContent = 'Defense: ' +  enemyMonster.monsterData.defense;
+
+  var enemyMonsterSpeed = document.createElement('li');
+  enemyMonsterSpeed.id = 'enemyCurrentSpeed';
+  enemyMonsterSpeed.textContent = 'Speed: ' + enemyMonster.monsterData.speed;
+
+  enemyMonsterStats.appendChild(enemyMonsterAttack);
+  enemyMonsterStats.appendChild(enemyMonsterDefense);
+  enemyMonsterStats.appendChild(enemyMonsterSpeed);
+  enemyMonsterInfo.appendChild(enemyMonsterName);
+  enemyMonsterInfo.appendChild(enemyMonsterStats);
+  enemyInfoPicTray.appendChild(enemyMonsterInfo);
+  var enemyMonsterAbilities = document.createElement('ul');
+  enemyMonsterAbilities.id = 'enemyMonsterAbilities';
+  enemyMonsterAbilities.className = 'monsterAbilities';
+
+  for (var i in enemyMonster.abilitySet) {
+    abilityLiEl = document.createElement('li');
+    abilityName = document.createElement('h3');
+    abilityName.textContent = enemyMonster.abilitySet[i].name;
+    abilityLiEl.appendChild(abilityName);
+    enemyMonsterAbilities.appendChild(abilityLiEl);
+  }
+
+  enemyMonsterInfoAndImg.appendChild(enemyInfoPicTray);
+  enemyMonsterInfoAndImg.appendChild(enemyMonsterAbilities);
+  enemyContainer.appendChild(enemyMonsterInfoAndImg);
+}
+
+function updateMonsterStats() {
+  var userAttackUpdate = document.getElementById('userCurrentAttack');
+  userAttackUpdate.textContent = 'Attack: ' + userMonster.currentAttack;
+  var userDefenseUpdate = document.getElementById('userCurrentDefense');
+  userDefenseUpdate.textContent = 'Defense: ' + userMonster.currentDefense;
+  var userSpeedUpdate = document.getElementById('userCurrentSpeed');
+  userSpeedUpdate.textContent = 'Speed: ' + userMonster.currentSpeed;
+
+  var enemyAttackUpdate = document.getElementById('enemyCurrentAttack');
+  enemyAttackUpdate.textContent = 'Attack: ' + enemyMonster.currentAttack;
+  var enemyDefenseUpdate = document.getElementById('enemyCurrentDefense');
+  enemyDefenseUpdate.textContent = 'Defense: ' + enemyMonster.currentDefense;
+  var enemySpeedUpdate = document.getElementById('enemyCurrentSpeed');
+  enemySpeedUpdate.textContent = 'Speed: ' + enemyMonster.currentSpeed;
+}
+
