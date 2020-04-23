@@ -55,7 +55,7 @@ function initializeCombat() {
   userMonster.currentDefense = userMonster.monsterData.defense;
   userMonster.currentSpeed = userMonster.monsterData.speed;
   for (var i in userMonster.monsterData.abilitySet){
-    userMonster.abilitySet.push( AbilityDatabase[userMonster.monsterData.abilitySet[i]] );
+    userMonster.abilitySet.push(AbilityDatabase[userMonster.monsterData.abilitySet[i]] );
   }
 
   enemyMonster.target = userMonster;

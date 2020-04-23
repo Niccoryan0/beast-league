@@ -1,4 +1,4 @@
-function StatusEffect(name, maxDuration = 1, applyEffect, removeEffect) {
+function StatusEffect(name, maxDuration = 1, applyEffect, removeEffect = null) {
   this.name = name;
   this.maxDuration = maxDuration;
   this.currDuration = 0;
@@ -9,7 +9,7 @@ function StatusEffect(name, maxDuration = 1, applyEffect, removeEffect) {
 StatusEffect.prototype.tickCondition = function (target) {
   this.currDuration++;
   console.log(this.name + ' has ' + (this.maxDuration - this.currDuration) + ' turns remaining.');
-  if (this.currDuration >= this.maxDuration) {
+  if (this.currDuration >= this.maxDuration && this.removeEffect !== null) {
     this.removeEffect.effectMethod(target);
     return null;
   }
@@ -34,8 +34,11 @@ StatusEffectDatabase['Lure'] = new StatusEffect('Lure', 3,
   }, eff_selfEffect)
 );
 
+// StatusEffectDatabase['Fortify'] = new StatusEffect('Fortify', 100,
+// new Effect(100, {
+//  'selfEffect': new Effect(100, { 'statMod': { 'statName': 'currentDefense', 'statModValue': 10 } }, eff_modifyStatEffect)
+// }, eff_selfEffect),
+// );
+
 // ============= NICCO WROTE THESE SO PLEASE DOUBLE CHECK THEM ===============
 
-// StatusEffectDatabase['Fortify'] = new StatusEffect('Fortify', 0,
-//   new Effect(100, { 'statMod': { 'statName': 'currentDefense', 'statModValue': 20 } }, eff_modifyStatEffect),
-// );

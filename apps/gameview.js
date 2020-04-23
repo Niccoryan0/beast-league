@@ -167,6 +167,7 @@ audioLoop.onpause = function() {
 function renderHealthBars() {
   var userHealthOuter = document.createElement('div');
   userHealthOuter.className = 'healthBarOuter';
+  var userHealthNumber = document.createElement('')
   var userHealthInner = document.createElement('div');
   userHealthInner.id = 'userHealth';
   userHealthInner.className = 'healthBarInner';
