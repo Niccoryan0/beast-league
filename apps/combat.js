@@ -17,10 +17,11 @@
 */
 var userBattleContainer = document.getElementById('userBattleContainer');
 var enemyBattleContainer = document.getElementById('enemyBattleContainer');
-
 var userMonster, enemyMonster, userScore, startCombat, turnTimer = 0;
 
 function initializeCombat() {
+  var startButton = document.getElementById('gameStartButton');
+  startButton.remove();
   if (localStorage.getItem('userMonster')){
     userMonster = new MonsterBattler(JSON.parse(localStorage.getItem('userMonster')));
   } else {

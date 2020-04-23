@@ -51,4 +51,5 @@ var genrathDesc = 'A turtle may not be too terrifying a foe, certainly, but Genr
 var monsterDatabase = {
   mKrapken: new MonsterData('Krapken', krapkenDesc, 'assets/sprites/Krapken_160px_transparent.png', 30, 20, 40, ['Wrap', 'Lure']),
   mManWolfPig: new MonsterData('ManWolfPig', mwpDesc, 'assets/sprites/MWP_160px_transparent.png', 30, 30, 30, ['Chomp', 'Trample'])
+
 };

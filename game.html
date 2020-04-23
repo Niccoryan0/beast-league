@@ -18,7 +18,13 @@
 
   <div class="spriteCover"></div>
 
+
   <section id="gameScreen">
+    <section id='audio' height="30px">
+      <audio id="audioLoop" src= "assets/Knockout.mp3" type= "audio/mpeg" preload="auto" loop>
+      </audio>
+      <a onClick="togglePlay()" id='volumeIcon'><img src="assets/volume-bar.png" alt="Volume Icon" height='20px'></a>
+    </section>
     <section id='battlePositions'>
 
       <section class='battlePositionContainer' id="userBattleContainer"></section>

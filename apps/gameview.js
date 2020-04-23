@@ -92,9 +92,18 @@ function animateEffect(imgEl, animateString){
   imgEl.className = animateString;
 }
 
+var gameScreen = document.getElementById('gameScreen');
+var gameStartButton = document.createElement('button');
+gameStartButton.id = 'gameStartButton';
+gameStartButton.textContent = 'Start the Game!';
+gameScreen.appendChild(gameStartButton);
 
-
-initializeCombat();
+function playSongOnStart() {
+  initializeCombat();
+  var isPlaying = true;
+  togglePlay();
+}
+gameStartButton.addEventListener('click', playSongOnStart);
 
 function endGameScreen(){
   var buttonOuterSection = document.getElementById('abilitiesAndDialogue');
@@ -129,3 +138,20 @@ function endGameScreen(){
   buttonDiv.appendChild(homeButton);
   buttonOuterSection.appendChild(buttonDiv);
 }
+
+var audioLoop = document.getElementById("audioLoop");
+var isPlaying = false;
+
+function togglePlay() {
+  if (isPlaying) {
+    audioLoop.pause();
+  } else {
+    audioLoop.play();
+  }
+}
+audioLoop.onplaying = function() {
+  isPlaying = true;
+};
+audioLoop.onpause = function() {
+  isPlaying = false;
+};
