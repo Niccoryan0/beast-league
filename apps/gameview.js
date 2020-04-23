@@ -1,5 +1,8 @@
-// This will be the render data for the game, sprites, etc.
 'use strict';
+// This will be the render data for the game, sprites, etc.
+/* eslint-disable no-unused-vars */
+/* global userMonster, enemyMonster, userAttack, initializeCombat, userBattleContainer, enemyBattleContainer */
+
 
 var renderQueue = [];
 var abilityTrayDiv = document.getElementById('abilityTrayDiv');
@@ -78,7 +81,7 @@ function enableAbilityTray (){
   var abilityTray = document.createElement('ul');
   abilityTrayDiv.appendChild(abilityTray);
   document.addEventListener('keydown', userAttack);
-  var userMonsterAbilities = userMonster.monsterData.abilitySet; 
+  var userMonsterAbilities = userMonster.monsterData.abilitySet;
   for (var ab in userMonsterAbilities){
     var abilityEl = document.createElement('li');
     var abPlusOne = parseInt(ab)+1;
@@ -87,11 +90,6 @@ function enableAbilityTray (){
   }
 }
 
-
-function animateEffect(imgEl, animateString){
-
-  imgEl.className = animateString;
-}
 
 function playSongOnStart() {
   initializeCombat();
@@ -293,7 +291,7 @@ function renderMonsterStats() {
 
   var enemyMonsterDefense = document.createElement('li');
   enemyMonsterDefense.id = 'enemyCurrentDefense';
-  enemyMonsterDefense.textContent = 'Defense: ' +  enemyMonster.monsterData.defense;
+  enemyMonsterDefense.textContent = 'Defense: ' + enemyMonster.monsterData.defense;
 
   var enemyMonsterSpeed = document.createElement('li');
   enemyMonsterSpeed.id = 'enemyCurrentSpeed';

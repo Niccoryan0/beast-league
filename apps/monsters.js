@@ -1,3 +1,8 @@
+/* eslint-disable no-unused-vars */
+'use strict';
+/* global renderQueue, RenderQueueEntry,  */
+
+
 // THIS FILE NEEDS TO RUN FIRST
 // This is for constructor functions for monsters, abilities, all stats and methods related to monsters
 
@@ -41,7 +46,7 @@ function MonsterBattler(monsterData) {
   this.abilitySet = []; // Array of abilities that can be used
   this.currentStatusEffects = []; // Array of current status effects applied
   this.persistentEffects = {}; // Array of persistent effects applied; includes stuns and DoT's
-};
+}
 
 // This function deals damage to the monster that calls it
 // >> If health is reduced below 0 or to 0, the monster is defeated and doesn't act this turn
@@ -63,7 +68,7 @@ MonsterBattler.prototype.takeDamage = function (damage, attackValue) {
 MonsterBattler.prototype.tickConditions = function() {
   if(this.currentStatusEffects.length > 0) {
     for(var i in this.currentStatusEffects) {
-      if(this.currentStatusEffects[i] != null) {
+      if(this.currentStatusEffects[i] !== null) {
         this.currentStatusEffects[i] = this.currentStatusEffects[i].tickCondition(this);
         if(this.currentStatusEffects[i] === null) this.currentStatusEffects.pop(i);
       }
@@ -76,7 +81,7 @@ MonsterBattler.prototype.tickConditions = function() {
 // >> This function is called by effects that call eff_applyStatusEffect()
 MonsterBattler.prototype.addNewStatusEffect = function(newStatusEffect) {
   for(var i in this.currentStatusEffects) {
-    if(this.currentStatusEffects[i] != null) {
+    if(this.currentStatusEffects[i] !== null) {
       if(this.currentStatusEffects[i].name === newStatusEffect.name) {
         if(this.currentStatusEffects[i].currDuration > newStatusEffect.currDuration) {
           this.currentStatusEffects[i].currDuration = newStatusEffect.currDuration;

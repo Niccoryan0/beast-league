@@ -1,3 +1,7 @@
+'use strict';
+
+/* global Effect, eff_applyStatusEffect, eff_damageEffect, StatusEffectDatabase, eff_selfEffect */
+
 // Ability class
 /*
   >> Takes an array of effects
@@ -24,7 +28,7 @@ Ability.prototype.execute = function (user) {
 
 /*
 === HOW TO WRITE AN ABILITY ===
-1. Think of a concept. What effects does the ability do? 
+1. Think of a concept. What effects does the ability do?
 2. Add a new property to AbilityDatabase with a new Ability
 3. Fill in the following arguments:
   a. Array of effects, written in the order that they are applied
@@ -118,8 +122,6 @@ AbilityDatabase['Mirror Image'] = new Ability([
     'selfEffect' : new Effect(100, {'statusToApply' : StatusEffectDatabase['Mirror Image']}, eff_applyStatusEffect)
   }, eff_selfEffect)
 ], 'Mirror Image');
-
-// TODO: ===================================================================
 
 
 
