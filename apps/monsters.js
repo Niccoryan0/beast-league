@@ -40,7 +40,7 @@ function MonsterBattler(monsterData) {
   this.nextAction;  // Action to be used on the current turn of combat
   this.abilitySet = []; // Array of abilities that can be used
   this.currentStatusEffects = []; // Array of current status effects applied
-  this.persistentEffects = [];  // Array of persistent effects applied; includes stuns and DoT's
+  this.persistentEffects = {};  // Array of persistent effects applied; includes stuns and DoT's
 };
 
 // This function deals damage to the monster that calls it
@@ -63,8 +63,10 @@ MonsterBattler.prototype.takeDamage = function (damage, attackValue) {
 MonsterBattler.prototype.tickConditions = function() {
   if(this.currentStatusEffects.length > 0) {
     for(var i in this.currentStatusEffects) {
-      this.currentStatusEffects[i] = this.currentStatusEffects[i].tickCondition(this);
-      if(!this.currentStatusEffects[i]) this.currentStatusEffects.pop(i);
+      if(this.currentStatusEffects[i] != null) {
+        this.currentStatusEffects[i] = this.currentStatusEffects[i].tickCondition(this);
+        if(this.currentStatusEffects[i] === null) this.currentStatusEffects.pop(i);
+      }
     }
   }
 };
@@ -74,12 +76,14 @@ MonsterBattler.prototype.tickConditions = function() {
 // >> This function is called by effects that call eff_applyStatusEffect()
 MonsterBattler.prototype.addNewStatusEffect = function(newStatusEffect) {
   for(var i in this.currentStatusEffects) {
-    if(this.currentStatusEffects[i].name === newStatusEffect.name) {
-      if(this.currentStatusEffects[i].currDuration > newStatusEffect.currDuration) {
-        this.currentStatusEffects[i].currDuration = newStatusEffect.currDuration;
+    if(this.currentStatusEffects[i] != null) {
+      if(this.currentStatusEffects[i].name === newStatusEffect.name) {
+        if(this.currentStatusEffects[i].currDuration > newStatusEffect.currDuration) {
+          this.currentStatusEffects[i].currDuration = newStatusEffect.currDuration;
+        }
+  
+        return;
       }
-
-      return;
     }
   }
 
@@ -89,16 +93,19 @@ MonsterBattler.prototype.addNewStatusEffect = function(newStatusEffect) {
 
 
 // This function applies all persistent effects currently on the monster
-// >> Returns a bool telling whether the monster can act this turn
 // >> Called at the start of each turn
 MonsterBattler.prototype.applyPersistentEffects = function() {
   for(var i in this.persistentEffects) {
-    this.persistentEffects.effectMethod(this);
+    if(this.persistentEffects.hasOwnProperty(i)) {
+      if(this.persistentEffects[i] !== null) {
+        var enemyMonster = this.target;
+        this.target = this;
+        this.persistentEffects[i].effect.effectMethod(this);
+        this.target = enemyMonster;
+      }
+    }
   }
 };
-
-
-
 
 // This function returns a random monster from the monsterDatabase object
 function getRandomMonster(){
@@ -119,8 +126,8 @@ var wishboneDesc = 'No one claims to know what this creature is, some say it\'s 
 
 
 var monsterDatabase = {
-  mKrapken: new MonsterData('Krapken', krapkenDesc, 'assets/sprites/Krapken_160px_transparent.png', 30, 25, 35, ['Wrap', 'Lure']),
-  mManWolfPig: new MonsterData('ManWolfPig', mwpDesc, 'assets/sprites/MWP_160px_transparent.png', 30, 30, 30, ['Chomp', 'Trample'])
+  mKrapken: new MonsterData('Krapken', krapkenDesc, 'assets/sprites/Krapken_160px_transparent.png', 30, 25, 35, ['Poison', 'Lure']),
+  mManWolfPig: new MonsterData('ManWolfPig', mwpDesc, 'assets/sprites/MWP_160px_transparent.png', 30, 30, 30, ['Poison', 'Trample'])
   // mGenrath: new MonsterData('Genrath' genrathDesc, 'assets/sprites/genrath.png', 30, 40, 20, ['Body Slam', 'Fortify'])
   // mBasitrice: new MonsterData('Basitrice', basitriceDesc, 'assets/sprites/basitrice.png', 40, 20, 30, ['Tail Whip', 'Stone Gaze'])
   // mDaedalus: new MonsterData('Daedalus', daedalusDesc, 'assets/sprites/daedalus.png', 30, 30, 30, ['Charge', 'Overdrive'])

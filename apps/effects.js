@@ -35,13 +35,6 @@ function eff_selfEffect(user) {
   user.target = enemyMonster;
 }
 
-function eff_persistentEffect(user) {
-  var enemyMonster = user.target;
-  user.target = user;
-  this.customValues['selfEffect'].effectMethod(user);
-  user.target = enemyMonster;
-}
-
 function eff_modifyStatEffect(user){
   var statModified = this.customValues['statMod'];
   user.target[statModified['statName']] = user.target[statModified['statName']] + statModified['statModValue'];
@@ -57,4 +50,12 @@ function eff_applyStatusEffect(user) {
   var statusTemplate = this.customValues['statusToApply'];
   var newStatusEffect = new StatusEffect(statusTemplate.name, statusTemplate.maxDuration, statusTemplate.applyEffect, statusTemplate.removeEffect);
   user.target.addNewStatusEffect(newStatusEffect);
+}
+
+function eff_persistentEffect(user) {
+  user.persistentEffects[this.customValues['persistentEffect'].name] = this.customValues['persistentEffect'];
+}
+
+function eff_removePersistentEffect(user) {
+  user.persistentEffects[this.customValues['persistentEffectName']] = null;
 }

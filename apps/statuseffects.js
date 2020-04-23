@@ -6,7 +6,6 @@ function StatusEffect(name, maxDuration = 1, applyEffect, removeEffect) {
   this.removeEffect = removeEffect;
 }
 
-
 StatusEffect.prototype.tickCondition = function (target) {
   this.currDuration++;
   console.log(this.name + ' has ' + (this.maxDuration - this.currDuration) + ' turns remaining.');
@@ -59,13 +58,33 @@ StatusEffectDatabase['Lure'] = new StatusEffect('Lure', 3,
   }, eff_selfEffect)
 );
 
-StatusEffectDatabase['Stun'] = new StatusEffect('Stun', 1,
+StatusEffectDatabase['Confuse'] = new StatusEffect('Confuse', 3,
+  // This is the applyEffect -> triggers ON THE MONSTER AFFECTED BY STATUS EFFECT
+  new Effect(100, {
+    'persistentEffect': new Effect(30, { 'stun': true }, eff_stunEffect)
+  }, eff_selfEffect),
+  // This is the removeEffect -> triggers ON THE MONSTER AFFECTED BY STATUS EFFECT
+  new Effect(100, {
+    'selfEffect': new Effect(100, { 'statMod': { 'statName': 'currentDefense', 'statModValue': 10 } }, eff_modifyStatEffect)
+  }, eff_selfEffect)
+);
+
+StatusEffectDatabase['Flinch'] = new StatusEffect('Flinch', 1,
   new Effect(100, {
     'selfEffect': new Effect(100, { 'stun': true }, eff_stunEffect)
   }, eff_selfEffect),
   new Effect(100, {
     'selfEffect': new Effect(100, { 'stun': false }, eff_stunEffect)
   }, eff_selfEffect),
+);
+
+StatusEffectDatabase['Venom'] = new StatusEffect('Venom', 3,
+  new Effect(100, {
+    'persistentEffect': { 'name' : 'Venom', 'effect' : new Effect(100, { 'damage': 2 }, eff_damageEffect) }
+  }, eff_persistentEffect),
+  new Effect(100, {
+    'persistentEffectName': 'Venom' 
+  }, eff_removePersistentEffect),
 );
 
 // ============= NICCO WROTE THESE SO PLEASE DOUBLE CHECK THEM ===============

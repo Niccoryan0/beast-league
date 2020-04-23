@@ -119,11 +119,13 @@ function executeTurn(abilitySel) {
 
   // Each battler takes their turn; no turns are taken if either battler is defeated
   if (!firstBattler.isDefeated && !firstBattler.isStunned && !secondBattler.isDefeated) {
+    firstBattler.applyPersistentEffects();
     firstBattler.nextAction.execute(firstBattler);
     firstBattler.tickConditions(firstBattler);
   }
 
   if (!firstBattler.isDefeated && !secondBattler.isDefeated && !secondBattler.isDefeated) {
+    secondBattler.applyPersistentEffects();
     secondBattler.nextAction.execute(secondBattler);
     secondBattler.tickConditions(secondBattler);
   }
