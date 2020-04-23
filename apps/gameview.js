@@ -92,17 +92,17 @@ function animateEffect(imgEl, animateString){
   imgEl.className = animateString;
 }
 
-var gameScreen = document.getElementById('gameScreen');
-var gameStartButton = document.createElement('button');
-gameStartButton.id = 'gameStartButton';
-gameStartButton.textContent = 'Start the Game!';
-gameScreen.appendChild(gameStartButton);
-
 function playSongOnStart() {
   initializeCombat();
   var isPlaying = true;
   togglePlay();
 }
+
+var gameScreen = document.getElementById('gameScreen');
+var gameStartButton = document.createElement('button');
+gameStartButton.id = 'gameStartButton';
+gameStartButton.textContent = 'Start the Game!';
+gameScreen.appendChild(gameStartButton);
 gameStartButton.addEventListener('click', playSongOnStart);
 
 function endGameScreen(){
@@ -139,7 +139,8 @@ function endGameScreen(){
   buttonOuterSection.appendChild(buttonDiv);
 }
 
-var audioLoop = document.getElementById("audioLoop");
+var audioSection = document.getElementById('audio');
+var audioLoop = document.getElementById('audioLoop');
 var isPlaying = false;
 
 function togglePlay() {
@@ -151,7 +152,9 @@ function togglePlay() {
 }
 audioLoop.onplaying = function() {
   isPlaying = true;
+  audioSection.id = 'audio';
 };
 audioLoop.onpause = function() {
   isPlaying = false;
+  audioSection.id = 'audioIsNotPlaying';
 };

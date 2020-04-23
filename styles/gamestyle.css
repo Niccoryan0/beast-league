@@ -57,22 +57,28 @@ main {
 
 #userBattlePosition > img {
   transform: scaleX(-1);
-  animation: onScreenUser 3s 1;
 }
 
-#enemyBattlePosition > img {
+
+/* TODO: Add these tags on to the sprites when the game starts and remove them right after the animation finishes */
+/* .startingEnemy {
   animation: onScreenEnemy 3s 1;
 }
 
+.startingUser{
+  animation: onScreenUser 3s 1;
+
+}
+
 @keyframes onScreenUser {
-  0% {transform: translate(-300px, 0);}
+  0% {transform: translate(-200px, 0);}
   100% {transform: translate(0, 0);}
 }
 
 @keyframes onScreenEnemy {
-  0% {transform: translate(300px, 0);}
+  0% {transform: translate(200px, 0);}
   100% {transform: translate(0, 0);}
-}
+} */
 
 
 #abilityTrayDiv > ul {
@@ -135,9 +141,13 @@ main {
 }
 
 .directions {
-  text-align:center;
   font-size: 20px;
   margin-top: 20px;
+  background-color:rgba(255, 255, 255, 0.8);
+  width: fit-content;
+  margin-right:auto;
+  margin-left:auto;
+  padding: 5px 10px;
 }
 
 #abilityUlEl {
@@ -167,7 +177,7 @@ button {
 .spriteCover {
   /* border: 3px dashed black; */
   height: 480px;
-  width: 360px;
+  width: 170px;
   background-color: rgba(116, 37, 37, 1);
   z-index: 1;
 }
@@ -186,12 +196,11 @@ button {
 }
 
 
-/* button {
-  background-color: red;
-  font-weight: bold;
-  font-size: 17px;
+#audioIsNotPlaying {
+  background-color:red;
+  width:fit-content;
+  margin-right: 0;
+  margin-left: 94%;
+  margin-top: 20px;
+  float: left;
 }
-
-button:hover {
-  background-color: blue;
-} */

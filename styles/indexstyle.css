@@ -76,14 +76,3 @@
   height:95px;
 }
 
-button {
-  padding:10px;
-  background-color: red;
-  border: 0px;
-  font-size: 20px;
-  font-weight: bold;
-}
-
-button:hover {
-  background-color: blue;
-}

@@ -98,10 +98,11 @@ header, .spriteTray > img, #userMonsterProfile, p {
 
 button {
     padding:10px;
-    background-color: red;
+    background-color: rgb(34, 31, 31, 0.8);
     border: 0px;
     font-size: 20px;
     font-weight: bold;
+    color: gray
   }
   
   button:hover {
