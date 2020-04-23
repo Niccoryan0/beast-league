@@ -14,7 +14,7 @@ StatusEffect.prototype.tickCondition = function (target) {
     return null;
   }
   else return this;
-}
+};
 
 // EVASION RATES ARE SET FOR EACH MONSTER AND CAN BE MODIFIED WITHIN METHODS
 
@@ -31,3 +31,9 @@ StatusEffectDatabase['Lure'] = new StatusEffect('Lure', 3,
     'selfEffect': new Effect(100, { 'statMod': { 'statName': 'currentDefense', 'statModValue': 10 } }, eff_modifyStatEffect)
   }, eff_selfEffect)
 );
+
+// ============= NICCO WROTE THESE SO PLEASE DOUBLE CHECK THEM ===============
+
+// StatusEffectDatabase['Fortify'] = new StatusEffect('Fortify', 0,
+//   new Effect(100, { 'statMod': { 'statName': 'currentDefense', 'statModValue': 20 } }, eff_modifyStatEffect),
+// );

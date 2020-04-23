@@ -52,3 +52,12 @@ AbilityDatabase['Chomp'] = new Ability([
   new Effect(80, {'damage' : 12}, eff_damageEffect)
 ], 'Chomp');
 
+// ======================= NICCO WROTE THESE ===========
+
+// AbilityDatabase['Body Slam'] = new Ability([
+//   new Effect(100, {'statusToApply' : StatusEffectDatabase['Flinch']}, eff_applyStatusEffect),
+//   new Effect(20, {'damage' : 8}, eff_damageEffect)
+// ], 'Body Slam');
+
+// AbilityDatabase['Fortify'] = new Ability([
+//   new Effect(100, {'statusToApply' : StatusEffectDatabase['Fortify']}, eff_applyStatusEffect),
