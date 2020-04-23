@@ -142,6 +142,7 @@ function endGameScreen(){
 var audioSection = document.getElementById('audio');
 var audioLoop = document.getElementById('audioLoop');
 var isPlaying = false;
+audioLoop.volume = 0.5;
 
 function togglePlay() {
   if (isPlaying) {
