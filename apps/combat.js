@@ -102,8 +102,8 @@ function executeTurn(abilitySel) {
   enemyMonster.nextAction = enemyMonster.abilitySet[Math.round(Math.floor(Math.random() * enemyMonster.abilitySet.length))];
 
   var firstBattler, secondBattler;
-  userMonster.initiativeRoll = rollInitiative(userMonster.monsterData);
-  enemyMonster.initiativeRoll = rollInitiative(enemyMonster.monsterData);
+  userMonster.initiativeRoll = rollInitiative(userMonster.currentSpeed);
+  enemyMonster.initiativeRoll = rollInitiative(enemyMonster.currentSpeed);
 
   if (userMonster.initiativeRoll >= enemyMonster.initiativeRoll) {
     firstBattler = userMonster;
@@ -122,8 +122,8 @@ function executeTurn(abilitySel) {
   renderTurn();
 }
 
-function rollInitiative(monsterData) {
-  return randomRoll = Math.floor(Math.random * 100) + monsterData.speed;
+function rollInitiative(speedValue) {
+  return randomRoll = Math.floor(Math.random * 100) + speedValue;
 }
 
 function userAttack(event){

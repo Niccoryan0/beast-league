@@ -26,7 +26,9 @@ StatusEffect.prototype.tickCondition = function (target) {
 var StatusEffectDatabase = {};
 
 StatusEffectDatabase['Lure'] = new StatusEffect('Lure', 3,
-  new Effect(100, { 'statMod': { 'statName': 'currentDefense', 'statModValue': -10 } }, eff_modifyStatEffect),
+  new Effect(100, {
+    'selfEffect': new Effect(100, { 'statMod': { 'statName': 'currentDefense', 'statModValue': -10 } }, eff_modifyStatEffect)
+  }, eff_selfEffect),
   new Effect(100, {
     'selfEffect': new Effect(100, { 'statMod': { 'statName': 'currentDefense', 'statModValue': 10 } }, eff_modifyStatEffect)
   }, eff_selfEffect)

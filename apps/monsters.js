@@ -18,7 +18,7 @@ function MonsterBattler(monsterData) {
   this.monsterData = monsterData;
   this.initiativeRoll;
   this.currentHealth;
-  this.maximumHealth = 80;
+  this.maximumHealth = 100;
   this.currentAttack;
   this.currentDefense;
   this.currentSpeed;
@@ -33,7 +33,7 @@ function MonsterBattler(monsterData) {
 };
 
 MonsterBattler.prototype.takeDamage = function (damage, enemyAttackValue) {
-  damage = Math.round(damage * (enemyAttackValue / this.monsterData.defense));
+  damage = Math.round(damage * (enemyAttackValue / this.currentDefense));
   this.currentHealth -= damage;
   if(this.currentHealth < 0 ){
     this.currentHealth = 0;
@@ -43,10 +43,10 @@ MonsterBattler.prototype.takeDamage = function (damage, enemyAttackValue) {
   renderQueue.push(new RenderQueueEntry(this.imgElement, 'animShake'));
 };
 
-MonsterBattler.prototype.tickConditions = function(target) {
+MonsterBattler.prototype.tickConditions = function() {
   if(this.currentStatusEffects.length > 0) {
     for(var i in this.currentStatusEffects) {
-      this.currentStatusEffects[i] = this.currentStatusEffects[i].tickCondition(target);
+      this.currentStatusEffects[i] = this.currentStatusEffects[i].tickCondition(this);
       if(!this.currentStatusEffects[i]) this.currentStatusEffects.pop(i);
     }
 
@@ -56,6 +56,7 @@ MonsterBattler.prototype.tickConditions = function(target) {
 };
 
 MonsterBattler.prototype.addNewStatusEffect = function(newStatusEffect) {
+  console.log(this.monsterData.name);
   for(var i in this.currentStatusEffects) {
     if(this.currentStatusEffects[i].name === newStatusEffect.name) {
       if(this.currentStatusEffects[i].currDuration > newStatusEffect.currDuration) {
@@ -88,7 +89,7 @@ var wishboneDesc = 'No one claims to know what this creature is, some say it\'s 
 
 
 var monsterDatabase = {
-  mKrapken: new MonsterData('Krapken', krapkenDesc, 'assets/sprites/Krapken_160px_transparent.png', 30, 20, 40, ['Wrap', 'Lure']),
+  mKrapken: new MonsterData('Krapken', krapkenDesc, 'assets/sprites/Krapken_160px_transparent.png', 30, 25, 35, ['Wrap', 'Lure']),
   mManWolfPig: new MonsterData('ManWolfPig', mwpDesc, 'assets/sprites/MWP_160px_transparent.png', 30, 30, 30, ['Chomp', 'Trample'])
   // mGenrath: new MonsterData('Genrath' genrathDesc, 'assets/sprites/genrath.png', 30, 40, 20, ['Body Slam', 'Fortify'])
   // mBasitrice: new MonsterData('Basitrice', basitriceDesc, 'assets/sprites/basitrice.png', 40, 20, 30, ['Tail Whip', 'Stone Gaze'])

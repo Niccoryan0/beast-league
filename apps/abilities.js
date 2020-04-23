@@ -40,16 +40,16 @@ AbilityDatabase['Body Slam'] = new Ability([
 ], 'Body Slam');
 
 AbilityDatabase['Wrap'] = new Ability([
-  new Effect(100, {'damage' : 8}, eff_damageEffect)
+  new Effect(100, {'damage' : 10}, eff_damageEffect)
 ],'Wrap');
 
 AbilityDatabase['Lure'] = new Ability([
   new Effect(100, {'statusToApply' : StatusEffectDatabase['Lure']}, eff_applyStatusEffect),
-  new Effect(20, {'damage' : 8}, eff_damageEffect)
+  new Effect(20, {'damage' : 10}, eff_damageEffect)
 ], 'Lure');
 
 AbilityDatabase['Chomp'] = new Ability([
-  new Effect(80, {'damage' : 12}, eff_damageEffect)
+  new Effect(60, {'damage' : 14}, eff_damageEffect)
 ], 'Chomp');
 
 // ======================= NICCO WROTE THESE ===========
