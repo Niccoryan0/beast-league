@@ -58,7 +58,3 @@ resetButton.addEventListener('click', function(){
 
 });
 
-var startButton = document.getElementById('startButton');
-startButton.addEventListener('click', function(){
-  window.location.replace('../game.html');
-});

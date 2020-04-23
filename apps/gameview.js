@@ -87,11 +87,18 @@ function enableAbilityTray (){
   }
 }
 
+
+function animateEffect(imgEl, animateString){
+
+  imgEl.className = animateString;
+}
+
 function playSongOnStart() {
   initializeCombat();
   var isPlaying = true;
   togglePlay();
 }
+
 
 var gameScreen = document.getElementById('gameScreen');
 var gameStartButton = document.createElement('button');
@@ -99,6 +106,7 @@ gameStartButton.id = 'gameStartButton';
 gameStartButton.textContent = 'Start the Game!';
 gameScreen.appendChild(gameStartButton);
 gameStartButton.addEventListener('click', playSongOnStart);
+
 
 function endGameScreen(){
   var buttonOuterSection = document.getElementById('abilitiesAndDialogue');
@@ -128,7 +136,7 @@ function endGameScreen(){
     });
   }
   homeButton.addEventListener('click', function(){
-    window.location.replace('../index.html');
+    window.location.replace('index.html');
   });
   buttonDiv.appendChild(homeButton);
   buttonOuterSection.appendChild(buttonDiv);
@@ -137,6 +145,7 @@ function endGameScreen(){
 var audioSection = document.getElementById('audio');
 var audioLoop = document.getElementById('audioLoop');
 var isPlaying = false;
+audioLoop.volume = 0.5;
 
 function togglePlay() {
   if (isPlaying) {
@@ -153,3 +162,31 @@ audioLoop.onpause = function() {
   isPlaying = false;
   audioSection.id = 'audioIsNotPlaying';
 };
+
+// TODO: Numbers on health bars
+function renderHealthBars() {
+  var userHealthOuter = document.createElement('div');
+  userHealthOuter.className = 'healthBarOuter';
+  var userHealthNumber = document.createElement('')
+  var userHealthInner = document.createElement('div');
+  userHealthInner.id = 'userHealth';
+  userHealthInner.className = 'healthBarInner';
+  userHealthOuter.appendChild(userHealthInner);
+  var userBattlePositon = document.createElement('div');
+  userBattlePositon.id = 'userBattlePosition';
+  userBattleContainer.appendChild(userHealthOuter);
+  userBattleContainer.appendChild(userBattlePositon);
+
+  var enemyHealthOuter = document.createElement('div');
+  enemyHealthOuter.className = 'healthBarOuter';
+  var enemyHealthInner = document.createElement('div');
+  enemyHealthInner.id = 'enemyHealth';
+  enemyHealthInner.className = 'healthBarInner';
+  enemyHealthOuter.appendChild(enemyHealthInner);
+  var enemyBattlePositon = document.createElement('div');
+  enemyBattlePositon.id = 'enemyBattlePosition';
+  enemyBattleContainer.appendChild(enemyHealthOuter);
+  enemyBattleContainer.appendChild(enemyBattlePositon);
+}
+
+// TODO: Boxes below game screen w/ monsters, stats, and abilities

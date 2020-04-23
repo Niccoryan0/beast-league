@@ -29,30 +29,7 @@ function initializeCombat() {
     userMonster = new MonsterBattler(getRandomMonster());
     localStorage.setItem('userMonster', JSON.stringify(userMonster));
   }
-  // Create health bars and battle positions at start
-  // Users info first:
 
-  var userHealthOuter = document.createElement('div');
-  userHealthOuter.className = 'healthBarOuter';
-  var userHealthInner = document.createElement('div');
-  userHealthInner.id = 'userHealth';
-  userHealthInner.className = 'healthBarInner';
-  userHealthOuter.appendChild(userHealthInner);
-  var userBattlePositon = document.createElement('div');
-  userBattlePositon.id = 'userBattlePosition';
-  userBattleContainer.appendChild(userHealthOuter);
-  userBattleContainer.appendChild(userBattlePositon);
-
-  var enemyHealthOuter = document.createElement('div');
-  enemyHealthOuter.className = 'healthBarOuter';
-  var enemyHealthInner = document.createElement('div');
-  enemyHealthInner.id = 'enemyHealth';
-  enemyHealthInner.className = 'healthBarInner';
-  enemyHealthOuter.appendChild(enemyHealthInner);
-  var enemyBattlePositon = document.createElement('div');
-  enemyBattlePositon.id = 'enemyBattlePosition';
-  enemyBattleContainer.appendChild(enemyHealthOuter);
-  enemyBattleContainer.appendChild(enemyBattlePositon);
 
 
   // Instantiate enemy monster
@@ -77,6 +54,7 @@ function initializeCombat() {
   userMonster.currentSpeed = userMonster.monsterData.speed;
   for (var i in userMonster.monsterData.abilitySet) {
     userMonster.abilitySet.push(AbilityDatabase[userMonster.monsterData.abilitySet[i]]);
+
   }
 
   // Sets battler targets
@@ -89,7 +67,8 @@ function initializeCombat() {
   directions.className = 'directions';
   htmlBody.appendChild(directions);
 
-  // Renders sprites to screen and enables abilities
+  // Create health bars and battle positions at start
+  renderHealthBars();
   renderBattleSprites(userMonster.monsterData.imgSrc, enemyMonster.monsterData.imgSrc);
   enableAbilityTray();
 };
