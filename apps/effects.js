@@ -42,8 +42,20 @@ function eff_modifyStatEffect(user){
   console.log(user.target.monsterData.name + ' ' + statModified['statName'] + ' now equals ' + user.target[statModified['statName']]);
 }
 
+function eff_stunEffect(user){
+  user.target.isStunned = this.customValues['stun'];
+}
+
 function eff_applyStatusEffect(user) {
   var statusTemplate = this.customValues['statusToApply'];
   var newStatusEffect = new StatusEffect(statusTemplate.name, statusTemplate.maxDuration, statusTemplate.applyEffect, statusTemplate.removeEffect);
   user.target.addNewStatusEffect(newStatusEffect);
+}
+
+function eff_persistentEffect(user) {
+  user.persistentEffects[this.customValues['persistentEffect'].name] = this.customValues['persistentEffect'];
+}
+
+function eff_removePersistentEffect(user) {
+  user.persistentEffects[this.customValues['persistentEffectName']] = null;
 }
