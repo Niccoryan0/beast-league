@@ -42,7 +42,6 @@ eff_selfeffect)
 
 >> The exception to wrapping an effect inside a self effect is with persistent effects, because THEY'RE ALL SELF EFFECTS
 new Effect(100, {  }, eff_persistentEffect)
-
 */
 
 var StatusEffectDatabase = {};
@@ -65,31 +64,49 @@ StatusEffectDatabase['Fortify'] = new StatusEffect('Fortify', 2,
   }, eff_selfEffect)
 );
 
-
+// **
 StatusEffectDatabase['Confuse'] = new StatusEffect('Confuse', 3,
-  // This is the applyEffect -> triggers ON THE MONSTER AFFECTED BY STATUS EFFECT
   new Effect(100, {
-    'persistentEffect': new Effect(30, { 'stun': true }, eff_stunEffect)
+    'persistentEffect': {'name' : 'Confuse', 'effect' : new Effect(30, { 'stun': true }, eff_stunEffect)}
+  }, eff_persistentEffect),
+  new Effect(100, {
+    'persistentEffectName': 'Confuse'
+  }, eff_removePersistentEffect)
+);
+
+// **
+StatusEffectDatabase['Mirror Image'] = new StatusEffect('Mirror Image', 2,
+  new Effect(100, {
+    'selfEffect' : new Effect(100, {'statMod': { 'statName': 'evasionRate', 'statModValue': 30}}, eff_modifyStatEffect)
   }, eff_selfEffect),
-  // This is the removeEffect -> triggers ON THE MONSTER AFFECTED BY STATUS EFFECT
   new Effect(100, {
-    'selfEffect': new Effect(100, { 'statMod': { 'statName': 'currentDefense', 'statModValue': 10 } }, eff_modifyStatEffect)
+    'selfEffect' : new Effect(100, {'statMod': { 'statName': 'evasionRate', 'statModValue': -30}}, eff_modifyStatEffect)
   }, eff_selfEffect)
 );
 
 // **
 StatusEffectDatabase['Flinch'] = new StatusEffect('Flinch', 1,
   new Effect(100, {
-    'selfEffect' : new Effect(100, {'statMod': { 'statName': 'currentDefense', 'statModValue': 10}}, eff_modifyStatEffect)
-  }, eff_selfEffect),
-  
+    'persistentEffect': {'name' : 'Flinch', 'effect' : new Effect(100, { 'stun': true }, eff_stunEffect)}
+  }, eff_persistentEffect),
   new Effect(100, {
-    'selfEffect' : new Effect(100, {'statMod': { 'statName': 'currentDefense', 'statModValue': -10}}, eff_modifyStatEffect)
-  }, eff_selfEffect)
+    'persistentEffectName': 'Flinch'
+  }, eff_removePersistentEffect)
 );
 
 // **
-StatusEffectDatabase['OverDrive'] = new StatusEffect('OverDrive', 2, 
+StatusEffectDatabase['Paralyze'] = new StatusEffect('Paralyze', 2,
+  new Effect(100, {
+    'persistentEffect': {'name' : 'Paralyze', 'effect' : new Effect(100, { 'stun': true }, eff_stunEffect)}
+  }, eff_persistentEffect),
+  new Effect(100, {
+    'persistentEffectName': 'Paralyze'
+  }, eff_removePersistentEffect)
+);
+
+
+// **
+StatusEffectDatabase['Overdrive'] = new StatusEffect('Overdrive', 2,
   new Effect(100, {
     'selfEffect' : new Effect(100, {'statMod' : { 'statName': 'globalDamageMultiplier', 'statModValue': 0.5}}, eff_modifyStatEffect)
   }, eff_selfEffect),
@@ -105,7 +122,7 @@ StatusEffectDatabase['Venom'] = new StatusEffect('Venom', 3,
     'persistentEffect': { 'name' : 'Venom', 'effect' : new Effect(100, { 'damage': 2 }, eff_damageEffect) }
   }, eff_persistentEffect),
   new Effect(100, {
-    'persistentEffectName': 'Venom' 
+    'persistentEffectName': 'Venom'
   }, eff_removePersistentEffect)
 );
 
