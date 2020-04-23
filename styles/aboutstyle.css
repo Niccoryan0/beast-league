@@ -6,15 +6,33 @@
   margin-right: auto;
 }
 
-.personalBio {
-  width:350px;
-  background-color: blanchedalmond;
-}
-
 .bioPic {
   border-radius: 50%;
   float: left;
   shape-outside: circle;
   height: 150px;
   margin: 5px;
+}
+
+.gameBio {
+  margin: 30px 60px;
+  height: 380px;
+  overflow: auto;
+  border: 1px solid black;
+  padding: 20px 40px;
+  width: 500px;
+}
+
+
+.personalBio {
+  width:350px;
+  background-color: blanchedalmond;
+  margin: 30px 5px;
+  height: 300px;
+  overflow: auto;
+  border: 1px solid black;
+}
+
+.personalBio > p {
+  padding: 10px;
 }

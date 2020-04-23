@@ -39,31 +39,6 @@ main {
     justify-content: space-between;
 }
 
-.gameBio {
-    margin: 30px 60px;
-    height: 380px;
-    overflow: auto;
-    border: 1px solid black;
-    padding: 20px 40px;
-    width: 500px;
-}
-
-
-.personalBio {
-    margin: 30px 5px;
-    height: 300px;
-    overflow: auto;
-    border: 1px solid black;
-}
-
-.personalBio > p {
-    padding: 10px;
-}
-
-
-.dataTray {
-    height: 90px;
-}
 
 .spriteTray {
     display: flex;
@@ -103,8 +78,8 @@ button {
     font-size: 20px;
     font-weight: bold;
     color: gray
-  }
+}
   
-  button:hover {
+button:hover {
     background-color: blue;
-  }
+}
