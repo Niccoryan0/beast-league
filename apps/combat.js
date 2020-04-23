@@ -69,6 +69,7 @@ function initializeCombat() {
 
   // Create health bars and battle positions at start
   renderHealthBars();
+  renderMonsterStats();
   renderBattleSprites(userMonster.monsterData.imgSrc, enemyMonster.monsterData.imgSrc);
   enableAbilityTray();
 };
@@ -117,10 +118,9 @@ function userAttack(event){
   turnTimer++;
 
   // Attempting to get the health bars to change dynamically when an attack happens
-  var userHealthBar = document.getElementById('userHealth');
-  userHealthBar.style = 'width:' + (userMonster.currentHealth / userMonster.maximumHealth) * 100 + '%';
-  var enemyHealthBar = document.getElementById('enemyHealth');
-  enemyHealthBar.style = 'width:' + (enemyMonster.currentHealth / enemyMonster.maximumHealth) * 100 + '%';
+  updateHealthBars();
+  updateMonsterStats();
+
 }
 
 // This function is to render the dialogue box to the screen each turn, it is called in the userAttack function
