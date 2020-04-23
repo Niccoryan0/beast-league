@@ -92,21 +92,13 @@ function animateEffect(imgEl, animateString){
   imgEl.className = animateString;
 }
 
-var userMonsterImgSrc = userMonster.monsterData.imgSrc;
-var enemyMonsterImgSrc = userMonster.monsterData
 
 function playSongOnStart() {
-  renderQueue.push(new RenderQueueEntry());
-  // Add event listener that calls initialize combat on animation end and removes the event listener
-
-  // Chnage this name to like renderanimationsinqueue
-  renderTurn();
-
-  // 
-
+  initializeCombat();
   var isPlaying = true;
   togglePlay();
 }
+
 
 var gameScreen = document.getElementById('gameScreen');
 var gameStartButton = document.createElement('button');
@@ -114,6 +106,7 @@ gameStartButton.id = 'gameStartButton';
 gameStartButton.textContent = 'Start the Game!';
 gameScreen.appendChild(gameStartButton);
 gameStartButton.addEventListener('click', playSongOnStart);
+
 
 function endGameScreen(){
   var buttonOuterSection = document.getElementById('abilitiesAndDialogue');
@@ -149,8 +142,6 @@ function endGameScreen(){
   buttonOuterSection.appendChild(buttonDiv);
 }
 
-
-
 var audioSection = document.getElementById('audio');
 var audioLoop = document.getElementById('audioLoop');
 var isPlaying = false;
@@ -172,9 +163,7 @@ audioLoop.onpause = function() {
   audioSection.id = 'audioIsNotPlaying';
 };
 
-
-
-
+// TODO: Numbers on health bars
 function renderHealthBars() {
   var userHealthOuter = document.createElement('div');
   userHealthOuter.className = 'healthBarOuter';
@@ -198,3 +187,5 @@ function renderHealthBars() {
   enemyBattleContainer.appendChild(enemyHealthOuter);
   enemyBattleContainer.appendChild(enemyBattlePositon);
 }
+
+// TODO: Boxes below game screen w/ monsters, stats, and abilities
