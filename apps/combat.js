@@ -15,6 +15,7 @@
       a. If battler slain, play death animation
       b. At end of death animation, spawn buttons for continue or return to home
 */
+
 var userBattleContainer = document.getElementById('userBattleContainer');
 var enemyBattleContainer = document.getElementById('enemyBattleContainer');
 var userMonster, enemyMonster, userScore, startCombat, turnTimer = 0;
@@ -75,6 +76,12 @@ function initializeCombat() {
 
   enemyMonster.target = userMonster;
   userMonster.target = enemyMonster;
+
+  var htmlBody = document.getElementById('body');
+  var directions = document.createElement('h1');
+  directions.textContent = 'Press a number on the keyboard to choose an attack';
+  directions.className = 'directions';
+  htmlBody.appendChild(directions);
 
   renderBattleSprites(userMonster.monsterData.imgSrc, enemyMonster.monsterData.imgSrc);
   enableAbilityTray();
