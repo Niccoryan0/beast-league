@@ -142,6 +142,18 @@ button {
   margin:10px;
 }
 
+#audio {
+  margin-right: 0;
+  margin-left: 94%;
+  margin-top: 20px;
+  float: left;
+}
+
+#gameStartButton {
+  margin-left:35%;
+  margin-right:auto;
+}
+
 /* button {
   background-color: red;
   font-weight: bold;
