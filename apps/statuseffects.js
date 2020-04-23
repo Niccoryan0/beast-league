@@ -58,6 +58,14 @@ StatusEffectDatabase['Lure'] = new StatusEffect('Lure', 3,
   }, eff_selfEffect)
 );
 
+// **
+StatusEffectDatabase['Fortify'] = new StatusEffect('Fortify', 2,
+  new Effect(100, {
+    'selfEffect' : new Effect(100, {'statMod': { 'statName': 'currentDefense', 'statModValue': 10}}, eff_modifyStatEffect)
+  }, eff_selfEffect)
+);
+
+
 StatusEffectDatabase['Confuse'] = new StatusEffect('Confuse', 3,
   // This is the applyEffect -> triggers ON THE MONSTER AFFECTED BY STATUS EFFECT
   new Effect(100, {
@@ -69,25 +77,38 @@ StatusEffectDatabase['Confuse'] = new StatusEffect('Confuse', 3,
   }, eff_selfEffect)
 );
 
-
+// **
 StatusEffectDatabase['Flinch'] = new StatusEffect('Flinch', 1,
   new Effect(100, {
-    'selfEffect': new Effect(100, { 'stun': true }, eff_stunEffect)
+    'selfEffect' : new Effect(100, {'statMod': { 'statName': 'currentDefense', 'statModValue': 10}}, eff_modifyStatEffect)
   }, eff_selfEffect),
+  
   new Effect(100, {
-    'selfEffect': new Effect(100, { 'stun': false }, eff_stunEffect)
-  }, eff_selfEffect),
+    'selfEffect' : new Effect(100, {'statMod': { 'statName': 'currentDefense', 'statModValue': -10}}, eff_modifyStatEffect)
+  }, eff_selfEffect)
 );
 
+// **
+StatusEffectDatabase['OverDrive'] = new StatusEffect('OverDrive', 2, 
+  new Effect(100, {
+    'selfEffect' : new Effect(100, {'statMod' : { 'statName': 'globalDamageMultiplier', 'statModValue': 0.5}}, eff_modifyStatEffect)
+  }, eff_selfEffect),
+
+  new Effect(100, {
+    'selfEffect' : new Effect(100, {'statMod' : { 'statName': 'globalDamageMultiplier', 'statModValue': -0.5}}, eff_modifyStatEffect)
+  }, eff_selfEffect)
+);
+
+// Change the name of the ability
 StatusEffectDatabase['Venom'] = new StatusEffect('Venom', 3,
   new Effect(100, {
     'persistentEffect': { 'name' : 'Venom', 'effect' : new Effect(100, { 'damage': 2 }, eff_damageEffect) }
   }, eff_persistentEffect),
   new Effect(100, {
     'persistentEffectName': 'Venom' 
-  }, eff_removePersistentEffect),
+  }, eff_removePersistentEffect)
 );
 
-
+// ** means needs play testing
 // ============= NICCO WROTE THESE SO PLEASE DOUBLE CHECK THEM ===============
 

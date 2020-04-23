@@ -50,7 +50,8 @@ AbilityDatabase['Trample'] = new Ability([
 ], 'Trample');
 
 AbilityDatabase['Body Slam'] = new Ability([
-  new Effect(80, { 'damage': 12 }, eff_damageEffect)
+  new Effect(80, { 'damage': 12 }, eff_damageEffect),
+  new Effect(20, {'statusToApply' : StatusEffectDatabase['Flinch']}, eff_applyStatusEffect)
 ], 'Body Slam');
 
 AbilityDatabase['Wrap'] = new Ability([
@@ -65,6 +66,50 @@ AbilityDatabase['Lure'] = new Ability([
 AbilityDatabase['Chomp'] = new Ability([
   new Effect(60, { 'damage': 14 }, eff_damageEffect)
 ], 'Chomp');
+// TODO: ============================================================
+
+AbilityDatabase['Fortify'] = new Ability([
+  new Effect(100, {
+    'selfEffect' :   new Effect(100, {'statusToApply' : StatusEffectDatabase['Fortify']}, eff_applyStatusEffect)
+  }, eff_selfEffect),
+  
+], 'Fortify')
+
+AbilityDatabase['Tail Whip'] = new Ability([
+  new Effect(100, {'damage' : 10}, eff_damageEffect)
+], 'Tail Whip')
+
+AbilityDatabase['Stone Gaze'] = new Ability([
+  new Effect(100, {'statusToApply' : StatusEffectDatabase['Stone Gaze']}, eff_applyStatusEffect)
+], 'Stone Gaze')
+
+AbilityDatabase['Charge'] = new Ability([
+  new Effect(100, {'damage' : 10}, eff_damageEffect),
+  new Effect(20, {'statusToApply' : StatusEffectDatabase['Stun']}, eff_applyStatusEffect)
+], 'Charge')
+
+AbilityDatabase['Overdrive'] = new Ability([
+  new Effect(100, {
+    'selfEffect' : new Effect(100, {'damage' : 4}, eff_damageEffect)
+  }),
+
+  new Effect(100, { 
+    'selfEffect' : new Effect(100, {'statusToApply' : StatusEffectDatabase['Overdrive']}, eff_applyStatusEffect)
+  }, eff_selfEffect)
+], 'Overdrive')
+
+AbilityDatabase['Confuse'] = new Ability([
+  new Effect(100, {'statusToApply' : StatusEffectDatabase['Confuse']}, eff_applyStatusEffect),
+  new Effect(100, {'damage' : 10}, eff_damageEffect)
+], 'Confuse')
+
+AbilityDatabase['Mirror Image'] = new Ability([
+  new Effect(100, {'statusToApply' : StatusEffectDatabase['Mirror Image']}, eff_applyStatusEffect)
+], 'Mirror Image')
+
+// TODO: ===================================================================
+
+
 
 AbilityDatabase['Poison'] = new Ability([
   new Effect(100, { 'statusToApply': StatusEffectDatabase['Venom'] }, eff_applyStatusEffect)

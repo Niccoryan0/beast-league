@@ -163,6 +163,7 @@ audioLoop.onpause = function() {
   audioSection.id = 'audioIsNotPlaying';
 };
 
+
 // Function for rendering the health bars w/ nunbers in the middle, called in initializeCombat() and given values in userAttack() in Combat.js;
 function renderHealthBars() {
   var userHealthOuter = document.createElement('div');
@@ -186,6 +187,7 @@ function renderHealthBars() {
   enemyHealthNumber.id = 'enemyHealthNumber';
   enemyHealthNumber.className = 'healthNumber';
   enemyHealthOuter.appendChild(enemyHealthNumber);
+
   var enemyHealthInner = document.createElement('div');
   enemyHealthInner.id = 'enemyHealth';
   enemyHealthInner.className = 'healthBarInner';
@@ -195,6 +197,9 @@ function renderHealthBars() {
   enemyBattleContainer.appendChild(enemyHealthOuter);
   enemyBattleContainer.appendChild(enemyBattlePositon);
 }
+
+
+// TODO: Boxes below game screen w/ monsters, stats, and abilities
 
 function updateHealthBars (){
   var userHealthBar = document.getElementById('userHealth');
@@ -332,3 +337,4 @@ function updateMonsterStats() {
   var enemySpeedUpdate = document.getElementById('enemyCurrentSpeed');
   enemySpeedUpdate.textContent = 'Speed: ' + enemyMonster.currentSpeed;
 }
+

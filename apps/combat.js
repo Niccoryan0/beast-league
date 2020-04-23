@@ -70,6 +70,7 @@ function initializeCombat() {
   // Create health bars and battle positions at start
   renderHealthBars();
   renderMonsterStats();
+
   renderBattleSprites(userMonster.monsterData.imgSrc, enemyMonster.monsterData.imgSrc);
   enableAbilityTray();
 };
