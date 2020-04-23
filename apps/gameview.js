@@ -87,11 +87,11 @@ function enableAbilityTray (){
   }
 }
 
+
 function animateEffect(imgEl, animateString){
 
   imgEl.className = animateString;
 }
-
 
 function playSongOnStart() {
   initializeCombat();
@@ -163,11 +163,15 @@ audioLoop.onpause = function() {
   audioSection.id = 'audioIsNotPlaying';
 };
 
-// TODO: Numbers on health bars
+
+// Function for rendering the health bars w/ nunbers in the middle, called in initializeCombat() and given values in userAttack() in Combat.js;
 function renderHealthBars() {
   var userHealthOuter = document.createElement('div');
   userHealthOuter.className = 'healthBarOuter';
-  var userHealthNumber = document.createElement('')
+  var userHealthNumber = document.createElement('p');
+  userHealthNumber.id = 'userHealthNumber';
+  userHealthNumber.className = 'healthNumber';
+  userHealthOuter.appendChild(userHealthNumber);
   var userHealthInner = document.createElement('div');
   userHealthInner.id = 'userHealth';
   userHealthInner.className = 'healthBarInner';
@@ -179,6 +183,11 @@ function renderHealthBars() {
 
   var enemyHealthOuter = document.createElement('div');
   enemyHealthOuter.className = 'healthBarOuter';
+  var enemyHealthNumber = document.createElement('p');
+  enemyHealthNumber.id = 'enemyHealthNumber';
+  enemyHealthNumber.className = 'healthNumber';
+  enemyHealthOuter.appendChild(enemyHealthNumber);
+
   var enemyHealthInner = document.createElement('div');
   enemyHealthInner.id = 'enemyHealth';
   enemyHealthInner.className = 'healthBarInner';
@@ -189,4 +198,143 @@ function renderHealthBars() {
   enemyBattleContainer.appendChild(enemyBattlePositon);
 }
 
+
 // TODO: Boxes below game screen w/ monsters, stats, and abilities
+
+function updateHealthBars (){
+  var userHealthBar = document.getElementById('userHealth');
+  userHealthBar.style = 'width:' + (userMonster.currentHealth / userMonster.maximumHealth) * 100 + '%';
+  var userHealthNumber = document.getElementById('userHealthNumber');
+  userHealthNumber.textContent = userMonster.currentHealth + ' / ' + userMonster.maximumHealth;
+  var enemyHealthBar = document.getElementById('enemyHealth');
+  enemyHealthBar.style = 'width:' + (enemyMonster.currentHealth / enemyMonster.maximumHealth) * 100 + '%';
+  var enemyHealthNumber = document.getElementById('enemyHealthNumber');
+  enemyHealthNumber.textContent = enemyMonster.currentHealth + ' / ' + enemyMonster.maximumHealth;
+}
+
+// Boxes below game screen w/ monsters, stats, and abilities
+function renderMonsterStats() {
+  var userContainer = document.getElementById('userMonsterInfo');
+  var userMonsterInfoAndImg = document.createElement('section');
+  var userInfoPicTray = document.createElement('section');
+  userInfoPicTray.id = 'userPicTray';
+  userInfoPicTray.className = 'picTray';
+
+  var userMonsterImage = document.createElement('img');
+  userMonsterImage.src = userMonster.monsterData.imgSrc;
+  userMonsterImage.height = 80;
+  userInfoPicTray.appendChild(userMonsterImage);
+
+  var userMonsterInfo = document.createElement('section');
+  userMonsterInfo.className = 'monsterInfo';
+  var userMonsterName = document.createElement('h2');
+  userMonsterName.textContent = userMonster.monsterData.name;
+  var userMonsterStats = document.createElement('ul');
+  userMonsterStats.className = 'monsterStats';
+  var userMonsterAttack = document.createElement('li');
+  userMonsterAttack.id = 'userCurrentAttack';
+  userMonsterAttack.textContent ='Attack: ' + userMonster.monsterData.attack;
+
+  var userMonsterDefense = document.createElement('li');
+  userMonsterDefense.id = 'userCurrentDefense';
+  userMonsterDefense.textContent ='Defense: ' + userMonster.monsterData.defense;
+
+  var userMonsterSpeed = document.createElement('li');
+  userMonsterSpeed.id = 'userCurrentSpeed';
+  userMonsterSpeed.textContent ='Speed: ' + userMonster.monsterData.speed;
+
+  userMonsterStats.appendChild(userMonsterAttack);
+  userMonsterStats.appendChild(userMonsterDefense);
+  userMonsterStats.appendChild(userMonsterSpeed);
+  userMonsterInfo.appendChild(userMonsterName);
+  userMonsterInfo.appendChild(userMonsterStats);
+  userInfoPicTray.appendChild(userMonsterInfo);
+
+  var userMonsterAbilities = document.createElement('ul');
+  userMonsterAbilities.id = 'userMonsterAbilities';
+  userMonsterAbilities.className = 'monsterAbilities';
+
+  for (var ab in userMonster.abilitySet) {
+    var abilityLiEl = document.createElement('li');
+    var abilityName = document.createElement('h3');
+    abilityName.textContent = userMonster.abilitySet[ab].name;
+    abilityLiEl.appendChild(abilityName);
+    userMonsterAbilities.appendChild(abilityLiEl);
+  }
+
+
+  userMonsterInfoAndImg.appendChild(userInfoPicTray);
+  userMonsterInfoAndImg.appendChild(userMonsterAbilities);
+  userContainer.appendChild(userMonsterInfoAndImg);
+
+
+
+  var enemyContainer = document.getElementById('enemyMonsterInfo');
+  var enemyMonsterInfoAndImg = document.createElement('section');
+  var enemyInfoPicTray = document.createElement('section');
+  enemyInfoPicTray.id = 'enemyPicTray';
+  enemyInfoPicTray.className = 'picTray';
+
+  var enemyMonsterImage = document.createElement('img');
+  enemyMonsterImage.src = enemyMonster.monsterData.imgSrc;
+  enemyMonsterImage.height = 80;
+  enemyInfoPicTray.appendChild(enemyMonsterImage);
+
+  var enemyMonsterInfo = document.createElement('section');
+  enemyMonsterInfo.className = 'monsterInfo';
+  var enemyMonsterName = document.createElement('h2');
+  enemyMonsterName.textContent = enemyMonster.monsterData.name;
+  var enemyMonsterStats = document.createElement('ul');
+  enemyMonsterStats.className = 'monsterStats';
+
+  var enemyMonsterAttack = document.createElement('li');
+  enemyMonsterAttack.id = 'enemyCurrentAttack';
+  enemyMonsterAttack.textContent = 'Attack: ' + enemyMonster.monsterData.attack;
+
+  var enemyMonsterDefense = document.createElement('li');
+  enemyMonsterDefense.id = 'enemyCurrentDefense';
+  enemyMonsterDefense.textContent = 'Defense: ' +  enemyMonster.monsterData.defense;
+
+  var enemyMonsterSpeed = document.createElement('li');
+  enemyMonsterSpeed.id = 'enemyCurrentSpeed';
+  enemyMonsterSpeed.textContent = 'Speed: ' + enemyMonster.monsterData.speed;
+
+  enemyMonsterStats.appendChild(enemyMonsterAttack);
+  enemyMonsterStats.appendChild(enemyMonsterDefense);
+  enemyMonsterStats.appendChild(enemyMonsterSpeed);
+  enemyMonsterInfo.appendChild(enemyMonsterName);
+  enemyMonsterInfo.appendChild(enemyMonsterStats);
+  enemyInfoPicTray.appendChild(enemyMonsterInfo);
+  var enemyMonsterAbilities = document.createElement('ul');
+  enemyMonsterAbilities.id = 'enemyMonsterAbilities';
+  enemyMonsterAbilities.className = 'monsterAbilities';
+
+  for (var i in enemyMonster.abilitySet) {
+    abilityLiEl = document.createElement('li');
+    abilityName = document.createElement('h3');
+    abilityName.textContent = enemyMonster.abilitySet[i].name;
+    abilityLiEl.appendChild(abilityName);
+    enemyMonsterAbilities.appendChild(abilityLiEl);
+  }
+
+  enemyMonsterInfoAndImg.appendChild(enemyInfoPicTray);
+  enemyMonsterInfoAndImg.appendChild(enemyMonsterAbilities);
+  enemyContainer.appendChild(enemyMonsterInfoAndImg);
+}
+
+function updateMonsterStats() {
+  var userAttackUpdate = document.getElementById('userCurrentAttack');
+  userAttackUpdate.textContent = 'Attack: ' + userMonster.currentAttack;
+  var userDefenseUpdate = document.getElementById('userCurrentDefense');
+  userDefenseUpdate.textContent = 'Defense: ' + userMonster.currentDefense;
+  var userSpeedUpdate = document.getElementById('userCurrentSpeed');
+  userSpeedUpdate.textContent = 'Speed: ' + userMonster.currentSpeed;
+
+  var enemyAttackUpdate = document.getElementById('enemyCurrentAttack');
+  enemyAttackUpdate.textContent = 'Attack: ' + enemyMonster.currentAttack;
+  var enemyDefenseUpdate = document.getElementById('enemyCurrentDefense');
+  enemyDefenseUpdate.textContent = 'Defense: ' + enemyMonster.currentDefense;
+  var enemySpeedUpdate = document.getElementById('enemyCurrentSpeed');
+  enemySpeedUpdate.textContent = 'Speed: ' + enemyMonster.currentSpeed;
+}
+

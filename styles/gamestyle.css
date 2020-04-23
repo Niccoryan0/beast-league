@@ -204,3 +204,84 @@ button {
   margin-top: 20px;
   float: left;
 }
+
+.healthNumber{
+  float:left;
+  background-color:rgba(255, 255, 255, 0);
+  margin-left: 45px;
+  font-weight: bold;
+  font-family: sans-serif;
+  font-size:20px;
+}
+
+.monsterStats {
+  display:flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+#userMonsterInfo {
+  margin-left: 100px;
+}
+
+#enemyMonsterInfo {
+  margin-left: 100px;
+  margin-right:100px;
+}
+
+.monsterInfoandImg {
+  display: flex;
+  flex-direction: row;
+  /* border: 1px solid black; */
+  padding: 15px;
+  height:100px;
+}
+
+.monsterInfoandImg > p {
+  line-height: 5px;
+}
+
+.monsterInfo > h2{
+  border: 1px solid black;
+  border-radius: 0px;
+  font-size: 20px;
+  font-family: sans-serif;
+  padding: 5px;
+  background-color: rgb(34, 31, 31, 0.8);
+  color: gray;
+  border-radius: 5px;
+}
+
+
+.monsterAbilities > li {
+  border: 1px solid black;
+  padding:10px 20px;
+  margin-top:5px;
+  background-color: rgb(34, 31, 31, 0.8);
+  color: gray;
+
+}
+
+.picTray {
+  margin-top: 20px;
+  border: 1px solid black;
+  padding: 5px;
+  display: flex;
+  width: fit-content;
+  background-color: rgba(128, 128, 128, 0.582);
+}
+
+.picTray > img{
+  margin-right: 10px;
+}
+
+.monsterStats {
+  display: flex;
+  /* flex-direction:column; */
+  color: gray;
+}
+.monsterStats > li {
+  margin-top: 5px;
+  background-color: rgb(34, 31, 31, 0.8);
+  padding: 5px;
+  margin-right: 5px;
+}

@@ -111,6 +111,10 @@ AbilityDatabase['Mirror Image'] = new Ability([
 
 
 
+AbilityDatabase['Poison'] = new Ability([
+  new Effect(100, { 'statusToApply': StatusEffectDatabase['Venom'] }, eff_applyStatusEffect)
+], 'Poison');
+
 // ======================= NICCO WROTE THESE ===========
 
 // AbilityDatabase['Body Slam'] = new Ability([
