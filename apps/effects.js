@@ -35,11 +35,22 @@ function eff_selfEffect(user) {
   user.target = enemyMonster;
 }
 
+function eff_persistentEffect(user) {
+  var enemyMonster = user.target;
+  user.target = user;
+  this.customValues['selfEffect'].effectMethod(user);
+  user.target = enemyMonster;
+}
+
 function eff_modifyStatEffect(user){
   var statModified = this.customValues['statMod'];
   user.target[statModified['statName']] = user.target[statModified['statName']] + statModified['statModValue'];
   if(user.target[statModified['statName']] < 0) user.target[statModified['statName']] = 0;
   console.log(user.target.monsterData.name + ' ' + statModified['statName'] + ' now equals ' + user.target[statModified['statName']]);
+}
+
+function eff_stunEffect(user){
+  user.target.isStunned = this.customValues['stun'];
 }
 
 function eff_applyStatusEffect(user) {
