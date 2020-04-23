@@ -7,19 +7,30 @@
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles/reset.css">
   <link rel="stylesheet" href="styles/style.css">
+  <link rel="stylesheet" href="styles/gamestyle.css">
 </head>
 <body>
   <header>
-    <img src="assets/logo_transparent.png" alt="Logo" id='logo'>
+    <a href="index.html"><img src="assets/logo_transparent.png" alt="Logo" id='logo'></a>
 </header>
-<main>
+<main id = 'body'>
+<section class="gameAndCovers">
+
+  <div class="spriteCover"></div>
+
 
   <section id="gameScreen">
+    <section id='audio' height="30px">
+      <audio id="audioLoop" src= "assets/Knockout.mp3" type= "audio/mpeg" preload="auto" loop>
+      </audio>
+      <a onClick="togglePlay()" id='volumeIcon'><img src="assets/volume-bar.png" alt="Volume Icon" height='20px'></a>
+    </section>
     <section id='battlePositions'>
-      <div id="userBattlePosition">
-      </div>
-      <div id="enemyBattlePosition">
-      </div>
+
+      <section class='battlePositionContainer' id="userBattleContainer"></section>
+
+      <section class='battlePositionContainer' id = 'enemyBattleContainer'></section>
+
     </section>
     <section id='abilitiesAndDialogue'>
       <div id='abilityTrayDiv'>
@@ -30,8 +41,10 @@
 
   </section>
 
-  <section id="dataTrayR">
-  </section>
+  <div class="spriteCover"></div>
+</section>
+
+  <!-- <h1 class = 'directions'>Press a number on the keyboard to choose an attack</h1> -->
 </main>
 <script src="apps/monsters.js"></script>
 <script src="apps/effects.js"></script>

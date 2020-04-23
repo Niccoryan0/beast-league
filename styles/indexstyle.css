@@ -1,0 +1,78 @@
+
+#userMonsterName, #picTray {
+  text-align: center;
+  border-radius: 0px;
+}
+
+#monsterStats {
+  border: 1px solid black;
+  margin-top: 5px;
+  border-radius: 0px;
+  padding: 5px;
+  text-align: center;
+}
+
+#picTray {
+  border: 1px solid black;
+  padding: 5px;
+}
+
+/* INDEX PAGE ONLY BELOW */
+
+.buttons {
+  display: flex;
+  flex-direction: column;
+  margin: 80px 0px;
+}
+
+#resetButton {
+  margin-top: 20px;
+}
+
+.monsterInfoandImg {
+  display: flex;
+  flex-direction: row;
+  /* border: 1px solid black; */
+  padding: 15px;
+  height:100px;
+}
+
+.monsterInfoandImg > p {
+  line-height: 5px;
+}
+
+.monsterInfo {
+  margin-left: 10px;
+}
+
+.monsterInfo > h2{
+  border: 1px solid black;
+  border-radius: 0px;
+}
+
+/* .monsterInfo > p {
+  border: 1px solid black;
+  border-radius: 0px;
+  margin-top: 30px;
+} */
+
+#userMonsterImg {
+  height: 80px;
+  width: 80px;
+}
+
+#userMonsterProfile {
+  border: 1px solid black;
+  width: 250px;
+  height: 250px
+}
+
+#userMonsterDescription {
+  padding: 5px;
+  border: 1px solid black;
+  border-radius:0px;
+  margin: 0px 10px 10px;
+  overflow: auto;
+  height:95px;
+}
+
