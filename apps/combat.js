@@ -77,8 +77,6 @@ function initializeCombat() {
 
 function executeTurn(abilitySel) {
   // eslint-disable-next-line no-undef
-
-  // 
   disableAbilityTray();
 
   // Sets monster's next action to take
