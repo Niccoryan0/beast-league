@@ -56,8 +56,24 @@ main {
 }
 
 #userBattlePosition > img {
-  transform: scaleX(-1)
+  transform: scaleX(-1);
+  animation: onScreenUser 3s 1;
 }
+
+#enemyBattlePosition > img {
+  animation: onScreenEnemy 3s 1;
+}
+
+@keyframes onScreenUser {
+  0% {transform: translate(-300px, 0);}
+  100% {transform: translate(0, 0);}
+}
+
+@keyframes onScreenEnemy {
+  0% {transform: translate(300px, 0);}
+  100% {transform: translate(0, 0);}
+}
+
 
 #abilityTrayDiv > ul {
   display: flex;
@@ -104,8 +120,8 @@ main {
   width: 640px;
   border: 1px solid black;
   background-image: url('../assets/arena.png');
-  margin-left: auto;
-  margin-right: auto;
+  /* margin-left: auto; */
+  /* margin-right: auto; */
 }
 
 
@@ -142,6 +158,21 @@ button {
   margin:10px;
 }
 
+.gameAndCovers {
+  display: flex;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.spriteCover {
+  /* border: 3px dashed black; */
+  height: 480px;
+  width: 360px;
+  background-color: rgba(116, 37, 37, 1);
+  z-index: 1;
+}
+
+
 #audio {
   margin-right: 0;
   margin-left: 94%;
@@ -153,6 +184,7 @@ button {
   margin-left:35%;
   margin-right:auto;
 }
+
 
 /* button {
   background-color: red;
