@@ -1,7 +1,7 @@
 // THIS FILE NEEDS TO RUN FIRST
 // This is for constructor functions for monsters, abilities, all stats and methods related to monsters
 
-// TODO: Class for monsters, include stats
+// Class for monsters, include stats
 function MonsterData(name, description, imgSrc, attack, defense, speed, abilitySet){
   this.name = name;
   this.description = description;
