@@ -1,11 +1,8 @@
 // This will be the render data for the game, sprites, etc.
 'use strict';
-// TODO: Maybe get userMonster from localStorage, talk to Bade about file order
 
 var renderQueue = [];
 var abilityTrayDiv = document.getElementById('abilityTrayDiv');
-
-
 
 // Renders the two sprites for battle to the page
 function renderBattleSprites(userImgSrc, enemyMonsterImgSrc){
@@ -30,15 +27,17 @@ function renderBattleSprites(userImgSrc, enemyMonsterImgSrc){
   enemyMonster.imgElement = enemyMonsterImg;
 }
 
-// Bade please explain this in better detail than I
-// This is essentially a queue that paces out and calls the correct animations at the correct times, images and the "animation string" are parameters indicating which image is moving and how they will be moving, currently only one string availble, "shake"
+// Entry for renderQueue system
+// >> Passes in image element to be animated and a string for the HTML class to be added to it
+// >> HTML class has CSS code written for it to play an animation
 function RenderQueueEntry (imgEl, animateString, dialogueEntry){
   this.imgEl = imgEl;
   this.animateString = animateString;
   this.dialogueEntry = dialogueEntry;
 }
 
-// This is used to remove event listeners that trigger the animations
+// Clears animation data from image element
+// >> Calls renderTurn() to render the next entry in the renderQueue
 function clearAnimation (event){
   event.target.className = '';
   void event.target.offsetWidth;
@@ -49,7 +48,6 @@ function clearAnimation (event){
 
 // Renders the animations for a turn
 function renderTurn(){
-  console.log(renderQueue);
   if(renderQueue.length){
     // Pops entries from the renderQueue to address them and render them one at a time
     var nextEntry = renderQueue.pop(0);
@@ -57,17 +55,19 @@ function renderTurn(){
     nextEntry.imgEl.addEventListener('animationcancel', clearAnimation);
     // Actually animate the item with the img and string passed in
     animateEffect(nextEntry.imgEl, nextEntry.animateString);
+  } else if(userMonster.isDefeated || enemyMonster.isDefeated){
     // Check for game over and if so set monster to local storage and send user back to homepage
-  }else if(userMonster.currentHealth <= 0 || enemyMonster.currentHealth <= 0){
     endGameScreen();
-
-  }else{
+  } else{
     // If there's nothing to render, and no one is dead yet, pop the ability tray back up on the screen
     enableAbilityTray();
   }
 }
 
-
+// Starts an animation on an image elemet
+function animateEffect(imgEl, animateString){
+  imgEl.className = animateString;
+}
 
 function disableAbilityTray (){
   document.removeEventListener('keydown', userAttack);
@@ -87,11 +87,11 @@ function enableAbilityTray (){
   }
 }
 
+
 function animateEffect(imgEl, animateString){
 
   imgEl.className = animateString;
 }
-
 
 function playSongOnStart() {
   initializeCombat();
