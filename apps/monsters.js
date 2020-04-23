@@ -1,8 +1,8 @@
 // THIS FILE NEEDS TO RUN FIRST
 // This is for constructor functions for monsters, abilities, all stats and methods related to monsters
 
-// This is the database class for monsters which can exist between webpages
-// >> This class is used by MonsterBattler to act as a reference for abilities, stats, and rendering
+// Class for monsters, include stats
+
 function MonsterData(name, description, imgSrc, attack, defense, speed, abilitySet){
   this.name = name;
   this.description = description;
