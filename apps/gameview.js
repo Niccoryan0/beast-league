@@ -140,7 +140,7 @@ function endGameScreen(){
 }
 
 var audioSection = document.getElementById('audio');
-var audioLoop = document.getElementById("audioLoop");
+var audioLoop = document.getElementById('audioLoop');
 var isPlaying = false;
 
 function togglePlay() {

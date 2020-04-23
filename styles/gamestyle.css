@@ -57,11 +57,17 @@ main {
 
 #userBattlePosition > img {
   transform: scaleX(-1);
-  animation: onScreenUser 3s 1;
 }
 
-#enemyBattlePosition > img {
+
+/* TODO: Add these tags on to the sprites when the game starts and remove them right after the animation finishes */
+/* .startingEnemy {
   animation: onScreenEnemy 3s 1;
+}
+
+.startingUser{
+  animation: onScreenUser 3s 1;
+
 }
 
 @keyframes onScreenUser {
@@ -72,7 +78,7 @@ main {
 @keyframes onScreenEnemy {
   0% {transform: translate(200px, 0);}
   100% {transform: translate(0, 0);}
-}
+} */
 
 
 #abilityTrayDiv > ul {
