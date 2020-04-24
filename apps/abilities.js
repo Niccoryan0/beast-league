@@ -17,7 +17,8 @@ Ability.prototype.execute = function (user) {
   addDialogueBoxEntry('p', user.monsterData.name + ' used ' + this.name);
   for (var eff in this.effects) {
     randomExecutionRoll = Math.round(Math.floor(Math.random() * 100));
-    if ((randomExecutionRoll + user.target.evasionRate) < this.effects[eff].executionChance) this.effects[eff].effectMethod(user);
+    if(this.effects[eff].isAvoidable) randomExecutionRoll += user.target.evasionRate;
+    if (randomExecutionRoll < this.effects[eff].executionChance) this.effects[eff].effectMethod(user);
     else addDialogueBoxEntry('p' , user.monsterData.name + ' missed with effect!');
   }
 };
@@ -63,7 +64,7 @@ AbilityDatabase['Slash'] = new Ability([
 
 AbilityDatabase['Agility'] = new Ability([
   new Effect(100, {
-    'selfEffect': new Effect(100, { 'statMod': { 'statName': 'currentSpeed', 'statModValue': 4 } }, eff_modifyStatEffect)
+    'selfEffect': new Effect(100, { 'statMod': { 'statName': 'currentSpeed', 'statModValue': 4 } }, eff_modifyStatEffect, false)
   }, eff_selfEffect),
 ], 'Agility');
 
@@ -81,10 +82,10 @@ AbilityDatabase['Lure'] = new Ability([
 AbilityDatabase['Dive'] = new Ability([
   new Effect(100, {
     'selfEffect' : new Effect(100, {'statusToApply' : StatusEffectDatabase['Hidden']}, eff_applyStatusEffect)
-  }, eff_selfEffect),
+  }, eff_selfEffect, false),
   new Effect(100, {
     'selfEffect' : new Effect(100, {'statusToApply' : StatusEffectDatabase['Empowered']}, eff_applyStatusEffect)
-  }, eff_selfEffect)
+  }, eff_selfEffect, false)
 ], 'Dive');
 
 AbilityDatabase['Tidal Wave'] = new Ability([
@@ -101,7 +102,7 @@ AbilityDatabase['Body Slam'] = new Ability([
 AbilityDatabase['Fortify'] = new Ability([
   new Effect(100, {
     'selfEffect': new Effect(100, { 'statMod': { 'statName': 'currentDefense', 'statModValue': 2 } }, eff_modifyStatEffect)
-  }, eff_selfEffect),
+  }, eff_selfEffect, false),
 ], 'Fortify');
 
 AbilityDatabase['Shell Spin'] = new Ability([
@@ -109,7 +110,7 @@ AbilityDatabase['Shell Spin'] = new Ability([
   new Effect(100, { 'damage': 4 }, eff_damageEffect),
   new Effect(20, {
     'selfEffect': new Effect(100, { 'statMod': { 'statName': 'currentDefense', 'statModValue': 2 } }, eff_modifyStatEffect)
-  }, eff_selfEffect)
+  }, eff_selfEffect, false)
 ], 'Shell Spin');
 
 AbilityDatabase['Eye Beam'] = new Ability([
@@ -129,7 +130,7 @@ AbilityDatabase['Stone Gaze'] = new Ability([
 AbilityDatabase['Gust'] = new Ability([
   new Effect(100, {
     'selfEffect' : new Effect(100, {'statusToApply' : StatusEffectDatabase['Hasted']}, eff_applyStatusEffect)
-  }, eff_selfEffect)
+  }, eff_selfEffect, false)
 ], 'Gust');
 
 AbilityDatabase['Nibble'] = new Ability([
@@ -147,10 +148,10 @@ AbilityDatabase['Charge'] = new Ability([
 AbilityDatabase['Overdrive'] = new Ability([
   new Effect(100, {
     'selfEffect' : new Effect(100, {'damage' : 4}, eff_damageEffect)
-  }, eff_selfEffect),
+  }, eff_selfEffect, false),
   new Effect(100, {
     'selfEffect' : new Effect(100, {'statusToApply' : StatusEffectDatabase['Overdrive']}, eff_applyStatusEffect)
-  }, eff_selfEffect)
+  }, eff_selfEffect, false)
 ], 'Overdrive');
 
 AbilityDatabase['Repair'] = new Ability([
@@ -171,7 +172,7 @@ AbilityDatabase['Confuse'] = new Ability([
 AbilityDatabase['Mirror Image'] = new Ability([
   new Effect(100, {
     'selfEffect' : new Effect(100, {'statusToApply' : StatusEffectDatabase['Mirror Image']}, eff_applyStatusEffect)
-  }, eff_selfEffect)
+  }, eff_selfEffect, false)
 ], 'Mirror Image', 20);
 
 AbilityDatabase['Terrify'] = new Ability([

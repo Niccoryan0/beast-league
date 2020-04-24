@@ -9,7 +9,7 @@
   >> effectMethod is the function that runs when the effect is used
 */
 
-function Effect(executionChance, customValues, effectMethod) {
+function Effect(executionChance, customValues, effectMethod, isAvoidable = true) {
   this.executionChance = executionChance; // Chance of effect executing
   this.customValues = customValues; // Custom values passed as an object literal
   this.effectMethod = effectMethod; // Method called by effect when applied
