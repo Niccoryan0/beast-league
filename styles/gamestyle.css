@@ -61,7 +61,7 @@ main {
 
 
 /* TODO: Add these tags on to the sprites when the game starts and remove them right after the animation finishes */
-/* .startingEnemy {
+.startingEnemy {
   animation: onScreenEnemy 3s 1;
 }
 
@@ -78,7 +78,7 @@ main {
 @keyframes onScreenEnemy {
   0% {transform: translate(200px, 0);}
   100% {transform: translate(0, 0);}
-} */
+}
 
 
 #abilityTrayDiv > ul {

@@ -1,3 +1,7 @@
+'use strict';
+/* global MonsterBattler, getRandomMonster, AbilityDatabase, renderHealthBars, renderMonsterStats, renderBattleSprites, enableAbilityTray, disableAbilityTray, renderTurn, updateHealthBars, updateMonsterStats */
+/* eslint-disable no-unused-vars */
+
 
 // This is going to contain the core gameplay loop for combat
 /*
@@ -11,7 +15,7 @@
       a. Repeat from (2)
     4. Render animations
       a. In gameview.js, renders animations in the order that they are placed in the render queue
-      b.  
+      b.
 */
 
 var userBattleContainer = document.getElementById('userBattleContainer');
@@ -52,8 +56,8 @@ function initializeCombat() {
   userMonster.currentAttack = userMonster.monsterData.attack;
   userMonster.currentDefense = userMonster.monsterData.defense;
   userMonster.currentSpeed = userMonster.monsterData.speed;
-  for (var i in userMonster.monsterData.abilitySet) {
-    userMonster.abilitySet.push(AbilityDatabase[userMonster.monsterData.abilitySet[i]]);
+  for (var j in userMonster.monsterData.abilitySet) {
+    userMonster.abilitySet.push(AbilityDatabase[userMonster.monsterData.abilitySet[j]]);
 
   }
 
@@ -73,12 +77,9 @@ function initializeCombat() {
 
   renderBattleSprites(userMonster.monsterData.imgSrc, enemyMonster.monsterData.imgSrc);
   enableAbilityTray();
-};
+}
 
 function executeTurn(abilitySel) {
-  // eslint-disable-next-line no-undef
-
-  // 
   disableAbilityTray();
 
   // Sets monster's next action to take
@@ -99,15 +100,15 @@ function executeTurn(abilitySel) {
   }
 
   // Each battler takes their turn; no turns are taken if either battler is defeated
-  if (!firstBattler.isDefeated && !firstBattler.isStunned && !secondBattler.isDefeated) {
+  if (!firstBattler.isDefeated && !secondBattler.isDefeated) {
     firstBattler.applyPersistentEffects();
-    firstBattler.nextAction.execute(firstBattler);
+    if(!firstBattler.isStunned) firstBattler.nextAction.execute(firstBattler);
     firstBattler.tickConditions(firstBattler);
   }
 
-  if (!firstBattler.isDefeated && !secondBattler.isDefeated && !secondBattler.isDefeated) {
+  if (!firstBattler.isDefeated && !secondBattler.isDefeated) {
     secondBattler.applyPersistentEffects();
-    secondBattler.nextAction.execute(secondBattler);
+    if(!secondBattler.isStunned) secondBattler.nextAction.execute(secondBattler);
     secondBattler.tickConditions(secondBattler);
   }
 
@@ -117,9 +118,9 @@ function executeTurn(abilitySel) {
 
 // Rolls initiative and passes back speed value
 function rollInitiative(speedValue) {
-  return randomRoll = Math.floor(Math.random * 100) + speedValue;
+  var randomRoll = Math.floor(Math.random * 100) + speedValue;
+  return randomRoll;
 }
-
 function userAttack(event) {
   if (event.keyCode === 97 || event.keyCode === 49) {
     executeTurn(0);

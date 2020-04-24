@@ -1,3 +1,6 @@
+'use strict';
+/* global Effect, eff_applyStatusEffect, eff_damageEffect, StatusEffectDatabase, eff_selfEffect */
+
 // Ability class
 /*
   >> Takes an array of effects
@@ -15,7 +18,7 @@ Ability.prototype.execute = function (user) {
   for (var eff in this.effects) {
     randomExecutionRoll = Math.round(Math.floor(Math.random() * 100));
     if ((randomExecutionRoll + user.target.evasionRate) < this.effects[eff].executionChance) this.effects[eff].effectMethod(user);
-    else console.log('FAILED TO EXECUTE');
+    else console.log(user.monsterData.name + 'FAILED TO EXECUTE :', this.randomExecutionRoll + ' , ' + user.target.evasionRate);
   }
 };
 
@@ -24,7 +27,7 @@ Ability.prototype.execute = function (user) {
 
 /*
 === HOW TO WRITE AN ABILITY ===
-1. Think of a concept. What effects does the ability do? 
+1. Think of a concept. What effects does the ability do?
 2. Add a new property to AbilityDatabase with a new Ability
 3. Fill in the following arguments:
   a. Array of effects, written in the order that they are applied
@@ -44,65 +47,78 @@ Effects have the following parameters
 */
 var AbilityDatabase = {};
 
+// MWP
 AbilityDatabase['Trample'] = new Ability([
   new Effect(100, { 'damage': 5 }, eff_damageEffect),
   new Effect(100, { 'damage': 5 }, eff_damageEffect)
 ], 'Trample');
 
+AbilityDatabase['Chomp'] = new Ability([
+  new Effect(60, { 'damage': 14 }, eff_damageEffect)
+], 'Chomp');
+
+
+// KRAPKEN
+AbilityDatabase['Wrap'] = new Ability([
+  new Effect(100, { 'damage': 10 }, eff_damageEffect)
+], 'Wrap');
+
+AbilityDatabase['Lure'] = new Ability([
+  new Effect(100, { 'statusToApply': StatusEffectDatabase['Lure'] }, eff_applyStatusEffect),
+  new Effect(20, { 'damage': 10 }, eff_damageEffect)
+], 'Lure');
+
+
+// GENRATH
 AbilityDatabase['Body Slam'] = new Ability([
   new Effect(80, { 'damage': 12 }, eff_damageEffect),
   new Effect(20, {'statusToApply' : StatusEffectDatabase['Flinch']}, eff_applyStatusEffect)
 ], 'Body Slam');
 
-AbilityDatabase['Wrap'] = new Ability([
-  new Effect(100, { 'damage': 10 }, eff_damageEffect)
-], 'Wrap');
-
-AbilityDatabase['Chomp'] = new Ability([
-  new Effect(60, { 'damage': 14 }, eff_damageEffect)
-], 'Chomp');
-// TODO: ============================================================
-
 AbilityDatabase['Fortify'] = new Ability([
   new Effect(100, {
     'selfEffect' :   new Effect(100, {'statusToApply' : StatusEffectDatabase['Fortify']}, eff_applyStatusEffect)
   }, eff_selfEffect),
-  
-], 'Fortify')
+], 'Fortify');
 
+
+// AMPHYLISK:
 AbilityDatabase['Tail Whip'] = new Ability([
-  new Effect(100, {'damage' : 10}, eff_damageEffect)
-], 'Tail Whip')
+  new Effect(100, {'damage' : 6}, eff_damageEffect),
+  new Effect(65, {'statusToApply' : StatusEffectDatabase['Venom']}, eff_applyStatusEffect)
+], 'Tail Whip');
 
 AbilityDatabase['Stone Gaze'] = new Ability([
-  new Effect(100, {'statusToApply' : StatusEffectDatabase['Stone Gaze']}, eff_applyStatusEffect)
-], 'Stone Gaze')
+  new Effect(60, {'statusToApply' : StatusEffectDatabase['Paralyze']}, eff_applyStatusEffect)
+], 'Stone Gaze');
 
+
+// DAEDALUS
 AbilityDatabase['Charge'] = new Ability([
   new Effect(100, {'damage' : 10}, eff_damageEffect),
-  new Effect(20, {'statusToApply' : StatusEffectDatabase['Stun']}, eff_applyStatusEffect)
-], 'Charge')
+  new Effect(20, {'statusToApply' : StatusEffectDatabase['Flinch']}, eff_applyStatusEffect)
+], 'Charge');
 
 AbilityDatabase['Overdrive'] = new Ability([
   new Effect(100, {
     'selfEffect' : new Effect(100, {'damage' : 4}, eff_damageEffect)
-  }),
-
-  new Effect(100, { 
+  }, eff_selfEffect),
+  new Effect(100, {
     'selfEffect' : new Effect(100, {'statusToApply' : StatusEffectDatabase['Overdrive']}, eff_applyStatusEffect)
   }, eff_selfEffect)
-], 'Overdrive')
+], 'Overdrive');
 
+
+// WISHBONE
 AbilityDatabase['Confuse'] = new Ability([
-  new Effect(100, {'statusToApply' : StatusEffectDatabase['Confuse']}, eff_applyStatusEffect),
-  new Effect(100, {'damage' : 10}, eff_damageEffect)
-], 'Confuse')
+  new Effect(100, {'statusToApply' : StatusEffectDatabase['Confuse']}, eff_applyStatusEffect)
+], 'Confuse');
 
 AbilityDatabase['Mirror Image'] = new Ability([
-  new Effect(100, {'statusToApply' : StatusEffectDatabase['Mirror Image']}, eff_applyStatusEffect)
-], 'Mirror Image')
-
-// TODO: ===================================================================
+  new Effect(100, {
+    'selfEffect' : new Effect(100, {'statusToApply' : StatusEffectDatabase['Mirror Image']}, eff_applyStatusEffect)
+  }, eff_selfEffect)
+], 'Mirror Image');
 
 
 
