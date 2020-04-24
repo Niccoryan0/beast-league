@@ -14,7 +14,7 @@ function Ability(effects, name, spdMod = 0) {
 
 Ability.prototype.execute = function (user) {
   var randomExecutionRoll;
-  console.log(user.monsterData.name + ' used ' + this.name);
+  addDialogueBoxEntry('p', user.monsterData.name + ' used ' + this.name);
   for (var eff in this.effects) {
     randomExecutionRoll = Math.round(Math.floor(Math.random() * 100));
     if ((randomExecutionRoll + user.target.evasionRate) < this.effects[eff].executionChance) this.effects[eff].effectMethod(user);

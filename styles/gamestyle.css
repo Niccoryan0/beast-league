@@ -97,7 +97,7 @@ main {
 
 /* this was adapted from w3 schools how to shake and image */
 .animShake {
-  animation: shake 1s;
+  animation: shake 0.5s;
   animation-iteration-count: 1;
 }
 
