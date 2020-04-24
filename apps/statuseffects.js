@@ -1,5 +1,5 @@
 'use strict';
-/* global Effect, eff_modifyStatEffect, eff_selfEffect, eff_persistentEffect, eff_stunEffect, eff_removePersistentEffect, eff_damageEffect, eff_applyStatusEffect */
+/* global Effect, eff_modifyStatEffect, eff_persistentEffect, eff_stunEffect, eff_removePersistentEffect, eff_damageEffect, eff_applyStatusEffect, eff_linkedEffect */
 
 
 // Constructor function for status effects to be applied
@@ -49,35 +49,33 @@ var StatusEffectDatabase = {};
 
 // Reduces defense by 10 for 3 rounds
 StatusEffectDatabase['Vulnerable'] = new StatusEffect('Vulnerable', 3,
-  // This is the applyEffect -> triggers ON THE MONSTER AFFECTED BY STATUS EFFECT
   new Effect(100, { 'statMod': { 'statName': 'currentDefense', 'statModValue': -10 } }, eff_modifyStatEffect),
-  // This is the removeEffect -> triggers ON THE MONSTER AFFECTED BY STATUS EFFECT
   new Effect(100, { 'statMod': { 'statName': 'currentDefense', 'statModValue': 10 } }, eff_modifyStatEffect)
 );
 
+// Increases speed by 10 for 3 rounds
 StatusEffectDatabase['Hasted'] = new StatusEffect('Hasted', 3,
   new Effect(100, { 'statMod': { 'statName': 'currentSpeed', 'statModValue': 10 } }, eff_modifyStatEffect),
   new Effect(100, { 'statMod': { 'statName': 'currentSpeed', 'statModValue': -10 } }, eff_modifyStatEffect)
 );
 
+// Improves attack by 10 for 3 rounds
 StatusEffectDatabase['Empowered'] = new StatusEffect('Empowered', 2,
   new Effect(100, { 'statMod': { 'statName': 'currentAttack', 'statModValue': 10 } }, eff_modifyStatEffect),
   new Effect(100, { 'statMod': { 'statName': 'currentAttack', 'statModValue': -10 } }, eff_modifyStatEffect)
 );
 
+// Dodges all effects for 2 rounds
 StatusEffectDatabase['Hidden'] = new StatusEffect('Hidden', 2,
   new Effect(100, { 'statMod': { 'statName': 'evasionRate', 'statModValue': 100 } }, eff_modifyStatEffect),
   new Effect(100, { 'statMod': { 'statName': 'evasionRate', 'statModValue': -100 } }, eff_modifyStatEffect)
 );
 
-// 1-turn stun
 StatusEffectDatabase['Flinch'] = new StatusEffect('Flinch', 1,
   new Effect(100, { 'stun': true }, eff_stunEffect),
-  // This is the removeEffect -> triggers ON THE MONSTER AFFECTED BY STATUS EFFECT
   new Effect(100, { 'stun': false }, eff_stunEffect)
 );
 
-// 50% chance of stun and 12 damage each turn for 3 turns
 StatusEffectDatabase['Confused'] = new StatusEffect('Confused', 3,
   new Effect(100, {
     'persistentEffect': {
@@ -92,14 +90,11 @@ StatusEffectDatabase['Confused'] = new StatusEffect('Confused', 3,
   }, eff_removePersistentEffect)
 );
 
-// 3-turn stun
 StatusEffectDatabase['Paralyzed'] = new StatusEffect('Paralyzed', 3,
   new Effect(100, { 'stun': true }, eff_stunEffect),
-  // This is the removeEffect -> triggers ON THE MONSTER AFFECTED BY STATUS EFFECT
   new Effect(100, { 'stun': false }, eff_stunEffect)
 );
 
-// 2-turn stun and defense debuff
 StatusEffectDatabase['Terrify'] = new StatusEffect('Terrify', 2,
   new Effect(100, {
     'effectFunc1': eff_stunEffect, 'effectFunc2': eff_modifyStatEffect,
@@ -117,26 +112,30 @@ StatusEffectDatabase['Terrify'] = new StatusEffect('Terrify', 2,
   }, eff_linkedEffect)
 );
 
-// **
+
+// 2-turn stun and defense debuff
+
 StatusEffectDatabase['Mirror Image'] = new StatusEffect('Mirror Image', 2,
   new Effect(100, { 'statMod': { 'statName': 'evasionRate', 'statModValue': 30 } }, eff_modifyStatEffect),
   new Effect(100, { 'statMod': { 'statName': 'evasionRate', 'statModValue': -30 } }, eff_modifyStatEffect)
 );
 
-// **
-StatusEffectDatabase['Paralyzed'] = new StatusEffect('Paralyzed', 2,
+// 3-turn stun
+StatusEffectDatabase['Paralyzed'] = new StatusEffect('Paralyzed', 3,
+
   new Effect(100, { 'stun': true }, eff_stunEffect),
   // This is the removeEffect -> triggers ON THE MONSTER AFFECTED BY STATUS EFFECT
   new Effect(100, { 'stun': false }, eff_stunEffect)
 );
 
+// 2-turn +150% damage multiplier
 
-// **
 StatusEffectDatabase['Overdrive'] = new StatusEffect('Overdrive', 2,
   new Effect(100, { 'statMod': { 'statName': 'globalDamageMultiplier', 'statModValue': 1.5 } }, eff_modifyStatEffect),
   new Effect(100, { 'statMod': { 'statName': 'globalDamageMultiplier', 'statModValue': -1.5 } }, eff_modifyStatEffect)
 );
 
+// 3-turn damage over time, ignores half defense
 StatusEffectDatabase['Poisoned'] = new StatusEffect('Poisoned', 3,
   new Effect(100, {
     'persistentEffect': { 'name': 'Poisoned', 'effect': new Effect(100, { 'damage': 4, 'attackMultBonus': 1 }, eff_damageEffect) }
@@ -146,6 +145,7 @@ StatusEffectDatabase['Poisoned'] = new StatusEffect('Poisoned', 3,
   }, eff_removePersistentEffect)
 );
 
+// 3-turn damage over time
 StatusEffectDatabase['Bleeding'] = new StatusEffect('Bleeding', 3,
   new Effect(100, {
     'persistentEffect': { 'name': 'Bleeding', 'effect': new Effect(100, { 'damage': 8 }, eff_damageEffect) }
@@ -153,8 +153,5 @@ StatusEffectDatabase['Bleeding'] = new StatusEffect('Bleeding', 3,
   new Effect(100, {
     'persistentEffectName': 'Bleeding'
   }, eff_removePersistentEffect)
+
 );
-
-// ** means needs play testing
-// ============= NICCO WROTE THESE SO PLEASE DOUBLE CHECK THEM ===============
-
