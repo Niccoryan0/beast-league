@@ -65,11 +65,11 @@ function initializeCombat() {
   enemyMonster.target = userMonster;
   userMonster.target = enemyMonster;
 
-  var htmlBody = document.getElementById('body');
+  var directionSection = document.getElementById('directionSection');
   var directions = document.createElement('h1');
   directions.textContent = 'Press a number on the keyboard to choose an attack';
   directions.className = 'directions';
-  htmlBody.appendChild(directions);
+  directionSection.appendChild(directions);
 
   // Create health bars and battle positions at start
   renderHealthBars();

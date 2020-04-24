@@ -1,4 +1,8 @@
 'use strict';
+<<<<<<< HEAD
+=======
+
+>>>>>>> 4c8beabc2eede1bc09312685f57f6c6748f84d73
 /* global Effect, eff_applyStatusEffect, eff_damageEffect, StatusEffectDatabase, eff_selfEffect */
 
 // Ability class
@@ -57,7 +61,6 @@ AbilityDatabase['Chomp'] = new Ability([
   new Effect(60, { 'damage': 14 }, eff_damageEffect)
 ], 'Chomp');
 
-
 // KRAPKEN
 AbilityDatabase['Wrap'] = new Ability([
   new Effect(100, { 'damage': 10 }, eff_damageEffect)
@@ -68,19 +71,18 @@ AbilityDatabase['Lure'] = new Ability([
   new Effect(20, { 'damage': 10 }, eff_damageEffect)
 ], 'Lure');
 
-
 // GENRATH
 AbilityDatabase['Body Slam'] = new Ability([
   new Effect(80, { 'damage': 12 }, eff_damageEffect),
   new Effect(20, {'statusToApply' : StatusEffectDatabase['Flinch']}, eff_applyStatusEffect)
 ], 'Body Slam');
 
+
 AbilityDatabase['Fortify'] = new Ability([
   new Effect(100, {
     'selfEffect' :   new Effect(100, {'statusToApply' : StatusEffectDatabase['Fortify']}, eff_applyStatusEffect)
   }, eff_selfEffect),
 ], 'Fortify');
-
 
 // AMPHYLISK:
 AbilityDatabase['Tail Whip'] = new Ability([

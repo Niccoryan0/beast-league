@@ -36,10 +36,11 @@
 .buttons {
   display: flex;
   flex-direction: column;
-  margin: 80px 0px;
+  margin: 80px 0px 0px 0px;
+  width:300px;
 }
 
-#resetButton {
+#rosterButton {
   margin-top: 20px;
 }
 
@@ -83,4 +84,20 @@
 
 button {
   width:300px;
+}
+
+#howToButton {
+  margin-top: 20px;
+}
+
+.monChoice{
+  margin-top: 50px;
+  margin-bottom: 50px;
+  font-size: 20px;
+  font-family: 'Fira Mono', monospace;
+  text-align:center;
+  background-color: rgb(34, 31, 31, 0.8);
+  color: gray;
+  padding: 5px 10px;
+  line-height: 28px;
 }

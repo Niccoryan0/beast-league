@@ -22,7 +22,6 @@ function MonsterData(name, description, imgSrc, attack, defense, speed, abilityS
   this.abilitySet = abilitySet;
 }
 
-
 // This is the class for monsters in battle
 // >> Used for the main combat loop and applying effects
 function MonsterBattler(monsterData) {
@@ -101,6 +100,7 @@ MonsterBattler.prototype.addNewStatusEffect = function(newStatusEffect) {
 // >> Called at the start of each turn
 MonsterBattler.prototype.applyPersistentEffects = function() {
   for(var i in this.persistentEffects) {
+    // eslint-disable-next-line no-prototype-builtins
     if(this.persistentEffects.hasOwnProperty(i)) {
       if(this.persistentEffects[i] !== null) {
         var randomExecutionRoll = Math.round(Math.floor(Math.random() * 100));

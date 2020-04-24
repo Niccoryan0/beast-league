@@ -59,8 +59,6 @@ main {
   transform: scaleX(-1);
 }
 
-
-/* TODO: Add these tags on to the sprites when the game starts and remove them right after the animation finishes */
 .startingEnemy {
   animation: onScreenEnemy 3s 1;
 }
@@ -79,7 +77,6 @@ main {
   0% {transform: translate(200px, 0);}
   100% {transform: translate(0, 0);}
 }
-
 
 #abilityTrayDiv > ul {
   display: flex;
@@ -126,10 +123,7 @@ main {
   width: 640px;
   border: 1px solid black;
   background-image: url('../assets/arena.png');
-  /* margin-left: auto; */
-  /* margin-right: auto; */
 }
-
 
 #battlePositions {
   display: flex;
@@ -175,7 +169,6 @@ button {
 }
 
 .spriteCover {
-  /* border: 3px dashed black; */
   height: 480px;
   width: 170px;
   background-color: rgba(116, 37, 37, 1);
@@ -231,7 +224,6 @@ button {
 .monsterInfoandImg {
   display: flex;
   flex-direction: row;
-  /* border: 1px solid black; */
   padding: 15px;
   height:100px;
 }
@@ -276,7 +268,6 @@ button {
 
 .monsterStats {
   display: flex;
-  /* flex-direction:column; */
   color: gray;
 }
 .monsterStats > li {
