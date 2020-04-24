@@ -61,6 +61,17 @@ MonsterBattler.prototype.takeDamage = function (damage, attackValue) {
   renderQueue.push(new RenderQueueEntry(this.imgElement, 'animShake'));
 };
 
+// This function heals the monster
+MonsterBattler.prototype.getHealed = function (healValue) {
+  this.currentHealth += healValue;
+  if (this.currentHealth > 100) {
+    this.currentHealth = 100;
+  }
+  addDialogueBoxEntry('p', this.monsterData.name + ' heals for ' + healValue + ' points.');
+};
+
+// addDialogueBoxEntry('p', user.target.monsterData.name + ' ' + statModified['statName'] + ' now equals ' + user.target[statModified['statName']]);
+
 // This function ticks the duration of all status effects taken
 // >> Sets status effect at each condition to return value of tickCondition()
 // >> If tickCondition() returns null, it is skipped
@@ -96,7 +107,7 @@ MonsterBattler.prototype.addNewStatusEffect = function (newStatusEffect) {
   this.target = this;
   newStatusEffect.applyEffect.effectMethod(this);
   this.target = enemyMonster;
-  addDialogueBoxEntry('p', this.monsterData.name + ' was afflicted with ' + newStatusEffect.name);
+  addDialogueBoxEntry('p', this.monsterData.name + ' is affected by ' + newStatusEffect.name);
   this.currentStatusEffects[newStatusEffect.name] = newStatusEffect;
 };
 
@@ -141,27 +152,16 @@ var wishboneDesc = 'No one claims to know what this creature is, some say it\'s 
 
 
 var monsterDatabase = {
-  mKrapken: new MonsterData('Krapken', krapkenDesc, 'assets/sprites/Krapken_160px_transparent.png', 30, 25, 35, ['Wrap', 'Lure']),
-  mManWolfPig: new MonsterData('ManWolfPig', mwpDesc, 'assets/sprites/MWP_160px_transparent.png', 30, 30, 30, ['Chomp', 'Trample']),
+  mKrapken: new MonsterData('Krapken', krapkenDesc, 'assets/sprites/Krapken_160px_transparent.png', 30, 25, 35, ['Wrap', 'Lure', 'Dive', 'Tidal Wave']),
 
-  // TODO: SOMETHING IS 'FAILING TO EXECUTE' FOR GENRATH AND THERE SEEMS TO BE SOME QUALITY OF FORTIFY THAT MIGHT MAKE THE OTHER MONSTERS STOP ATTACKING???
-  mGenrath: new MonsterData('Genrath', genrathDesc, 'assets/sprites/genrath_160px.png', 30, 35, 25, ['Body Slam', 'Fortify']),
+  mManWolfPig: new MonsterData('ManWolfPig', mwpDesc, 'assets/sprites/MWP_160px_transparent.png', 30, 30, 30, ['Chomp', 'Trample', 'Slash', 'Agility']),
 
-  // TODO: AMPHYLISK SEEMS BASICALLY FUNCTIONAL BUT:
-  // Amphylisk as player : LIKE GENRATH ENEMIES OCCASIONALLY STOP ATTACKING, I think paralyze might not be being removed? unsure.
-  // Amphylisk as enemy : everything runs totally smoothly
-  mAmphylisk: new MonsterData('Amphylisk', amphyliskDesc, 'assets/sprites/amphylisk_160px.png', 35, 25, 30, ['Tail Whip', 'Stone Gaze']),
+  mGenrath: new MonsterData('Genrath', genrathDesc, 'assets/sprites/genrath_160px.png', 30, 35, 25, ['Body Slam', 'Fortify', 'Shell Spin', 'Eye Beam']),
 
+  mAmphylisk: new MonsterData('Amphylisk', amphyliskDesc, 'assets/sprites/amphylisk_160px.png', 35, 25, 30, ['Tail Whip', 'Stone Gaze', 'Gust', 'Nibble']),
+
+  mDaedalus: new MonsterData('Daedalus', daedalusDesc, 'assets/sprites/daedalus_160px.png', 30, 30, 30, ['Charge', 'Overdrive', 'Sunder', 'Repair']),
 
 
-  // TODO:
-  // When using Overdrive:
-  // this.effects[eff].effectMethod is not a function
-  //   at Ability.execute (abilities.js:21)
-  //   at executeTurn (combat.js:112)
-  //   at HTMLDocument.userAttack (combat.js:129)
-  mDaedalus: new MonsterData('Daedalus', daedalusDesc, 'assets/sprites/daedalus_160px.png', 30, 30, 30, ['Charge', 'Overdrive']),
-
-
-  mWishbone: new MonsterData('Wishbone', wishboneDesc, 'assets/sprites/wishbone.png', 25, 30, 35, ['Confuse', 'Mirror Image'])
+  mWishbone: new MonsterData('Wishbone', wishboneDesc, 'assets/sprites/wishbone.png', 25, 30, 35, ['Confuse', 'Mirror Image', 'Terrify', 'Flail'])
 };

@@ -142,13 +142,13 @@ nav {
 }
 
 .backHomeButton {
-    margin-right:40%;
-    margin-left:45%;
-    margin-top:30px;
+    margin-right: 40%;
+    margin-left: 45%;
+    margin-top: 30px;
 }
 
 
-/* TODO: Play with this, make cool scrollbars, taken from : https://www.w3schools.com/howto/howto_css_custom_scrollbar.asp */
+/* Play with this, make cool scrollbars, taken from : https://www.w3schools.com/howto/howto_css_custom_scrollbar.asp */
 /* width */
 ::-webkit-scrollbar {
     width: 12.5px;

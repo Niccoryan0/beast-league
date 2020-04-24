@@ -101,6 +101,7 @@ function executeTurn(abilitySel) {
 
   // Each battler takes their turn; no turns are taken if either battler is defeated
   if (!firstBattler.isDefeated && !secondBattler.isDefeated) {
+    addDialogueBoxEntry('p' , '===' + firstBattler.monsterData.name + '\'s Turn ===');
     firstBattler.applyPersistentEffects();
     if (!firstBattler.isStunned) firstBattler.nextAction.execute(firstBattler);
     else addDialogueBoxEntry('p', firstBattler.monsterData.name + ' is stunned!');
@@ -108,13 +109,15 @@ function executeTurn(abilitySel) {
   }
 
   if (!firstBattler.isDefeated && !secondBattler.isDefeated) {
+    addDialogueBoxEntry('p' , '===' + secondBattler.monsterData.name + '\'s Turn ===');
     secondBattler.applyPersistentEffects();
     if (!secondBattler.isStunned) secondBattler.nextAction.execute(secondBattler);
     else addDialogueBoxEntry('p' , secondBattler.monsterData.name + ' is stunned!');
     secondBattler.tickConditions(secondBattler);
   }
 
-  // Calls animations in order currently in renderqueue
+  updateHealthBars();
+  updateMonsterStats();
   renderTurn();
 }
 
@@ -125,21 +128,21 @@ function rollInitiative(speedValue) {
 }
 function userAttack(event) {
   if (event.keyCode === 97 || event.keyCode === 49) {
-    // Call dialoguebox and pass in turnTimer then increase it
-    dialogueBox(turnTimer);
     turnTimer++;
-    // Attempting to get the health bars to change dynamically when an attack happens
-    updateHealthBars();
-    updateMonsterStats();
+    dialogueBox(turnTimer);
     executeTurn(0);
   } else if (event.keyCode === 98 || event.keyCode === 50) {
-    // Call dialoguebox and pass in turnTimer then increase it
-    dialogueBox(turnTimer);
     turnTimer++;
-    // Attempting to get the health bars to change dynamically when an attack happens
-    updateHealthBars();
-    updateMonsterStats();
+    dialogueBox(turnTimer);
     executeTurn(1);
+  } else if (event.keyCode === 99 || event.keyCode === 51) {
+    turnTimer++;
+    dialogueBox(turnTimer);
+    executeTurn(2);
+  } else if (event.keyCode === 100 || event.keyCode === 52) {
+    turnTimer++;
+    dialogueBox(turnTimer);
+    executeTurn(3);
   }
 }
 
@@ -152,7 +155,7 @@ function dialogueBox(turnNumber) {
   // This is all placed in one list item so that we can control where in the list it is placed with the insertBefore method at the end of this function
   currentDialogueLiEl = document.createElement('li');
   var headerEl = document.createElement('h3');
-  headerEl.textContent = 'Turn Number: ' + turnNumber;
+  headerEl.textContent = 'Round ' + turnNumber;
   currentDialogueLiEl.appendChild(headerEl);
   // Place the new item at the top of the list, this came from W3 schools on the insertBefore method
   dialogueUlEl.insertBefore(currentDialogueLiEl, dialogueUlEl.childNodes[0]);
