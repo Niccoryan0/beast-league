@@ -1,5 +1,5 @@
 'use strict';
-/* global Effect, eff_applyStatusEffect, eff_damageEffect, StatusEffectDatabase, eff_selfEffect */
+/* global Effect, eff_applyStatusEffect, eff_damageEffect, StatusEffectDatabase, eff_selfEffect, addDialogueBoxEntry, eff_modifyStatEffect */
 
 // Ability class
 /*
@@ -151,7 +151,7 @@ AbilityDatabase['Overdrive'] = new Ability([
   }, eff_selfEffect, 'Self Damage', false),
   new Effect(100, {
     'selfEffect' : new Effect(100, {'statusToApply' : StatusEffectDatabase['Overdrive']}, eff_applyStatusEffect)
-  }, eff_selfEffect, 'Overdrive', alse)
+  }, eff_selfEffect, 'Overdrive', false)
 ], 'Overdrive');
 
 AbilityDatabase['Repair'] = new Ability([

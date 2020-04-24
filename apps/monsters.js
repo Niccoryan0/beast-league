@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 'use strict';
-/* global renderQueue, RenderQueueEntry,  */
+/* global renderQueue, RenderQueueEntry, addDialogueBoxEntry */
 
 
 // THIS FILE NEEDS TO RUN FIRST
