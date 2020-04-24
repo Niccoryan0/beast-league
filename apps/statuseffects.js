@@ -1,5 +1,5 @@
 'use strict';
-/* global Effect, eff_modifyStatEffect, eff_selfEffect, eff_persistentEffect, eff_stunEffect, eff_removePersistentEffect, eff_damageEffect  */
+/* global Effect, eff_modifyStatEffect, eff_selfEffect, eff_persistentEffect, eff_stunEffect, eff_removePersistentEffect, eff_damageEffect, eff_applyStatusEffect */
 
 
 // Constructor function for status effects to be applied

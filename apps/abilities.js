@@ -6,10 +6,9 @@
   >> Takes an array of effects
   >> Execute() calls each effect's method, passing in the user and target data
 */
-function Ability(effects, name, desc = 'x', spdMod = 0) {
+function Ability(effects, name, spdMod = 0) {
   this.effects = effects;
   this.name = name;
-  this.desc = desc;
   this.spdMod = spdMod;
 }
 
@@ -44,7 +43,6 @@ Effects have the following parameters
   d. eff_modifyStatEffect values: 'statMod' (object literal with 'statName' [name of trait modified, written as currentDefense, currentAttack, etc.] and 'statMod' [number, how much to change stat by] properties)
   e. eff_persistentEffect values:
 3. Name as a string
-TODO: Write new Abilities for each monster
 */
 var AbilityDatabase = {};
 

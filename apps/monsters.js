@@ -151,7 +151,9 @@ var monsterDatabase = {
   // Amphylisk as enemy : everything runs totally smoothly
   mAmphylisk: new MonsterData('Amphylisk', amphyliskDesc, 'assets/sprites/amphylisk_160px.png', 35, 25, 30, ['Tail Whip', 'Stone Gaze']),
 
-  // TODO: 
+
+
+  // TODO:
   // When using Overdrive:
   // this.effects[eff].effectMethod is not a function
   //   at Ability.execute (abilities.js:21)

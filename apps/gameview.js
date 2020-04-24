@@ -115,9 +115,15 @@ gameStartButton.textContent = 'Start the Game!';
 gameScreen.appendChild(gameStartButton);
 gameStartButton.addEventListener('click', playSongOnStart);
 
-
+// TODO: Display who won about buttons
 function endGameScreen(){
   var buttonOuterSection = document.getElementById('abilitiesAndDialogue');
+  var whoWon = document.createElement('h1');
+  if (userMonster.currentHealth > 0 ){
+    whoWon.textContent = 'You won, congratulations!';
+  } else{
+    whoWon.textContent = 'You lost, better luck next time!';
+  }
   var userPosition = document.getElementById('userBattleContainer');
   var enemyPosition = document.getElementById('enemyBattleContainer');
   var abilityTray = document.getElementById('abilityTrayDiv');
@@ -132,6 +138,7 @@ function endGameScreen(){
   abilityTray.innerHTML = '';
   dialogueTray.innerHTML = '';
   dialogueTray.style = 'width: 0';
+  buttonDiv.appendChild(whoWon);
   if (userMonster.currentHealth > 0 ){
     var userData = JSON.stringify(userMonster.monsterData);
     localStorage.setItem('userMonster', userData);
