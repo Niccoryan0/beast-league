@@ -17,17 +17,25 @@ function Effect(executionChance, customValues, effectMethod) {
 
 // DAMAGE EFFECT: Calculates damage roll from 50% to 150% of base value and inflicts it to target.
 function eff_damageEffect(user) {
-  console.log('damage dealt');
   var damageMult = user.globalDamageMultiplier;
   var attackMult = user.globalAttackMultiplier;
 
-  if('damageMultiplier' in this.customValues) damageMult += (this.customValues['damageMultiplier'] - 1);
-  if('attackMultiplier' in this.customValues) attackMult += (this.customValues['attackMultiplier'] - 1);
+  if('damageMultBonus' in this.customValues) damageMult += (this.customValues['damageMultBonus']);
+  if('attackMultBonus' in this.customValues) attackMult += (this.customValues['attackMultBonus']);
 
   var damageRoll = Math.floor((Math.random() * this.customValues['damage']) + (this.customValues['damage'] * 0.5));
+  if(damageRoll < 1) damageRoll = 1;
 
   user.target.takeDamage(damageRoll * damageMult, user.currentAttack * attackMult);
   // Sends function to View for rendering effect
+}
+
+// HEAL EFFECT: Heals the user for a certain amount
+function eff_healEffect(user) {
+  var enemyMonster = user.target;
+  user.target = user;
+  user.target.getHealed(this.customValues['healValue']);
+  user.target = enemyMonster;
 }
 
 // SELF EFFECT: Applies effect defined as 'selfEffect' to the user.

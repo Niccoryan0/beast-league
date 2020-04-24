@@ -114,7 +114,8 @@ function executeTurn(abilitySel) {
     secondBattler.tickConditions(secondBattler);
   }
 
-  // Calls animations in order currently in renderqueue
+  updateHealthBars();
+  updateMonsterStats();
   renderTurn();
 }
 
@@ -125,21 +126,21 @@ function rollInitiative(speedValue) {
 }
 function userAttack(event) {
   if (event.keyCode === 97 || event.keyCode === 49) {
-    // Call dialoguebox and pass in turnTimer then increase it
-    dialogueBox(turnTimer);
     turnTimer++;
-    // Attempting to get the health bars to change dynamically when an attack happens
-    updateHealthBars();
-    updateMonsterStats();
+    dialogueBox(turnTimer);
     executeTurn(0);
   } else if (event.keyCode === 98 || event.keyCode === 50) {
-    // Call dialoguebox and pass in turnTimer then increase it
-    dialogueBox(turnTimer);
     turnTimer++;
-    // Attempting to get the health bars to change dynamically when an attack happens
-    updateHealthBars();
-    updateMonsterStats();
+    dialogueBox(turnTimer);
     executeTurn(1);
+  } else if (event.keyCode === 99 || event.keyCode === 51) {
+    turnTimer++;
+    dialogueBox(turnTimer);
+    executeTurn(2);
+  } else if (event.keyCode === 100 || event.keyCode === 52) {
+    turnTimer++;
+    dialogueBox(turnTimer);
+    executeTurn(3);
   }
 }
 
