@@ -63,6 +63,7 @@ function eff_persistentEffect(user) {
 
 function eff_removePersistentEffect(user) {
   user.persistentEffects[this.customValues['persistentEffectName']] = null;
+  // eslint-disable-next-line no-prototype-builtins
   if(this.customValues.hasOwnProperty('persistentEffectRemoveEffect')) {
     var enemyMonster = user.target;
     user.target = user;
