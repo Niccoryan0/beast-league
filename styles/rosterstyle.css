@@ -53,6 +53,10 @@
   display:flex;
   flex-wrap: wrap;
   margin-top: 20px;
+  width: fit-content;
+  width:800px;
+  margin-left:20%;
+  margin-right:auto;
 }
 
 .monsterDataSection > section {

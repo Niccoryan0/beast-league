@@ -36,13 +36,9 @@
 .buttons {
   display: flex;
   flex-direction: column;
-  margin: 80px 0px 0px 0px;
   width:300px;
 }
 
-#rosterButton {
-  margin-top: 20px;
-}
 
 .monsterInfoandImg {
   display: flex;
@@ -86,9 +82,14 @@ button {
   width:300px;
 }
 
-#howToButton {
-  margin-top: 20px;
+button {
+  margin-top: 30px;
 }
+
+#topButton {
+  margin-top: 0px;
+}
+
 
 .monChoice{
   margin-top: 50px;
