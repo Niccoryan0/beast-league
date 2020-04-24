@@ -14,11 +14,11 @@ function Ability(effects, name, desc = 'x') {
 
 Ability.prototype.execute = function (user) {
   var randomExecutionRoll;
-  console.log(this.name + ' is used');
+  console.log(user.monsterData.name + ' used ' + this.name);
   for (var eff in this.effects) {
     randomExecutionRoll = Math.round(Math.floor(Math.random() * 100));
     if ((randomExecutionRoll + user.target.evasionRate) < this.effects[eff].executionChance) this.effects[eff].effectMethod(user);
-    else console.log(user.monsterData.name + 'FAILED TO EXECUTE :', this.randomExecutionRoll + ' , ' + user.target.evasionRate);
+    else console.log(user.monsterData.name + ' FAILED TO EXECUTE : effect at index ' + eff, this.randomExecutionRoll + ' , ' + user.target.evasionRate);
   }
 };
 
@@ -73,12 +73,12 @@ AbilityDatabase['Body Slam'] = new Ability([
   new Effect(20, {'statusToApply' : StatusEffectDatabase['Flinch']}, eff_applyStatusEffect)
 ], 'Body Slam');
 
-
 AbilityDatabase['Fortify'] = new Ability([
   new Effect(100, {
-    'selfEffect' :   new Effect(100, {'statusToApply' : StatusEffectDatabase['Fortify']}, eff_applyStatusEffect)
+    'selfEffect': new Effect(100, { 'statMod': { 'statName': 'currentDefense', 'statModValue': 2 } }, eff_modifyStatEffect)
   }, eff_selfEffect),
 ], 'Fortify');
+
 
 // AMPHYLISK:
 AbilityDatabase['Tail Whip'] = new Ability([
