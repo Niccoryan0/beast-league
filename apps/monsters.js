@@ -22,7 +22,6 @@ function MonsterData(name, description, imgSrc, attack, defense, speed, abilityS
   this.abilitySet = abilitySet;
 }
 
-
 // This is the class for monsters in battle
 // >> Used for the main combat loop and applying effects
 function MonsterBattler(monsterData) {
@@ -101,6 +100,7 @@ MonsterBattler.prototype.addNewStatusEffect = function(newStatusEffect) {
 // >> Called at the start of each turn
 MonsterBattler.prototype.applyPersistentEffects = function() {
   for(var i in this.persistentEffects) {
+    // eslint-disable-next-line no-prototype-builtins
     if(this.persistentEffects.hasOwnProperty(i)) {
       if(this.persistentEffects[i] !== null) {
         var randomExecutionRoll = Math.round(Math.floor(Math.random() * 100));
@@ -139,12 +139,12 @@ var monsterDatabase = {
   mManWolfPig: new MonsterData('ManWolfPig', mwpDesc, 'assets/sprites/MWP_160px_transparent.png', 30, 30, 30, ['Chomp', 'Trample']),
 
   // TODO: SOMETHING IS 'FAILING TO EXECUTE' FOR GENRATH AND THERE SEEMS TO BE SOME QUALITY OF FORTIFY THAT MIGHT MAKE THE OTHER MONSTERS STOP ATTACKING???
-  // mGenrath: new MonsterData('Genrath', genrathDesc, 'assets/sprites/genrath_160px.png', 30, 35, 25, ['Body Slam', 'Fortify']),
+  mGenrath: new MonsterData('Genrath', genrathDesc, 'assets/sprites/genrath_160px.png', 30, 35, 25, ['Body Slam', 'Fortify']),
 
   // TODO: AMPHYLISK SEEMS BASICALLY FUNCTIONAL BUT:
   // Amphylisk as player : LIKE GENRATH ENEMIES OCCASIONALLY STOP ATTACKING, I think paralyze might not be being removed? unsure.
   // Amphylisk as enemy : everything runs totally smoothly
-  // mAmphylisk: new MonsterData('Amphylisk', amphyliskDesc, 'assets/sprites/amphylisk_160px.png', 35, 25, 30, ['Tail Whip', 'Stone Gaze']),
+  mAmphylisk: new MonsterData('Amphylisk', amphyliskDesc, 'assets/sprites/amphylisk_160px.png', 35, 25, 30, ['Tail Whip', 'Stone Gaze']),
 
   // TODO: 
   // When using Overdrive:
@@ -152,8 +152,8 @@ var monsterDatabase = {
   //   at Ability.execute (abilities.js:21)
   //   at executeTurn (combat.js:112)
   //   at HTMLDocument.userAttack (combat.js:129)
-  // mDaedalus: new MonsterData('Daedalus', daedalusDesc, 'assets/sprites/daedalus_160px.png', 30, 30, 30, ['Charge', 'Overdrive']),
+  mDaedalus: new MonsterData('Daedalus', daedalusDesc, 'assets/sprites/daedalus_160px.png', 30, 30, 30, ['Charge', 'Overdrive']),
 
 
-  // mWishbone: new MonsterData('Wishbone', wishboneDesc, 'assets/sprites/wishbone.png', 25, 30, 35, ['Confuse', 'Mirror Image'])
+  mWishbone: new MonsterData('Wishbone', wishboneDesc, 'assets/sprites/wishbone.png', 25, 30, 35, ['Confuse', 'Mirror Image'])
 };

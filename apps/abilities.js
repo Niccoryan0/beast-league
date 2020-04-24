@@ -1,5 +1,4 @@
 'use strict';
-
 /* global Effect, eff_applyStatusEffect, eff_damageEffect, StatusEffectDatabase, eff_selfEffect */
 
 // Ability class
@@ -75,9 +74,6 @@ AbilityDatabase['Body Slam'] = new Ability([
 ], 'Body Slam');
 
 
-// TODO: ============================================================
-
-
 AbilityDatabase['Fortify'] = new Ability([
   new Effect(100, {
     'selfEffect' :   new Effect(100, {'statusToApply' : StatusEffectDatabase['Fortify']}, eff_applyStatusEffect)
@@ -104,8 +100,7 @@ AbilityDatabase['Charge'] = new Ability([
 AbilityDatabase['Overdrive'] = new Ability([
   new Effect(100, {
     'selfEffect' : new Effect(100, {'damage' : 4}, eff_damageEffect)
-  }),
-
+  }, eff_selfEffect),
   new Effect(100, {
     'selfEffect' : new Effect(100, {'statusToApply' : StatusEffectDatabase['Overdrive']}, eff_applyStatusEffect)
   }, eff_selfEffect)

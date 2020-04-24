@@ -221,7 +221,7 @@ function updateHealthBars (){
 }
 
 // Boxes below game screen w/ monsters, stats, and abilities
-function renderMonsterStats() {
+function renderMonsterStats(user) {
   var userContainer = document.getElementById('userMonsterInfo');
   var userMonsterInfoAndImg = document.createElement('section');
   var userInfoPicTray = document.createElement('section');
@@ -265,7 +265,7 @@ function renderMonsterStats() {
   for (var ab in userMonster.abilitySet) {
     var abilityLiEl = document.createElement('li');
     var abilityName = document.createElement('h3');
-    abilityName.textContent = userMonster.abilitySet[ab].name;
+    abilityName.textContent = userMonster.abilitySet[ab];
     abilityLiEl.appendChild(abilityName);
     userMonsterAbilities.appendChild(abilityLiEl);
   }
