@@ -89,7 +89,7 @@ StatusEffectDatabase['Mirror Image'] = new StatusEffect('Mirror Image', 2,
   }, eff_selfEffect)
 );
 
-// **
+// CURRENTLY LOCKING UP ENEMIES PERMANENTLY
 StatusEffectDatabase['Flinch'] = new StatusEffect('Flinch', 1,
   new Effect(100, {
     'persistentEffect': {'name' : 'Flinch', 'effect' : new Effect(100, { 'stun': true }, eff_stunEffect)}
@@ -99,7 +99,7 @@ StatusEffectDatabase['Flinch'] = new StatusEffect('Flinch', 1,
   }, eff_removePersistentEffect)
 );
 
-// **
+// 
 StatusEffectDatabase['Paralyze'] = new StatusEffect('Paralyze', 2,
   new Effect(100, {
     'persistentEffect': {'name' : 'Paralyze', 'effect' : new Effect(100, { 'stun': true }, eff_stunEffect)}

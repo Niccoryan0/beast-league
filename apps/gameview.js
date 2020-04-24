@@ -221,7 +221,7 @@ function updateHealthBars (){
 }
 
 // Boxes below game screen w/ monsters, stats, and abilities
-function renderMonsterStats() {
+function renderMonsterStats(user) {
   var userContainer = document.getElementById('userMonsterInfo');
   var userMonsterInfoAndImg = document.createElement('section');
   var userInfoPicTray = document.createElement('section');
