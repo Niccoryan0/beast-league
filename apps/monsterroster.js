@@ -8,26 +8,30 @@ var abilityDescArr = {
 
   'Chomp' : ['ManWolfPig takes a bite out of crime with his powerful jaws and razor-sharp teeth. This ability\'s base damage is 14 points of damage, with an execution chance of 60 and a speed modifier of 0.',['Execution Chance: 60%', 'Speed Modifier: 0', 'Effect: Deals 14 damage.']],
 
+
   'Wrap' : ['Krapken wraps the opponent with it\'s tentacles, pulling them underwater and causing damage.', ['Execution Chance: 100%', 'Speed Modifier: 20', 'Effect: Deals 10 damage.']],
 
   'Lure' : ['Krapken uses it\'s Kappa charm to lure victims closer to his pool. Lowers enemy defence and has a small chance to trigger Wrap in the same turn.',['Execution Chance: 100% defense debuff, 20% trigger Wrap', 'Speed Modifier: 0', 'Effect: Debuffs the enemy defense and has a 20% chance to trigger Wrap at the same time.']],
 
+
   'Body Slam' : ['Genrath charges the opponent, dealing damage and causing a chance to flinch on their next turn.',['Execution Chance: 80% deal damage, 20% flinch', 'Speed Modifier: 0', 'Effect: Deals 12 damage and has a chance to cause target to flinch.']],
 
-  // TODO: Get Bade's new stuff
-  'Fortify' : ['Genrath enters a defensive stance, sharply raising his Defense until the end of the combat.',['Execution Chance: 100%', 'Speed Modifier: 0', 'Effect: Buffs Genrath\'s defense by 2.']],
+  'Fortify' : ['Genrath enters a defensive stance, sharply raising his Defense until the end of the combat.',['Execution Chance: 100%', 'Speed Modifier: 0', 'Effect: Buffs Genrath\'s defense by 2, can be stacked infinite times.']],
 
-  'Tail Whip' : ['Amphylisk uses it\'s basilisk tail as a whip, and unlike a usual tail whip, this one bites! Causes damage and can inflict poison effect.',['Execution Chance: 60%', 'Speed Modifier: 0', 'Effect: Deals 14 damage.']],
 
-  'Stone Gaze' : ['The Cockatrice and Basilisk heads focus their gaze, turning the target to stone until the end of next turn if successful',['Execution Chance: 60%', 'Speed Modifier: 0', 'Effect: Deals 14 damage.']],
+  'Tail Whip' : ['Amphylisk uses it\'s basilisk tail as a whip, and unlike a usual tail whip, this one bites! Causes damage and can inflict poison effect.',['Execution Chance: 100% damage, 65% poison', 'Speed Modifier: 0', 'Effect: Deals 6 damage and has a chance to poison the target.']],
 
-  'Charge' : ['Daedalus charges with its steel horns, dealing damage with a chance of stun. Chance to cause flinch on hit.',['Execution Chance: 60%', 'Speed Modifier: 0', 'Effect: Deals 14 damage.']],
+  'Stone Gaze' : ['The Cockatrice and Basilisk heads focus their gaze, turning the target to stone until the end of next turn if successful',['Execution Chance: 60%', 'Speed Modifier: 0', 'Effect: Paralyzes enemy for 2 turns.']],
 
-  'Overdrive' : ['Daedalus kicks into overdrives at the cost of a portion of its health. Its next attack will deal high bonus damage.',['Execution Chance: 60%', 'Speed Modifier: 0', 'Effect: Deals 14 damage.']],
 
-  'Confuse' : ['Wishbone causes the opponent to be confused, forcing them to hurt themselves at the end of each turn.',['Execution Chance: 60%', 'Speed Modifier: 0', 'Effect: Deals 14 damage.']],
+  'Charge' : ['Daedalus charges with its steel horns, dealing damage with a chance of stun. Chance to cause flinch on hit.',['Execution Chance: 100% damage, 20% flinch', 'Speed Modifier: 0', 'Effect: Deals 10 damage and has a 20% chance to cause target to flinch.']],
 
-  'Mirror Image' : ['Wishbone creates illusory images, causing attacks to have a high chance of missing until the end of its next turn.',['Execution Chance: 60%', 'Speed Modifier: 0', 'Effect: Deals 14 damage.']]
+  'Overdrive' : ['Daedalus kicks into overdrives at the cost of a portion of its health. Its next attack will deal high bonus damage.',['Execution Chance: 100%', 'Speed Modifier: 0', 'Effect: Deals 4 damage to Daedalus but gives him 250% of his base attack.']],
+
+
+  'Confuse' : ['Wishbone causes the opponent to be confused, forcing them to hurt themselves at the end of each turn.',['Execution Chance: 100%', 'Speed Modifier: 0', 'Effect: Causes the target to have a 50% chance to damage themselves when attacking.']],
+
+  'Mirror Image' : ['Wishbone creates illusory images, causing attacks to have a high chance of missing until the end of its next turn.',['Execution Chance: 100%', 'Speed Modifier: 0', 'Effect: Increases Wishbone\'s evasion rate by 30 points.']]
 };
 
 

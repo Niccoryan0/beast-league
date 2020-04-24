@@ -123,12 +123,3 @@ AbilityDatabase['Poison'] = new Ability([
   new Effect(100, { 'statusToApply': StatusEffectDatabase['Venom'] }, eff_applyStatusEffect)
 ], 'Poison');
 
-// ======================= NICCO WROTE THESE ===========
-
-// AbilityDatabase['Body Slam'] = new Ability([
-//   new Effect(100, {'statusToApply' : StatusEffectDatabase['Flinch']}, eff_applyStatusEffect),
-//   new Effect(20, {'damage' : 8}, eff_damageEffect)
-// ], 'Body Slam');
-
-// AbilityDatabase['Fortify'] = new Ability([
-//   new Effect(100, {'statusToApply' : StatusEffectDatabase['Fortify']}, eff_applyStatusEffect),
