@@ -1,5 +1,5 @@
 'use strict';
-/* global Effect, eff_applyStatusEffect, eff_damageEffect, StatusEffectDatabase, eff_selfEffect */
+/* global Effect, eff_applyStatusEffect, eff_damageEffect, StatusEffectDatabase, eff_selfEffect, addDialogueBoxEntry, eff_modifyStatEffect */
 
 // Ability class
 /*
