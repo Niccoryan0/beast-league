@@ -152,7 +152,6 @@ var monsterDatabase = {
   //   at Ability.execute (abilities.js:21)
   //   at executeTurn (combat.js:112)
   //   at HTMLDocument.userAttack (combat.js:129)
-
   mDaedalus: new MonsterData('Daedalus', daedalusDesc, 'assets/sprites/daedalus_160px.png', 30, 30, 30, ['Charge', 'Overdrive']),
 
 

@@ -1,5 +1,4 @@
 'use strict';
-
 /* global MonsterBattler, getRandomMonster, AbilityDatabase, renderHealthBars, renderMonsterStats, renderBattleSprites, enableAbilityTray, disableAbilityTray, renderTurn, updateHealthBars, updateMonsterStats */
 /* eslint-disable no-unused-vars */
 
@@ -101,15 +100,15 @@ function executeTurn(abilitySel) {
   }
 
   // Each battler takes their turn; no turns are taken if either battler is defeated
-  if (!firstBattler.isDefeated && !firstBattler.isStunned && !secondBattler.isDefeated) {
+  if (!firstBattler.isDefeated && !secondBattler.isDefeated) {
     firstBattler.applyPersistentEffects();
-    firstBattler.nextAction.execute(firstBattler);
+    if(!firstBattler.isStunned) firstBattler.nextAction.execute(firstBattler);
     firstBattler.tickConditions(firstBattler);
   }
 
-  if (!firstBattler.isDefeated && !secondBattler.isDefeated && !secondBattler.isDefeated) {
+  if (!firstBattler.isDefeated && !secondBattler.isDefeated) {
     secondBattler.applyPersistentEffects();
-    secondBattler.nextAction.execute(secondBattler);
+    if(!secondBattler.isStunned) secondBattler.nextAction.execute(secondBattler);
     secondBattler.tickConditions(secondBattler);
   }
 

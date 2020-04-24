@@ -65,14 +65,25 @@ StatusEffectDatabase['Lure'] = new StatusEffect('Lure', 3,
 // **
 StatusEffectDatabase['Fortify'] = new StatusEffect('Fortify', 2,
   new Effect(100, {
-    'selfEffect' : new Effect(100, {'statMod': { 'statName': 'currentDefense', 'statModValue': 10}}, eff_modifyStatEffect)
+    'selfEffect': new Effect(100, { 'statMod': { 'statName': 'currentDefense', 'statModValue': 10 } }, eff_modifyStatEffect)
+  }, eff_selfEffect)
+);
+
+// **
+StatusEffectDatabase['Flinch'] = new StatusEffect('Flinch', 1,
+  new Effect(100, {
+    'selfEffect': new Effect(100, { 'stun': true }, eff_stunEffect)
+  }, eff_selfEffect),
+  // This is the removeEffect -> triggers ON THE MONSTER AFFECTED BY STATUS EFFECT
+  new Effect(100, {
+    'selfEffect': new Effect(100, { 'stun': false }, eff_stunEffect)
   }, eff_selfEffect)
 );
 
 // **
 StatusEffectDatabase['Confuse'] = new StatusEffect('Confuse', 3,
   new Effect(100, {
-    'persistentEffect': {'name' : 'Confuse', 'effect' : new Effect(30, { 'stun': true }, eff_stunEffect)}
+    'persistentEffect': { 'name': 'Confuse', 'effect': new Effect(30, {'statusToApply' : StatusEffectDatabase['Flinch']}, eff_applyStatusEffect) }
   }, eff_persistentEffect),
   new Effect(100, {
     'persistentEffectName': 'Confuse'
@@ -82,49 +93,40 @@ StatusEffectDatabase['Confuse'] = new StatusEffect('Confuse', 3,
 // **
 StatusEffectDatabase['Mirror Image'] = new StatusEffect('Mirror Image', 2,
   new Effect(100, {
-    'selfEffect' : new Effect(100, {'statMod': { 'statName': 'evasionRate', 'statModValue': 30}}, eff_modifyStatEffect)
+    'selfEffect': new Effect(100, { 'statMod': { 'statName': 'evasionRate', 'statModValue': 30 } }, eff_modifyStatEffect)
   }, eff_selfEffect),
   new Effect(100, {
-    'selfEffect' : new Effect(100, {'statMod': { 'statName': 'evasionRate', 'statModValue': -30}}, eff_modifyStatEffect)
+    'selfEffect': new Effect(100, { 'statMod': { 'statName': 'evasionRate', 'statModValue': -30 } }, eff_modifyStatEffect)
   }, eff_selfEffect)
 );
 
-// CURRENTLY LOCKING UP ENEMIES PERMANENTLY
-StatusEffectDatabase['Flinch'] = new StatusEffect('Flinch', 1,
-  new Effect(100, {
-    'persistentEffect': {'name' : 'Flinch', 'effect' : new Effect(100, { 'stun': true }, eff_stunEffect)}
-  }, eff_persistentEffect),
-  new Effect(100, {
-    'persistentEffectName': 'Flinch'
-  }, eff_removePersistentEffect)
-);
-
-// 
+// **
 StatusEffectDatabase['Paralyze'] = new StatusEffect('Paralyze', 2,
   new Effect(100, {
-    'persistentEffect': {'name' : 'Paralyze', 'effect' : new Effect(100, { 'stun': true }, eff_stunEffect)}
-  }, eff_persistentEffect),
+    'selfEffect': new Effect(100, { 'stun': true }, eff_stunEffect)
+  }, eff_selfEffect),
+  // This is the removeEffect -> triggers ON THE MONSTER AFFECTED BY STATUS EFFECT
   new Effect(100, {
-    'persistentEffectName': 'Paralyze'
-  }, eff_removePersistentEffect)
+    'selfEffect': new Effect(100, { 'stun': false }, eff_stunEffect)
+  }, eff_selfEffect)
 );
 
 
 // **
 StatusEffectDatabase['Overdrive'] = new StatusEffect('Overdrive', 2,
   new Effect(100, {
-    'selfEffect' : new Effect(100, {'statMod' : { 'statName': 'globalDamageMultiplier', 'statModValue': 0.5}}, eff_modifyStatEffect)
+    'selfEffect': new Effect(100, { 'statMod': { 'statName': 'globalDamageMultiplier', 'statModValue': 0.5 } }, eff_modifyStatEffect)
   }, eff_selfEffect),
 
   new Effect(100, {
-    'selfEffect' : new Effect(100, {'statMod' : { 'statName': 'globalDamageMultiplier', 'statModValue': -0.5}}, eff_modifyStatEffect)
+    'selfEffect': new Effect(100, { 'statMod': { 'statName': 'globalDamageMultiplier', 'statModValue': -0.5 } }, eff_modifyStatEffect)
   }, eff_selfEffect)
 );
 
 // Change the name of the ability
 StatusEffectDatabase['Venom'] = new StatusEffect('Venom', 3,
   new Effect(100, {
-    'persistentEffect': { 'name' : 'Venom', 'effect' : new Effect(100, { 'damage': 2 }, eff_damageEffect) }
+    'persistentEffect': { 'name': 'Venom', 'effect': new Effect(100, { 'damage': 2 }, eff_damageEffect) }
   }, eff_persistentEffect),
   new Effect(100, {
     'persistentEffectName': 'Venom'
