@@ -21,12 +21,10 @@ main {
 
 
 #dialogueTrayDiv > ul > li > h3 {
-  /* background-color: blanchedalmond; */
   font-size: 22px;
 }
 
 #dialogueTrayDiv > ul > li > p {
-  /* background-color: blanchedalmond; */
   background-color: rgba(255, 255, 255, 0.8);
 
   margin-top: 8px;
@@ -47,7 +45,6 @@ main {
 
 .healthBarInner{
   background-color: red;
-  /* width: 60px;  */
   height:20px;
 }
 
@@ -151,7 +148,7 @@ main {
 #endGameButtons {
   display: flex;
   flex-direction: column;
-  margin-top: 100px;
+  margin-top: 45px;
   margin-left: auto;
   margin-right: auto;
   position: relative;
@@ -275,4 +272,15 @@ button {
   background-color: rgb(34, 31, 31, 0.8);
   padding: 5px;
   margin-right: 5px;
+}
+
+#endGameButtons > h1 {
+  margin: 0px auto 20px auto;
+  background-color: rgb(34, 31, 31, 0.8);
+  color: gray;
+  width: fit-content;
+  font-family: 'Fira Mono', monospace;
+  font-size: 20px;
+  padding: 5px 10px;
+  font-weight: bold;
 }

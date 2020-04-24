@@ -1,8 +1,9 @@
 .monContainer {
   border: 1px solid black;
-  width: 300px;
-  height: 300px
+  /* width: 300px; */
+  /* height: 300px; */
 }
+
 
 .monsterDescription {
   padding: 5px;
@@ -16,7 +17,6 @@
 .monsterInfoandImg {
   display: flex;
   flex-direction: row;
-  /* border: 1px solid black; */
   padding: 15px;
   height:100px;
 }
@@ -53,17 +53,18 @@
   display:flex;
   flex-wrap: wrap;
   margin-top: 20px;
-  width: fit-content;
-  width:800px;
-  margin-left:28%;
+  /* width: fit-content; */
+  width:900px;
+  margin-left: auto;
   margin-right:auto;
 }
 
 .monsterDataSection > section {
-  margin-left:10px;
+  margin-left:auto;
+  margin-right:auto;
   background-color:blanchedalmond;
-  width: 300px;
-  height: 350px;
+  width: 400px;
+  height: 550px;
   margin-top: 20px;
 }
 .monsterDataSection > section:nth-child(2){
@@ -96,3 +97,13 @@
   margin-left: 10px;
 }
 
+.abilityNameAndDesc {
+  display: flex;
+  margin-top: 15px;
+}
+
+.abilityDescription {
+  margin-left: 20px;
+  background-color: rgb(34, 31, 31, 0.8);
+  color: gray;
+}

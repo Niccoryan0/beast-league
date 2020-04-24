@@ -6,10 +6,9 @@
   >> Takes an array of effects
   >> Execute() calls each effect's method, passing in the user and target data
 */
-function Ability(effects, name, desc = 'x', spdMod = 0) {
+function Ability(effects, name, spdMod = 0) {
   this.effects = effects;
   this.name = name;
-  this.desc = desc;
   this.spdMod = spdMod;
 }
 

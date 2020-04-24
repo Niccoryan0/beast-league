@@ -1,6 +1,24 @@
 'use strict';
 /* global monsterDatabase */
 
+
+// TODO: Add descriptions of abilties
+var abilityDescArr = {
+  'Trample' : 'ManWolfPig takes full advantage of it\'s piggy legs, trampling the enemy to deal two hits of physical damage. Execution Chance: 60%  Speed Modifier: 0  Effect: Deals 14 damage.',
+  'Chomp' : 'ManWolfPig takes a bite out of crime with his powerful jaws and razor-sharp teeth. This ability\'s base damage is 14 points of physical damage, with an execution chance of 60 and a speed modifier of 0.',
+  'Wrap' : 'Krapken wraps the opponent with it\'s tentacles, pulling them underwater and causing physical damage. This ability\'s base damage is 10 points of physical damage, with an execution chance of 60 and a speed modifier of 0.',
+  'Lure' : 'Krapken uses it\'s Kappa charm to lure victims closer to his pool. Lowers enemy defence and has a small chance to trigger Wrap in the same turn.',
+  'Body Slam' : 'Genrath charges the opponent, dealing physical damage and causing a chance to flinch on their next turn.',
+  'Fortify' : 'Genrath enters a defensive stance, sharply raising his Defense until the end of the combat.',
+  'Tail Whip' : 'Amphylisk uses it\'s basilisk tail as a whip, and unlike a usual tail whip, this one bites! Causes physical damage and can inflict poison effect.',
+  'Stone Gaze' : 'The Cockatrice and Basilisk heads focus their gaze, turning the target to stone until the end of next turn if successful',
+  'Charge' : 'Daedalus charges with its steel horns, dealing damage with a chance of stun. Chance to cause flinch on hit.',
+  'Overdrive' : 'Daedalus kicks into overdrives at the cost of a portion of its health. Its next attack will deal high bonus damage.',
+  'Confuse' : 'Wishbone causes the opponent to be confused, forcing them to hurt themselves at the end of each turn.',
+  'Mirror Image' : 'Wishbone creates illusory images, causing attacks to have a high chance of missing until the end of its next turn.'
+};
+
+
 function renderMonsterRoster(user, section) {
   var monsterSection = document.getElementById('monsterDataSection' + section);
   var userContainer = document.createElement('section');
@@ -46,10 +64,15 @@ function renderMonsterRoster(user, section) {
 
   for (var ab in user.abilitySet) {
     var abilityLiEl = document.createElement('li');
+    abilityLiEl.className = 'abilityNameAndDesc';
     var abilityName = document.createElement('h3');
     abilityName.textContent = user.abilitySet[ab];
     abilityName.className = 'abilityName';
     abilityLiEl.appendChild(abilityName);
+    var abilityDesc = document.createElement('p');
+    abilityDesc.className = 'abilityDescription';
+    abilityDesc.textContent = abilityDescArr[user.abilitySet[ab]];
+    abilityLiEl.appendChild(abilityDesc);
     userMonsterAbilities.appendChild(abilityLiEl);
   }
 
