@@ -58,11 +58,6 @@ AbilityDatabase['Wrap'] = new Ability([
   new Effect(100, { 'damage': 10 }, eff_damageEffect)
 ], 'Wrap');
 
-AbilityDatabase['Lure'] = new Ability([
-  new Effect(100, { 'statusToApply': StatusEffectDatabase['Lure'] }, eff_applyStatusEffect),
-  new Effect(20, { 'damage': 10 }, eff_damageEffect)
-], 'Lure');
-
 AbilityDatabase['Chomp'] = new Ability([
   new Effect(60, { 'damage': 14 }, eff_damageEffect)
 ], 'Chomp');
