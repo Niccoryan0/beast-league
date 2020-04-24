@@ -88,8 +88,8 @@ function executeTurn(abilitySel) {
 
   // Each battler rolls initiative and their turn order is placed
   var firstBattler, secondBattler;
-  userMonster.initiativeRoll = rollInitiative(userMonster.currentSpeed);
-  enemyMonster.initiativeRoll = rollInitiative(enemyMonster.currentSpeed);
+  userMonster.initiativeRoll = rollInitiative(userMonster.currentSpeed + userMonster.nextAction.spdMod);
+  enemyMonster.initiativeRoll = rollInitiative(enemyMonster.currentSpeed + enemyMonster.nextAction.spdMod);
 
   if (userMonster.initiativeRoll >= enemyMonster.initiativeRoll) {
     firstBattler = userMonster;
