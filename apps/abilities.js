@@ -151,11 +151,11 @@ AbilityDatabase['Overdrive'] = new Ability([
   }, eff_selfEffect, 'Self Damage', false),
   new Effect(100, {
     'selfEffect' : new Effect(100, {'statusToApply' : StatusEffectDatabase['Overdrive']}, eff_applyStatusEffect)
-  }, eff_selfEffect, 'Overdrive', alse)
+  }, eff_selfEffect, 'Overdrive', false)
 ], 'Overdrive');
 
 AbilityDatabase['Repair'] = new Ability([
-  new Effect(30, {'healValue' : 20 }, eff_applyStatusEffect, 'Heal')
+  new Effect(30, {'healValue' : 20 }, eff_healEffect, 'Heal')
 ], 'Repair');
 
 AbilityDatabase['Sunder'] = new Ability([
