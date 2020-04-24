@@ -1,3 +1,8 @@
+/* eslint-disable no-unused-vars */
+'use strict';
+/* global renderQueue, RenderQueueEntry,  */
+
+
 // THIS FILE NEEDS TO RUN FIRST
 // This is for constructor functions for monsters, abilities, all stats and methods related to monsters
 
@@ -41,7 +46,7 @@ function MonsterBattler(monsterData) {
   this.abilitySet = []; // Array of abilities that can be used
   this.currentStatusEffects = []; // Array of current status effects applied
   this.persistentEffects = {}; // Array of persistent effects applied; includes stuns and DoT's
-};
+}
 
 // This function deals damage to the monster that calls it
 // >> If health is reduced below 0 or to 0, the monster is defeated and doesn't act this turn
@@ -63,7 +68,7 @@ MonsterBattler.prototype.takeDamage = function (damage, attackValue) {
 MonsterBattler.prototype.tickConditions = function() {
   if(this.currentStatusEffects.length > 0) {
     for(var i in this.currentStatusEffects) {
-      if(this.currentStatusEffects[i] != null) {
+      if(this.currentStatusEffects[i] !== null) {
         this.currentStatusEffects[i] = this.currentStatusEffects[i].tickCondition(this);
         if(this.currentStatusEffects[i] === null) this.currentStatusEffects.pop(i);
       }
@@ -76,7 +81,7 @@ MonsterBattler.prototype.tickConditions = function() {
 // >> This function is called by effects that call eff_applyStatusEffect()
 MonsterBattler.prototype.addNewStatusEffect = function(newStatusEffect) {
   for(var i in this.currentStatusEffects) {
-    if(this.currentStatusEffects[i] != null) {
+    if(this.currentStatusEffects[i] !== null) {
       if(this.currentStatusEffects[i].name === newStatusEffect.name) {
         if(this.currentStatusEffects[i].currDuration > newStatusEffect.currDuration) {
           this.currentStatusEffects[i].currDuration = newStatusEffect.currDuration;
@@ -132,8 +137,23 @@ var wishboneDesc = 'No one claims to know what this creature is, some say it\'s 
 var monsterDatabase = {
   mKrapken: new MonsterData('Krapken', krapkenDesc, 'assets/sprites/Krapken_160px_transparent.png', 30, 25, 35, ['Wrap', 'Lure']),
   mManWolfPig: new MonsterData('ManWolfPig', mwpDesc, 'assets/sprites/MWP_160px_transparent.png', 30, 30, 30, ['Chomp', 'Trample']),
+
+  // TODO: SOMETHING IS 'FAILING TO EXECUTE' FOR GENRATH AND THERE SEEMS TO BE SOME QUALITY OF FORTIFY THAT MIGHT MAKE THE OTHER MONSTERS STOP ATTACKING???
   // mGenrath: new MonsterData('Genrath', genrathDesc, 'assets/sprites/genrath_160px.png', 30, 35, 25, ['Body Slam', 'Fortify']),
+
+  // TODO: AMPHYLISK SEEMS BASICALLY FUNCTIONAL BUT:
+  // Amphylisk as player : LIKE GENRATH ENEMIES OCCASIONALLY STOP ATTACKING, I think paralyze might not be being removed? unsure.
+  // Amphylisk as enemy : everything runs totally smoothly
   // mAmphylisk: new MonsterData('Amphylisk', amphyliskDesc, 'assets/sprites/amphylisk_160px.png', 35, 25, 30, ['Tail Whip', 'Stone Gaze']),
+
+  // TODO: 
+  // When using Overdrive:
+  // this.effects[eff].effectMethod is not a function
+  //   at Ability.execute (abilities.js:21)
+  //   at executeTurn (combat.js:112)
+  //   at HTMLDocument.userAttack (combat.js:129)
   // mDaedalus: new MonsterData('Daedalus', daedalusDesc, 'assets/sprites/daedalus_160px.png', 30, 30, 30, ['Charge', 'Overdrive']),
+
+
   // mWishbone: new MonsterData('Wishbone', wishboneDesc, 'assets/sprites/wishbone.png', 25, 30, 35, ['Confuse', 'Mirror Image'])
 };

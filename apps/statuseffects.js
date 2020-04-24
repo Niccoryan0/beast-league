@@ -1,3 +1,8 @@
+'use strict';
+/* global Effect, eff_modifyStatEffect, eff_selfEffect, eff_persistentEffect, eff_stunEffect, eff_removePersistentEffect, eff_damageEffect  */
+
+
+// Constructor function for status effects to be applied
 function StatusEffect(name, maxDuration = 1, applyEffect, removeEffect = null) {
   this.name = name;
   this.maxDuration = maxDuration;
@@ -31,13 +36,13 @@ Writing an apply/remove effect:
 new Effect(100, { 'selfEffect' : <constructor for effect to apply/remove> }, eff_selfeffect)
 
 >> Example for a self effect that increases the user's defense
-new Effect(100, { 'selfEffect' : 
-  new Effect(100, { 'statMod': { 'statName': 'currentDefense', 'statModValue': 10 } }, eff_modifyStatEffect) }, 
+new Effect(100, { 'selfEffect' :
+  new Effect(100, { 'statMod': { 'statName': 'currentDefense', 'statModValue': 10 } }, eff_modifyStatEffect) },
 eff_selfeffect)
 
 >> When you modify a stat, you need to add an effect for removing the change to that stat, IE:
-new Effect(100, { 'selfEffect' : 
-  new Effect(100, { 'statMod': { 'statName': 'currentDefense', 'statModValue': -10 } }, eff_modifyStatEffect) }, 
+new Effect(100, { 'selfEffect' :
+  new Effect(100, { 'statMod': { 'statName': 'currentDefense', 'statModValue': -10 } }, eff_modifyStatEffect) },
 eff_selfeffect)
 
 >> The exception to wrapping an effect inside a self effect is with persistent effects, because THEY'RE ALL SELF EFFECTS

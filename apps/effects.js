@@ -1,3 +1,10 @@
+'use strict';
+/* eslint-disable no-unused-vars */
+/* global StatusEffect */
+
+
+
+
 // Effect: This is an effect that an ability can apply.
 /*
   >> executionChance is how likely the effect is to occur
@@ -5,7 +12,6 @@
   >> effectMethod is the function that runs when the effect is used
 */
 
-// eslint-disable-next-line no-unused-vars
 function Effect(executionChance, customValues, effectMethod) {
   this.executionChance = executionChance;
   this.customValues = customValues;
@@ -13,7 +19,6 @@ function Effect(executionChance, customValues, effectMethod) {
   this.effectMethod = effectMethod;
 }
 
-// eslint-disable-next-line no-unused-vars
 function eff_damageEffect(user) {
   console.log('damage dealt');
   var damageMult = user.globalDamageMultiplier;
