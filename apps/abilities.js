@@ -44,7 +44,7 @@ Effects have the following parameters
   d. eff_modifyStatEffect values: 'statMod' (object literal with 'statName' [name of trait modified, written as currentDefense, currentAttack, etc.] and 'statMod' [number, how much to change stat by] properties)
   e. eff_persistentEffect values:
 3. Name as a string
-
+TODO: Write new Abilities for each monster
 */
 var AbilityDatabase = {};
 
