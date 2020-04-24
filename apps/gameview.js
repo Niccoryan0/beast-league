@@ -272,7 +272,7 @@ function renderMonsterStats(user) {
   for (var ab in userMonster.abilitySet) {
     var abilityLiEl = document.createElement('li');
     var abilityName = document.createElement('h3');
-    abilityName.textContent = userMonster.abilitySet[ab];
+    abilityName.textContent = userMonster.abilitySet[ab].name;
     abilityLiEl.appendChild(abilityName);
     userMonsterAbilities.appendChild(abilityLiEl);
   }

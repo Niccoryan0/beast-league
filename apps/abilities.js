@@ -155,7 +155,7 @@ AbilityDatabase['Overdrive'] = new Ability([
 ], 'Overdrive');
 
 AbilityDatabase['Repair'] = new Ability([
-  new Effect(30, {'healValue' : 20 }, eff_healEffect, 'Heal')
+  new Effect(30, {'healValue' : 12 }, eff_healEffect, 'Heal')
 ], 'Repair');
 
 AbilityDatabase['Sunder'] = new Ability([
@@ -173,15 +173,15 @@ AbilityDatabase['Mirror Image'] = new Ability([
   new Effect(100, {
     'selfEffect' : new Effect(100, {'statusToApply' : StatusEffectDatabase['Mirror Image']}, eff_applyStatusEffect)
   }, eff_selfEffect, 'Mirror Image', false)
-], 'Mirror Image', 20);
+], 'Mirror Image', 40);
 
 AbilityDatabase['Terrify'] = new Ability([
   new Effect(60, {'statusToApply' : StatusEffectDatabase['Terrify']}, eff_applyStatusEffect, 'Terrify')
 ], 'Terrify');
 
 AbilityDatabase['Flail'] = new Ability([
-  new Effect(100, { 'damage': 2 }, eff_damageEffect, 'Damage'),
-  new Effect(100, { 'damage': 2 }, eff_damageEffect, 'Damage'),
+  new Effect(100, { 'damage': 4 }, eff_damageEffect, 'Damage'),
+  new Effect(100, { 'damage': 4 }, eff_damageEffect, 'Damage'),
   new Effect(10, { 'damage': 20 }, eff_damageEffect, 'Mega Flail')
 ], 'Flail', 20);
 
