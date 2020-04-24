@@ -11,17 +11,6 @@ if (localStorage.getItem('userMonster')){
   localStorage.setItem('userMonster', JSON.stringify(userMonster));
 }
 
-// Array
-
-
-
-// Gets a random monster from the Monster array
-
-// function getRandomMonster(){
-//   var randNum = Math.floor(Math.random() * (monsterDatabase.length + 1));
-//   return monsterDatabase[randNum];
-// }
-
 function renderUserSpriteHomepage(){
   var target = document.getElementById('picTray');
 
