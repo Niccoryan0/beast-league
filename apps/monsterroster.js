@@ -4,34 +4,59 @@
 
 // TODO: Add descriptions of abilties
 var abilityDescArr = {
-  'Trample' : ['ManWolfPig takes full advantage of it\'s piggy legs, trampling the enemy beneath him. This attack hits twice, one for each hoof.', ['Each Hit Execution Chance: 100%', 'Speed Modifier: 0', 'Effect: Deals 5 damage per hit.']],
+  // MANWOLFPIG
+  'Trample' : ['ManWolfPig takes full advantage of it\'s piggy legs, trampling the enemy beneath him. This attack hits twice, one for each hoof.', ['Each Hit Execution Chance: 100%', 'Speed Modifier: 0', 'Effect: Deals 6 damage per hit.']],
 
-  'Chomp' : ['ManWolfPig takes a bite out of crime with his powerful jaws and razor-sharp teeth. This ability\'s base damage is 14 points of damage, with an execution chance of 60 and a speed modifier of 0.',['Execution Chance: 60%', 'Speed Modifier: 0', 'Effect: Deals 14 damage.']],
+  'Chomp' : ['ManWolfPig takes a bite out of crime with his powerful jaws and razor-sharp teeth.',['Execution Chance: 60%', 'Speed Modifier: 0', 'Effect: Deals 16 damage.']],
+
+  'Slash' : ['ManWolfPig slashes at the opponent with his dagger-like claws, ripping out chunks when it lands.',['Execution Chance: 100%', 'Speed Modifier: 0', 'Effect: Deals 4 damage and inflicts bleeding on the target (damage over time).']],
+
+  'Agility' : ['ManWolfPig focuses his wolf-like agility to permanently increase his speed.',['Execution Chance: 100%', 'Speed Modifier: 0', 'Effect: Increases MWP\'s speed by 4 points permanently.']],
 
 
+  // KRAPKEN
   'Wrap' : ['Krapken wraps the opponent with it\'s tentacles, pulling them underwater and causing damage.', ['Execution Chance: 100%', 'Speed Modifier: 20', 'Effect: Deals 10 damage.']],
 
   'Lure' : ['Krapken uses it\'s Kappa charm to lure victims closer to his pool. Lowers enemy defence and has a small chance to trigger Wrap in the same turn.',['Execution Chance: 100% defense debuff, 20% trigger Wrap', 'Speed Modifier: 0', 'Effect: Debuffs the enemy defense and has a 20% chance to trigger Wrap at the same time.']],
 
+  'Dive' : ['Krapken dives under water, avoiding any enemy attacks this turn.', ['Execution Chance: 100%', 'Speed Modifier: 0', 'Effect: Renders Krapken invincible this turn.']],
 
+  'Tidal Wave' : ['Krapken summons a massive tidal wave to pummel the foe.', ['Execution Chance: 40%', 'Speed Modifier: 0', 'Effect: Deals 18 damage.']],
+
+
+  // GENRATH
   'Body Slam' : ['Genrath charges the opponent, dealing damage and causing a chance to flinch on their next turn.',['Execution Chance: 80% deal damage, 20% flinch', 'Speed Modifier: 0', 'Effect: Deals 12 damage and has a chance to cause target to flinch.']],
 
   'Fortify' : ['Genrath enters a defensive stance, sharply raising his Defense until the end of the combat.',['Execution Chance: 100%', 'Speed Modifier: 0', 'Effect: Buffs Genrath\'s defense by 2, can be stacked infinite times.']],
 
-
+  'Shell Spin' : ['Genrath goes into his shell and spins at the enemy, dealing two hits of damage.',['Execution Chance: 100%', 'Speed Modifier: 0', 'Effect: Buffs Genrath\'s defense by 2, can be stacked infinite times.'] Buffs Genrath\'s defense by 2, can be stacked infinite times
   'Tail Whip' : ['Amphylisk uses it\'s basilisk tail as a whip, and unlike a usual tail whip, this one bites! Causes damage and can inflict poison effect.',['Execution Chance: 100% damage, 65% poison', 'Speed Modifier: 0', 'Effect: Deals 6 damage and has a chance to poison the target.']],
 
   'Stone Gaze' : ['The Cockatrice and Basilisk heads focus their gaze, turning the target to stone until the end of next turn if successful',['Execution Chance: 60%', 'Speed Modifier: 0', 'Effect: Paralyzes enemy for 2 turns.']],
 
+  'Gust' : ['Amphylisk whips up a large gust of wind to propel himself forward, increasing his speed',['Execution Chance: 100%', 'Speed Modifier: 0', 'Effect: Increases speed by 10.']],
 
+  'Nibble' : ['Amphylisk takes a little nibble out of the enemy, dealing 3 seperate hits.',['Execution Chance: 100%', 'Speed Modifier: 30', 'Effect: Deals 3 hits of 3 damage each.']],
+
+
+  // DAEDALUS
   'Charge' : ['Daedalus charges with its steel horns, dealing damage with a chance of stun. Chance to cause flinch on hit.',['Execution Chance: 100% damage, 20% flinch', 'Speed Modifier: 0', 'Effect: Deals 10 damage and has a 20% chance to cause target to flinch.']],
 
   'Overdrive' : ['Daedalus kicks into overdrives at the cost of a portion of its health. Its next attack will deal high bonus damage.',['Execution Chance: 100%', 'Speed Modifier: 0', 'Effect: Deals 4 damage to Daedalus but gives him 250% of his base attack.']],
 
+  'Repair' : ['Daedalus takes a moment to repair any damage to his shell, healing himself.',['Execution Chance: 30%', 'Speed Modifier: 0', 'Effect: Heals self for 20 hp.']],
 
+  'Sunder' : ['Daedalus shatters the target\'s armor with his horns.',['Execution Chance: 100%', 'Speed Modifier: 0', 'Effect: Deals 5 damage and debuffs targets defense by 10.']],
+
+
+  // WISHBONE
   'Confuse' : ['Wishbone causes the opponent to be confused, forcing them to hurt themselves at the end of each turn.',['Execution Chance: 100%', 'Speed Modifier: 0', 'Effect: Causes the target to have a 50% chance to damage themselves when attacking.']],
 
-  'Mirror Image' : ['Wishbone creates illusory images, causing attacks to have a high chance of missing until the end of its next turn.',['Execution Chance: 100%', 'Speed Modifier: 0', 'Effect: Increases Wishbone\'s evasion rate by 30 points.']]
+  'Mirror Image' : ['Wishbone creates illusory images, causing attacks to have a high chance of missing until the end of its next turn.',['Execution Chance: 100%', 'Speed Modifier: 0', 'Effect: Increases Wishbone\'s evasion rate by 30 points.']],
+
+  'Terrify' : ['Wishbone looks into the inner most thoughts of his victim and conjures up images of their worst nightmares.',['Execution Chance: 60%', 'Speed Modifier: 0', 'Effect: Minor defense debuff and chance to cause flinching.']],
+
+  'Flail' : ['Wishbone throws his tiny little body around spastically, this might do nothing or it might do a whole lot. ;)',['Execution Chance: 100% does minor damage, 10% does massive damage', 'Speed Modifier: 20', 'Effect: Deals two 2 HP hits and has a 10% chance to do a 3rd 20 HP hit.']]
 };
 
 
