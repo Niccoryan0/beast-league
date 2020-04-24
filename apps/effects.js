@@ -9,10 +9,12 @@
   >> effectMethod is the function that runs when the effect is used
 */
 
-function Effect(executionChance, customValues, effectMethod, isAvoidable = true) {
+function Effect(executionChance, customValues, effectMethod, name = '', isAvoidable = true) {
   this.executionChance = executionChance; // Chance of effect executing
   this.customValues = customValues; // Custom values passed as an object literal
   this.effectMethod = effectMethod; // Method called by effect when applied
+  this.name = name;
+  this.isAvoidable = isAvoidable;
 }
 
 // DAMAGE EFFECT: Calculates damage roll from 50% to 150% of base value and inflicts it to target.
