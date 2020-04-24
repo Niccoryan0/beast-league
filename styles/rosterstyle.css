@@ -1,5 +1,6 @@
 .monContainer {
   border: 1px solid black;
+  text-align: center;
   /* width: 300px; */
   /* height: 300px; */
 }
@@ -54,7 +55,7 @@
   flex-wrap: wrap;
   margin-top: 20px;
   /* width: fit-content; */
-  width:900px;
+  width:950px;
   margin-left: auto;
   margin-right:auto;
 }
@@ -63,8 +64,8 @@
   margin-left:auto;
   margin-right:auto;
   background-color:blanchedalmond;
-  width: 400px;
-  height: 550px;
+  width: 450px;
+  height: 800px;
   margin-top: 20px;
 }
 .monsterDataSection > section:nth-child(2){
@@ -92,18 +93,37 @@
   font-family: 'Fira Mono', monospace;
   font-size: large;
   border-radius: 0px;
-  margin-top:10px;
+  margin: auto;
   text-align: center;
-  margin-left: 10px;
+  height: fit-content;
 }
 
 .abilityNameAndDesc {
   display: flex;
-  margin-top: 15px;
+  flex-direction: column;
+  margin-top: 30px;
 }
 
 .abilityDescription {
-  margin-left: 20px;
+  margin: 15px;
   background-color: rgb(34, 31, 31, 0.8);
   color: gray;
 }
+
+.abilityEffectList {
+  background-color: rgb(34, 31, 31, 0.8);
+  color: gray;
+  display:block;
+  list-style-type: square;
+  list-style-position: inside;
+  margin: 0px 40px;
+  padding: 5px 15px;
+  font-size: 15px;
+  font-family: 'Fira Mono', monospace;
+}
+
+.abilityEffectList > li {
+  margin-top: 5px;
+  line-height: 17px;
+}
+

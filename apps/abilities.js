@@ -59,7 +59,7 @@ AbilityDatabase['Chomp'] = new Ability([
 // KRAPKEN
 AbilityDatabase['Wrap'] = new Ability([
   new Effect(100, { 'damage': 10 }, eff_damageEffect)
-], 'Wrap');
+], 'Wrap', 20);
 
 AbilityDatabase['Lure'] = new Ability([
   new Effect(100, { 'statusToApply': StatusEffectDatabase['Lure'] }, eff_applyStatusEffect),
@@ -71,7 +71,6 @@ AbilityDatabase['Body Slam'] = new Ability([
   new Effect(80, { 'damage': 12 }, eff_damageEffect),
   new Effect(20, {'statusToApply' : StatusEffectDatabase['Flinch']}, eff_applyStatusEffect)
 ], 'Body Slam');
-
 
 AbilityDatabase['Fortify'] = new Ability([
   new Effect(100, {
