@@ -9,7 +9,7 @@ main {
 #dialogueTrayDiv {
   height: 150px;
   overflow: auto;
-  margin-left: 10px;
+  margin-left: 0px;
   width:280px;
 }
 
@@ -77,15 +77,19 @@ main {
 
 #abilityTrayDiv > ul {
   display: flex;
+  flex-wrap: wrap;
+  width: 270px;
 }
 
 #abilityTrayDiv > ul > li {
   border: 1px solid black;
-  font-size: 20px;
+  font-size: 16.5px;
   /* font-weight: bold; */
-  padding: 20px 20px;
-  margin: 10px 5px;
-  background-color: rgba(255, 255, 255, 0.8)
+  padding: 5px;
+  margin: 10px 5px 10px 5px;
+  background-color: rgba(255, 255, 255, 0.8);
+  width: 110px;
+  height: 40px;
 }
 
 #abilitiesAndDialogue {
@@ -284,3 +288,4 @@ button {
   padding: 5px 10px;
   font-weight: bold;
 }
+
