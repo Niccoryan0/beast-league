@@ -39,7 +39,7 @@
   margin: 80px 0px;
 }
 
-#resetButton {
+#rosterButton {
   margin-top: 20px;
 }
 
@@ -83,4 +83,8 @@
 
 button {
   width:300px;
+}
+
+#howToButton {
+  margin-top: 20px;
 }

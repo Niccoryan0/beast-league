@@ -1,0 +1,93 @@
+.monContainer {
+  border: 1px solid black;
+  width: 300px;
+  height: 300px
+}
+
+.monsterDescription {
+  padding: 5px;
+  border: 1px solid black;
+  border-radius:0px;
+  margin: 10px 10px 10px;
+  overflow: auto;
+  height:140px;
+}
+
+.monsterInfoandImg {
+  display: flex;
+  flex-direction: row;
+  /* border: 1px solid black; */
+  padding: 15px;
+  height:100px;
+}
+
+.monsterInfoandImg > p {
+  line-height: 5px;
+}
+
+
+.monsterInfo > h2{
+  border: 1px solid black;
+  border-radius: 0px;
+}
+
+.monsterInfo > h2, .picTray {
+  text-align: center;
+}
+
+.monsterInfo > h2 {
+  font-size: 25px;
+  font-weight: bold;
+  font-family: sans-serif;
+}
+
+.monsterStats {
+  border: 1px solid black;
+  margin-top: 5px;
+  border-radius: 0px;
+  padding: 5px;
+  text-align: center;
+}
+
+.monsterDataSection {
+  display:flex;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+
+.monsterDataSection > section {
+  margin-left:10px;
+  background-color:blanchedalmond;
+  width: 300px;
+  height: 350px;
+  margin-top: 20px;
+}
+.monsterDataSection > section:nth-child(2){
+  clear:right;
+}
+.picTray {
+  border: 1px solid black;
+}
+
+.monsterStats {
+  font-family: 'Fira Mono', monospace;
+  line-height: 20px;
+}
+
+.picTray > img {
+  height:100px;
+  width:100px;
+}
+
+.abilityName {
+  background-color: rgb(34, 31, 31, 0.8);
+  color:gray;
+  width:90px;;
+  padding: 10px 20px;
+  font-family: 'Fira Mono', monospace;
+  font-size: large;
+  border-radius: 0px;
+  margin-top:10px;
+  text-align: center;
+  margin-left: 10px;
+}

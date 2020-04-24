@@ -92,3 +92,43 @@ nav {
     font-size: 20px;
     float:right;
 }
+
+.howToList {
+    background-color: blanchedalmond;
+    list-style-type: square;
+    display: flex;
+    flex-direction: column;
+    padding: 10px 40px;
+}
+
+.howToList > li {
+    margin-top: 30px;
+    line-height: 30px;
+    font-family: 'Fira Mono', monospace;
+    font-size: 20px
+}
+
+.howToHead {
+    text-align: center;
+    font-size: 25px;
+    background-color: rgb(34, 31, 31, 0.8);
+    color: gray;
+    margin-bottom: 20px;
+}
+
+.howToPHead {
+    font-size: 30px;
+    margin-top: 10px;
+}
+
+.howTo {
+    width: 800px;
+}
+
+.spritesHT {
+    margin-top: 60px;
+}
+
+.howToAdvanced {
+    margin-top:20px;
+}
