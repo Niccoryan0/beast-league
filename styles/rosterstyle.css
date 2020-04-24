@@ -63,7 +63,6 @@
   background-color:blanchedalmond;
   width: 800px;
   height: fit-content;
-  padding-bottom: 150px;
   margin-top: 20px;
 }
 .monsterDataSection > section:nth-child(2){
@@ -98,7 +97,8 @@
 .abilityNameAndDesc {
   display: flex;
   flex-direction: column;
-  margin-top: 30px;
+  margin-top: 20px;
+  margin-bottom: 100px;
   width: 400px;
   justify-content: space-between;
   height: 200px;

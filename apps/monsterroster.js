@@ -29,7 +29,12 @@ var abilityDescArr = {
 
   'Fortify' : ['Genrath enters a defensive stance, sharply raising his Defense until the end of the combat.',['Execution Chance: 100%', 'Speed Modifier: 0', 'Effect: Buffs Genrath\'s defense by 2, can be stacked infinite times.']],
 
-  'Shell Spin' : ['Genrath goes into his shell and spins at the enemy, dealing two hits of damage.',['Execution Chance: 100%', 'Speed Modifier: 0', 'Effect: Buffs Genrath\'s defense by 2, can be stacked infinite times.'] Buffs Genrath\'s defense by 2, can be stacked infinite times
+  'Shell Spin' : ['Genrath goes into his shell and spins at the enemy, dealing two hits of damage.',['Execution Chance: 100%', 'Speed Modifier: 0', 'Effect: Buffs Genrath\'s defense by 2, can be stacked infinite times.']],
+
+  'Eye Beam' : ['Genrath fires a large beam of light from his giant eyeball.',['Execution Chance: 100%', 'Speed Modifier: 40', 'Effect: Deal 6 damage to target, ignoring target\'s defense.']],
+
+
+  // AMPHYLISK
   'Tail Whip' : ['Amphylisk uses it\'s basilisk tail as a whip, and unlike a usual tail whip, this one bites! Causes damage and can inflict poison effect.',['Execution Chance: 100% damage, 65% poison', 'Speed Modifier: 0', 'Effect: Deals 6 damage and has a chance to poison the target.']],
 
   'Stone Gaze' : ['The Cockatrice and Basilisk heads focus their gaze, turning the target to stone until the end of next turn if successful',['Execution Chance: 60%', 'Speed Modifier: 0', 'Effect: Paralyzes enemy for 2 turns.']],
