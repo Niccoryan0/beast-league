@@ -127,6 +127,8 @@ function userAttack(event) {
   } else if (event.keyCode === 98 || event.keyCode === 50) {
     executeTurn(1);
   }
+
+
   // Call dialoguebox and pass in turnTimer then increase it
   dialogueBox(turnTimer);
   turnTimer++;
