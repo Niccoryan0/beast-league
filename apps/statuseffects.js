@@ -93,7 +93,7 @@ StatusEffectDatabase['Confused'] = new StatusEffect('Confused', 3,
 );
 
 // 3-turn stun
-StatusEffectDatabase['Paralyze'] = new StatusEffect('Paralyze', 3,
+StatusEffectDatabase['Paralyzed'] = new StatusEffect('Paralyzed', 3,
   new Effect(100, { 'stun': true }, eff_stunEffect),
   // This is the removeEffect -> triggers ON THE MONSTER AFFECTED BY STATUS EFFECT
   new Effect(100, { 'stun': false }, eff_stunEffect)
@@ -124,7 +124,7 @@ StatusEffectDatabase['Mirror Image'] = new StatusEffect('Mirror Image', 2,
 );
 
 // **
-StatusEffectDatabase['Paralyze'] = new StatusEffect('Paralyze', 2,
+StatusEffectDatabase['Paralyzed'] = new StatusEffect('Paralyzed', 2,
   new Effect(100, { 'stun': true }, eff_stunEffect),
   // This is the removeEffect -> triggers ON THE MONSTER AFFECTED BY STATUS EFFECT
   new Effect(100, { 'stun': false }, eff_stunEffect)
