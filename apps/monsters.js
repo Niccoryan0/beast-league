@@ -137,8 +137,23 @@ var wishboneDesc = 'No one claims to know what this creature is, some say it\'s 
 var monsterDatabase = {
   mKrapken: new MonsterData('Krapken', krapkenDesc, 'assets/sprites/Krapken_160px_transparent.png', 30, 25, 35, ['Wrap', 'Lure']),
   mManWolfPig: new MonsterData('ManWolfPig', mwpDesc, 'assets/sprites/MWP_160px_transparent.png', 30, 30, 30, ['Chomp', 'Trample']),
+
+  // TODO: SOMETHING IS 'FAILING TO EXECUTE' FOR GENRATH AND THERE SEEMS TO BE SOME QUALITY OF FORTIFY THAT MIGHT MAKE THE OTHER MONSTERS STOP ATTACKING???
   // mGenrath: new MonsterData('Genrath', genrathDesc, 'assets/sprites/genrath_160px.png', 30, 35, 25, ['Body Slam', 'Fortify']),
+
+  // TODO: AMPHYLISK SEEMS BASICALLY FUNCTIONAL BUT:
+  // Amphylisk as player : LIKE GENRATH ENEMIES OCCASIONALLY STOP ATTACKING, I think paralyze might not be being removed? unsure.
+  // Amphylisk as enemy : everything runs totally smoothly
   // mAmphylisk: new MonsterData('Amphylisk', amphyliskDesc, 'assets/sprites/amphylisk_160px.png', 35, 25, 30, ['Tail Whip', 'Stone Gaze']),
+
+  // TODO: 
+  // When using Overdrive:
+  // this.effects[eff].effectMethod is not a function
+  //   at Ability.execute (abilities.js:21)
+  //   at executeTurn (combat.js:112)
+  //   at HTMLDocument.userAttack (combat.js:129)
   // mDaedalus: new MonsterData('Daedalus', daedalusDesc, 'assets/sprites/daedalus_160px.png', 30, 30, 30, ['Charge', 'Overdrive']),
+
+
   // mWishbone: new MonsterData('Wishbone', wishboneDesc, 'assets/sprites/wishbone.png', 25, 30, 35, ['Confuse', 'Mirror Image'])
 };

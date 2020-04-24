@@ -12,6 +12,7 @@ function renderBattleSprites(userImgSrc, enemyMonsterImgSrc){
   // THIS IS TO RENDER THE USERS SPRITE FIRST
   var userTarget = document.getElementById('userBattlePosition');
   var userImgEl = document.createElement('img');
+  userImgEl.className = 'startingUser';
   userImgEl.src = userImgSrc;
   userImgEl.height = 80;
   console.log(userMonster);
@@ -24,10 +25,12 @@ function renderBattleSprites(userImgSrc, enemyMonsterImgSrc){
   // THIS RENDERS THE ENEMY SPRITE
   var enemyTarget = document.getElementById('enemyBattlePosition');
   var enemyMonsterImg = document.createElement('img');
+  enemyMonsterImg.className = 'startingEnemy';
   enemyMonsterImg.src = enemyMonsterImgSrc;
   enemyMonsterImg.height = 80;
   enemyTarget.appendChild(enemyMonsterImg);
   enemyMonster.imgElement = enemyMonsterImg;
+
 }
 
 // Entry for renderQueue system
@@ -48,6 +51,7 @@ function clearAnimation (event){
   event.target.removeEventListener('animationcancel', clearAnimation);
   renderTurn();
 }
+
 
 // Renders the animations for a turn
 function renderTurn(){
@@ -78,6 +82,12 @@ function disableAbilityTray (){
 }
 
 function enableAbilityTray (){
+  if (document.getElementById('startingUser')){
+    var userStartImage = document.getElementById('startingUser');
+    userStartImage.id = '';
+    var enemyStartImage = document.getElementById('startingEnemy');
+    enemyStartImage.id = '';
+  }
   var abilityTray = document.createElement('ul');
   abilityTrayDiv.appendChild(abilityTray);
   document.addEventListener('keydown', userAttack);
