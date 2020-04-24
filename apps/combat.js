@@ -103,12 +103,14 @@ function executeTurn(abilitySel) {
   if (!firstBattler.isDefeated && !secondBattler.isDefeated) {
     firstBattler.applyPersistentEffects();
     if(!firstBattler.isStunned) firstBattler.nextAction.execute(firstBattler);
+    else console.log(firstBattler.monsterData.name + ' is stunned!');
     firstBattler.tickConditions(firstBattler);
   }
 
   if (!firstBattler.isDefeated && !secondBattler.isDefeated) {
     secondBattler.applyPersistentEffects();
     if(!secondBattler.isStunned) secondBattler.nextAction.execute(secondBattler);
+    else console.log(secondBattler.monsterData.name + ' is stunned!');
     secondBattler.tickConditions(secondBattler);
   }
 

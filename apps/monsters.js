@@ -8,7 +8,7 @@
 
 // Class for monsters, include stats
 
-function MonsterData(name, description, imgSrc, attack, defense, speed, abilitySet){
+function MonsterData(name, description, imgSrc, attack, defense, speed, abilitySet) {
   this.name = name;
   this.description = description;
   this.imgSrc = imgSrc;
@@ -43,8 +43,8 @@ function MonsterBattler(monsterData) {
 
   this.nextAction; // Action to be used on the current turn of combat
   this.abilitySet = []; // Array of abilities that can be used
-  this.currentStatusEffects = []; // Array of current status effects applied
-  this.persistentEffects = {}; // Array of persistent effects applied; includes stuns and DoT's
+  this.currentStatusEffects = {}; // Hashtable of current status effects applied
+  this.persistentEffects = {}; // Hashtable of persistent effects applied; includes stuns and DoT's
 }
 
 // This function deals damage to the monster that calls it
@@ -53,7 +53,7 @@ function MonsterBattler(monsterData) {
 MonsterBattler.prototype.takeDamage = function (damage, attackValue) {
   damage = Math.round(damage * (attackValue / this.currentDefense));
   this.currentHealth -= damage;
-  if(this.currentHealth <= 0 ){
+  if (this.currentHealth <= 0) {
     this.currentHealth = 0;
     this.isDefeated = true;
   }
@@ -63,48 +63,53 @@ MonsterBattler.prototype.takeDamage = function (damage, attackValue) {
 
 // This function ticks the duration of all status effects taken
 // >> Sets status effect at each condition to return value of tickCondition()
-// >> If tickCondition() returns null, it is removed from the array of status effects on the monster
-MonsterBattler.prototype.tickConditions = function() {
-  if(this.currentStatusEffects.length > 0) {
-    for(var i in this.currentStatusEffects) {
-      if(this.currentStatusEffects[i] !== null) {
-        this.currentStatusEffects[i] = this.currentStatusEffects[i].tickCondition(this);
-        if(this.currentStatusEffects[i] === null) this.currentStatusEffects.pop(i);
-      }
+// >> If tickCondition() returns null, it is skipped
+MonsterBattler.prototype.tickConditions = function () {
+  var statusEffectKeys = Object.keys(this.currentStatusEffects);
+  var currentKey;
+
+  for (var i in statusEffectKeys) {
+    currentKey = statusEffectKeys[i];
+    if (this.currentStatusEffects[currentKey] !== null) {
+      this.currentStatusEffects[currentKey] = this.currentStatusEffects[currentKey].tickCondition(this);
     }
   }
 };
 
 // This function adds a new status effect to the monster and applies its effect
-// >> Called when a new status effect is inflicted (MUST BE SELF EFFECT TO WORK PROPERLY)
+// >> Called when a new status effect is inflicted; always inflicted to SELF
 // >> This function is called by effects that call eff_applyStatusEffect()
-MonsterBattler.prototype.addNewStatusEffect = function(newStatusEffect) {
-  for(var i in this.currentStatusEffects) {
-    if(this.currentStatusEffects[i] !== null) {
-      if(this.currentStatusEffects[i].name === newStatusEffect.name) {
-        if(this.currentStatusEffects[i].currDuration > newStatusEffect.currDuration) {
-          this.currentStatusEffects[i].currDuration = newStatusEffect.currDuration;
+MonsterBattler.prototype.addNewStatusEffect = function (newStatusEffect) {
+  for (var i in this.currentStatusEffects) {
+    // eslint-disable-next-line no-prototype-builtins
+    if (this.currentStatusEffects.hasOwnProperty(newStatusEffect.name)) {
+      if (this.currentStatusEffects[newStatusEffect.name] !== null) {
+        if (this.currentStatusEffects[newStatusEffect.name].currDuration > newStatusEffect.currDuration) {
+          this.currentStatusEffects[newStatusEffect.name].currDuration = newStatusEffect.currDuration;
+          return;
         }
-
-        return;
       }
     }
   }
 
+  var enemyMonster = this.target;
+  this.target = this;
   newStatusEffect.applyEffect.effectMethod(this);
-  this.currentStatusEffects.push(newStatusEffect);
+  this.target = enemyMonster;
+
+  this.currentStatusEffects[newStatusEffect.name] = newStatusEffect;
 };
 
 
 // This function applies all persistent effects currently on the monster
 // >> Called at the start of each turn
-MonsterBattler.prototype.applyPersistentEffects = function() {
-  for(var i in this.persistentEffects) {
+MonsterBattler.prototype.applyPersistentEffects = function () {
+  for (var i in this.persistentEffects) {
     // eslint-disable-next-line no-prototype-builtins
-    if(this.persistentEffects.hasOwnProperty(i)) {
-      if(this.persistentEffects[i] !== null) {
+    if (this.persistentEffects.hasOwnProperty(i)) {
+      if (this.persistentEffects[i] !== null) {
         var randomExecutionRoll = Math.round(Math.floor(Math.random() * 100));
-        if (randomExecutionRoll < this.persistentEffects[i].effect.executionChance){
+        if (randomExecutionRoll < this.persistentEffects[i].effect.executionChance) {
           var enemyMonster = this.target;
           this.target = this;
           this.persistentEffects[i].effect.effectMethod(this);
@@ -117,7 +122,7 @@ MonsterBattler.prototype.applyPersistentEffects = function() {
 };
 
 // This function returns a random monster from the monsterDatabase object
-function getRandomMonster(){
+function getRandomMonster() {
   var monKeyArray = Object.keys(monsterDatabase);
   var randNum = Math.floor(Math.random() * (monKeyArray.length));
   var randKey = monKeyArray[randNum];
