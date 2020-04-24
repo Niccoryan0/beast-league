@@ -48,33 +48,73 @@ new Effect(100, { 'statMod': { 'statName': 'currentDefense', 'statModValue': -10
 var StatusEffectDatabase = {};
 
 // Reduces defense by 10 for 3 rounds
-StatusEffectDatabase['Lure'] = new StatusEffect('Lure', 3,
+StatusEffectDatabase['Vulnerable'] = new StatusEffect('Vulnerable', 3,
   // This is the applyEffect -> triggers ON THE MONSTER AFFECTED BY STATUS EFFECT
   new Effect(100, { 'statMod': { 'statName': 'currentDefense', 'statModValue': -10 } }, eff_modifyStatEffect),
   // This is the removeEffect -> triggers ON THE MONSTER AFFECTED BY STATUS EFFECT
   new Effect(100, { 'statMod': { 'statName': 'currentDefense', 'statModValue': 10 } }, eff_modifyStatEffect)
 );
 
-// **
+StatusEffectDatabase['Hasted'] = new StatusEffect('Hasted', 3,
+  new Effect(100, { 'statMod': { 'statName': 'currentSpeed', 'statModValue': 10 } }, eff_modifyStatEffect),
+  new Effect(100, { 'statMod': { 'statName': 'currentSpeed', 'statModValue': -10 } }, eff_modifyStatEffect)
+);
+
+StatusEffectDatabase['Empowered'] = new StatusEffect('Empowered', 2,
+  new Effect(100, { 'statMod': { 'statName': 'currentAttack', 'statModValue': 10 } }, eff_modifyStatEffect),
+  new Effect(100, { 'statMod': { 'statName': 'currentAttack', 'statModValue': -10 } }, eff_modifyStatEffect)
+);
+
+StatusEffectDatabase['Hidden'] = new StatusEffect('Hidden', 2,
+  new Effect(100, { 'statMod': { 'statName': 'evasionRate', 'statModValue': 100 } }, eff_modifyStatEffect),
+  new Effect(100, { 'statMod': { 'statName': 'evasionRate', 'statModValue': -100 } }, eff_modifyStatEffect)
+);
+
+// 1-turn stun
 StatusEffectDatabase['Flinch'] = new StatusEffect('Flinch', 1,
   new Effect(100, { 'stun': true }, eff_stunEffect),
   // This is the removeEffect -> triggers ON THE MONSTER AFFECTED BY STATUS EFFECT
   new Effect(100, { 'stun': false }, eff_stunEffect)
 );
 
-// **
-StatusEffectDatabase['Confuse'] = new StatusEffect('Confuse', 3,
+// 50% chance of stun and 12 damage each turn for 3 turns
+StatusEffectDatabase['Confused'] = new StatusEffect('Confused', 3,
   new Effect(100, {
     'persistentEffect': {
-      'name': 'Confuse', 'effect': new Effect(50, {
-        'effectFunc1': eff_applyStatusEffect, 'effectFunc2': eff_damageEffect, 
+      'name': 'Confused', 'effect': new Effect(50, {
+        'effectFunc1': eff_applyStatusEffect, 'effectFunc2': eff_damageEffect,
         'customValues': { 'damage': 12, 'statusToApply': StatusEffectDatabase['Flinch'] },
       }, eff_linkedEffect)
     }
   }, eff_persistentEffect),
   new Effect(100, {
-    'persistentEffectName': 'Confuse'
+    'persistentEffectName': 'Confused'
   }, eff_removePersistentEffect)
+);
+
+// 3-turn stun
+StatusEffectDatabase['Paralyze'] = new StatusEffect('Paralyze', 3,
+  new Effect(100, { 'stun': true }, eff_stunEffect),
+  // This is the removeEffect -> triggers ON THE MONSTER AFFECTED BY STATUS EFFECT
+  new Effect(100, { 'stun': false }, eff_stunEffect)
+);
+
+// 2-turn stun and defense debuff
+StatusEffectDatabase['Terrify'] = new StatusEffect('Terrify', 2,
+  new Effect(100, {
+    'effectFunc1': eff_stunEffect, 'effectFunc2': eff_modifyStatEffect,
+    'customValues': {
+      'statMod': { 'statName': 'currentDefense', 'statModValue': -5 },
+      'stun': true
+    },
+  }, eff_linkedEffect),
+  new Effect(100, {
+    'effectFunc1': eff_stunEffect, 'effectFunc2': eff_modifyStatEffect,
+    'customValues': {
+      'statMod': { 'statName': 'currentDefense', 'statModValue': 5 },
+      'stun': false
+    },
+  }, eff_linkedEffect)
 );
 
 // **
@@ -97,13 +137,21 @@ StatusEffectDatabase['Overdrive'] = new StatusEffect('Overdrive', 2,
   new Effect(100, { 'statMod': { 'statName': 'globalDamageMultiplier', 'statModValue': -1.5 } }, eff_modifyStatEffect)
 );
 
-// Change the name of the ability
-StatusEffectDatabase['Venom'] = new StatusEffect('Venom', 3,
+StatusEffectDatabase['Poisoned'] = new StatusEffect('Poisoned', 3,
   new Effect(100, {
-    'persistentEffect': { 'name': 'Venom', 'effect': new Effect(100, { 'damage': 4 }, eff_damageEffect) }
+    'persistentEffect': { 'name': 'Poisoned', 'effect': new Effect(100, { 'damage': 4, 'attackMultBonus': 1 }, eff_damageEffect) }
   }, eff_persistentEffect),
   new Effect(100, {
-    'persistentEffectName': 'Venom'
+    'persistentEffectName': 'Poisoned'
+  }, eff_removePersistentEffect)
+);
+
+StatusEffectDatabase['Bleeding'] = new StatusEffect('Bleeding', 3,
+  new Effect(100, {
+    'persistentEffect': { 'name': 'Bleeding', 'effect': new Effect(100, { 'damage': 8 }, eff_damageEffect) }
+  }, eff_persistentEffect),
+  new Effect(100, {
+    'persistentEffectName': 'Bleeding'
   }, eff_removePersistentEffect)
 );
 

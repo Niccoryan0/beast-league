@@ -14,11 +14,11 @@ function Ability(effects, name, spdMod = 0) {
 
 Ability.prototype.execute = function (user) {
   var randomExecutionRoll;
-  console.log(user.monsterData.name + ' used ' + this.name);
+  addDialogueBoxEntry('p', user.monsterData.name + ' used ' + this.name);
   for (var eff in this.effects) {
     randomExecutionRoll = Math.round(Math.floor(Math.random() * 100));
     if ((randomExecutionRoll + user.target.evasionRate) < this.effects[eff].executionChance) this.effects[eff].effectMethod(user);
-    else console.log(user.monsterData.name + ' FAILED TO EXECUTE : effect at index ' + eff, this.randomExecutionRoll + ' , ' + user.target.evasionRate);
+    else addDialogueBoxEntry('p' , user.monsterData.name + ' missed with effect!');
   }
 };
 
@@ -48,13 +48,25 @@ var AbilityDatabase = {};
 
 // MWP
 AbilityDatabase['Trample'] = new Ability([
-  new Effect(100, { 'damage': 5 }, eff_damageEffect),
-  new Effect(100, { 'damage': 5 }, eff_damageEffect)
+  new Effect(100, { 'damage': 6 }, eff_damageEffect),
+  new Effect(100, { 'damage': 6 }, eff_damageEffect)
 ], 'Trample');
 
 AbilityDatabase['Chomp'] = new Ability([
-  new Effect(60, { 'damage': 14 }, eff_damageEffect)
+  new Effect(60, { 'damage': 16 }, eff_damageEffect)
 ], 'Chomp');
+
+AbilityDatabase['Slash'] = new Ability([
+  new Effect(100, {'damage' : 4}, eff_damageEffect),
+  new Effect(100, {'statusToApply' : StatusEffectDatabase['Bleeding']}, eff_applyStatusEffect)
+], 'Slash');
+
+AbilityDatabase['Agility'] = new Ability([
+  new Effect(100, {
+    'selfEffect': new Effect(100, { 'statMod': { 'statName': 'currentSpeed', 'statModValue': 4 } }, eff_modifyStatEffect)
+  }, eff_selfEffect),
+], 'Agility');
+
 
 // KRAPKEN
 AbilityDatabase['Wrap'] = new Ability([
@@ -62,9 +74,23 @@ AbilityDatabase['Wrap'] = new Ability([
 ], 'Wrap', 20);
 
 AbilityDatabase['Lure'] = new Ability([
-  new Effect(100, { 'statusToApply': StatusEffectDatabase['Lure'] }, eff_applyStatusEffect),
+  new Effect(100, { 'statusToApply': StatusEffectDatabase['Vulnerable'] }, eff_applyStatusEffect),
   new Effect(20, { 'damage': 10 }, eff_damageEffect)
 ], 'Lure');
+
+AbilityDatabase['Dive'] = new Ability([
+  new Effect(100, {
+    'selfEffect' : new Effect(100, {'statusToApply' : StatusEffectDatabase['Hidden']}, eff_applyStatusEffect)
+  }, eff_selfEffect),
+  new Effect(100, {
+    'selfEffect' : new Effect(100, {'statusToApply' : StatusEffectDatabase['Empowered']}, eff_applyStatusEffect)
+  }, eff_selfEffect)
+], 'Dive');
+
+AbilityDatabase['Tidal Wave'] = new Ability([
+  new Effect(40, { 'damage': 18 }, eff_damageEffect)
+], 'Tidal Wave', -40);
+
 
 // GENRATH
 AbilityDatabase['Body Slam'] = new Ability([
@@ -78,17 +104,39 @@ AbilityDatabase['Fortify'] = new Ability([
   }, eff_selfEffect),
 ], 'Fortify');
 
+AbilityDatabase['Shell Spin'] = new Ability([
+  new Effect(100, { 'damage': 4 }, eff_damageEffect),
+  new Effect(100, { 'damage': 4 }, eff_damageEffect),
+  new Effect(20, {
+    'selfEffect': new Effect(100, { 'statMod': { 'statName': 'currentDefense', 'statModValue': 2 } }, eff_modifyStatEffect)
+  }, eff_selfEffect)
+], 'Shell Spin');
 
-// AMPHYLISK:
+AbilityDatabase['Eye Beam'] = new Ability([
+  new Effect(100, { 'damage': 6, 'attackMultBonus' : 1 }, eff_damageEffect)
+], 'Eye Beam', 40);
+
+// AMPHYLISK
 AbilityDatabase['Tail Whip'] = new Ability([
   new Effect(100, {'damage' : 6}, eff_damageEffect),
-  new Effect(65, {'statusToApply' : StatusEffectDatabase['Venom']}, eff_applyStatusEffect)
+  new Effect(80, {'statusToApply' : StatusEffectDatabase['Venom']}, eff_applyStatusEffect)
 ], 'Tail Whip');
 
 AbilityDatabase['Stone Gaze'] = new Ability([
-  new Effect(60, {'statusToApply' : StatusEffectDatabase['Paralyze']}, eff_applyStatusEffect)
+  new Effect(40, {'statusToApply' : StatusEffectDatabase['Paralyze']}, eff_applyStatusEffect)
 ], 'Stone Gaze');
 
+AbilityDatabase['Gust'] = new Ability([
+  new Effect(100, {
+    'selfEffect' : new Effect(100, {'statusToApply' : StatusEffectDatabase['Hasted']}, eff_applyStatusEffect)
+  }, eff_selfEffect)
+], 'Gust');
+
+AbilityDatabase['Nibble'] = new Ability([
+  new Effect(100, { 'damage': 3 }, eff_damageEffect),
+  new Effect(100, { 'damage': 3 }, eff_damageEffect),
+  new Effect(100, { 'damage': 3 }, eff_damageEffect)
+], 'Nibble', 30);
 
 // DAEDALUS
 AbilityDatabase['Charge'] = new Ability([
@@ -105,21 +153,34 @@ AbilityDatabase['Overdrive'] = new Ability([
   }, eff_selfEffect)
 ], 'Overdrive');
 
+AbilityDatabase['Repair'] = new Ability([
+  new Effect(30, {'healValue' : 20 }, eff_applyStatusEffect)
+], 'Repair');
+
+AbilityDatabase['Sunder'] = new Ability([
+  new Effect(100, {'damage' : 5}, eff_damageEffect),
+  new Effect(100, {'statusToApply' : StatusEffectDatabase['Vulnerable']}, eff_applyStatusEffect)
+], 'Sunder');
+
 
 // WISHBONE
 AbilityDatabase['Confuse'] = new Ability([
-  new Effect(100, {'statusToApply' : StatusEffectDatabase['Confuse']}, eff_applyStatusEffect)
+  new Effect(100, {'statusToApply' : StatusEffectDatabase['Confused']}, eff_applyStatusEffect)
 ], 'Confuse');
 
 AbilityDatabase['Mirror Image'] = new Ability([
   new Effect(100, {
     'selfEffect' : new Effect(100, {'statusToApply' : StatusEffectDatabase['Mirror Image']}, eff_applyStatusEffect)
   }, eff_selfEffect)
-], 'Mirror Image');
+], 'Mirror Image', 20);
 
+AbilityDatabase['Terrify'] = new Ability([
+  new Effect(60, {'statusToApply' : StatusEffectDatabase['Terrify']}, eff_applyStatusEffect)
+], 'Terrify');
 
-
-AbilityDatabase['Poison'] = new Ability([
-  new Effect(100, { 'statusToApply': StatusEffectDatabase['Venom'] }, eff_applyStatusEffect)
-], 'Poison');
+AbilityDatabase['Flail'] = new Ability([
+  new Effect(100, { 'damage': 2 }, eff_damageEffect),
+  new Effect(100, { 'damage': 2 }, eff_damageEffect),
+  new Effect(10, { 'damage': 20 }, eff_damageEffect)
+], 'Flail', 20);
 
