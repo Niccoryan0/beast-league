@@ -22,9 +22,10 @@ function eff_damageEffect(user) {
   var attackMult = user.globalAttackMultiplier;
 
   if('damageMultiplier' in this.customValues) damageMult += (this.customValues['damageMultiplier'] - 1);
-  if('attackMultiplier' in this.customValues) damageMult += (this.customValues['attackMultiplier'] - 1);
+  if('attackMultiplier' in this.customValues) attackMult += (this.customValues['attackMultiplier'] - 1);
 
   var damageRoll = Math.floor((Math.random() * this.customValues['damage']) + (this.customValues['damage'] * 0.5));
+
   user.target.takeDamage(damageRoll * damageMult, user.currentAttack * attackMult);
   // Sends function to View for rendering effect
 }
@@ -72,4 +73,11 @@ function eff_removePersistentEffect(user) {
     this.customValues['persistentEffectRemoveEffect'].effectMethod(user);
     user.target = enemyMonster;
   }
+}
+
+// LINKED EFFECT: Single effect with two effect methods
+// >> Must include all custom values needed for both functions and can't link the same functions
+function eff_linkedEffect(user) {
+  this.customValues['effectFunc1'](user);
+  this.customValues['effectFunc2'](user);
 }
