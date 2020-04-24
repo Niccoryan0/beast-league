@@ -103,11 +103,11 @@ MonsterBattler.prototype.addNewStatusEffect = function (newStatusEffect) {
     }
   }
 
+  addDialogueBoxEntry('p', this.monsterData.name + ' is affected by ' + newStatusEffect.name);
   var enemyMonster = this.target;
   this.target = this;
   newStatusEffect.applyEffect.effectMethod(this);
   this.target = enemyMonster;
-  addDialogueBoxEntry('p', this.monsterData.name + ' is affected by ' + newStatusEffect.name);
   this.currentStatusEffects[newStatusEffect.name] = newStatusEffect;
 };
 
@@ -121,11 +121,11 @@ MonsterBattler.prototype.applyPersistentEffects = function () {
       if (this.persistentEffects[i] !== null) {
         var randomExecutionRoll = Math.round(Math.floor(Math.random() * 100));
         if (randomExecutionRoll < this.persistentEffects[i].effect.executionChance) {
+          addDialogueBoxEntry('p', this.persistentEffects[i].name + ' afflicts ' + this.monsterData.name);
           var enemyMonster = this.target;
           this.target = this;
           this.persistentEffects[i].effect.effectMethod(this);
           this.target = enemyMonster;
-          addDialogueBoxEntry('p', this.persistentEffects[i].name + ' afflicts ' + this.monsterData.name);
         }
         else console.log(this.monsterData.name + 'STATUS NOT APPLIED, EXECUTION ROLL :', randomExecutionRoll);
       }
