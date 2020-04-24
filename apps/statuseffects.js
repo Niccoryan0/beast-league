@@ -65,7 +65,12 @@ StatusEffectDatabase['Flinch'] = new StatusEffect('Flinch', 1,
 // **
 StatusEffectDatabase['Confuse'] = new StatusEffect('Confuse', 3,
   new Effect(100, {
-    'persistentEffect': { 'name': 'Confuse', 'effect': new Effect(30, {'statusToApply' : StatusEffectDatabase['Flinch']}, eff_applyStatusEffect) }
+    'persistentEffect': {
+      'name': 'Confuse', 'effect': new Effect(50, {
+        'effectFunc1': eff_applyStatusEffect, 'effectFunc2': eff_damageEffect, 
+        'customValues': { 'damage': 12, 'statusToApply': StatusEffectDatabase['Flinch'] },
+      }, eff_linkedEffect)
+    }
   }, eff_persistentEffect),
   new Effect(100, {
     'persistentEffectName': 'Confuse'
@@ -88,14 +93,14 @@ StatusEffectDatabase['Paralyze'] = new StatusEffect('Paralyze', 2,
 
 // **
 StatusEffectDatabase['Overdrive'] = new StatusEffect('Overdrive', 2,
-  new Effect(100, { 'statMod': { 'statName': 'globalDamageMultiplier', 'statModValue': 0.5 } }, eff_modifyStatEffect),
-  new Effect(100, { 'statMod': { 'statName': 'globalDamageMultiplier', 'statModValue': -0.5 } }, eff_modifyStatEffect)
+  new Effect(100, { 'statMod': { 'statName': 'globalDamageMultiplier', 'statModValue': 1.5 } }, eff_modifyStatEffect),
+  new Effect(100, { 'statMod': { 'statName': 'globalDamageMultiplier', 'statModValue': -1.5 } }, eff_modifyStatEffect)
 );
 
 // Change the name of the ability
 StatusEffectDatabase['Venom'] = new StatusEffect('Venom', 3,
   new Effect(100, {
-    'persistentEffect': { 'name': 'Venom', 'effect': new Effect(100, { 'damage': 2 }, eff_damageEffect) }
+    'persistentEffect': { 'name': 'Venom', 'effect': new Effect(100, { 'damage': 4 }, eff_damageEffect) }
   }, eff_persistentEffect),
   new Effect(100, {
     'persistentEffectName': 'Venom'
