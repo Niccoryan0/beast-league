@@ -1,9 +1,5 @@
 'use strict';
-<<<<<<< HEAD
-/* global getRandomMonster */
-=======
 /* global getRandomMonster, monsterDatabase */
->>>>>>> 4c8beabc2eede1bc09312685f57f6c6748f84d73
 // Initialize data for monsters, save/load data for monsters, handle events outside of game function
 // THIS WILL BE THE SECOND FILE THAT GETS RUN ONLY ON THE HOMEPAGE
 

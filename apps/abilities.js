@@ -1,8 +1,4 @@
 'use strict';
-<<<<<<< HEAD
-=======
-
->>>>>>> 4c8beabc2eede1bc09312685f57f6c6748f84d73
 /* global Effect, eff_applyStatusEffect, eff_damageEffect, StatusEffectDatabase, eff_selfEffect */
 
 // Ability class
@@ -10,10 +6,11 @@
   >> Takes an array of effects
   >> Execute() calls each effect's method, passing in the user and target data
 */
-function Ability(effects, name, desc = 'x') {
+function Ability(effects, name, desc = 'x', spdMod = 0) {
   this.effects = effects;
   this.name = name;
   this.desc = desc;
+  this.spdMod = spdMod;
 }
 
 Ability.prototype.execute = function (user) {
