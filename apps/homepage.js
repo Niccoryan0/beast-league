@@ -1,5 +1,5 @@
 'use strict';
-/* global getRandomMonster */
+/* global getRandomMonster, monsterDatabase */
 // Initialize data for monsters, save/load data for monsters, handle events outside of game function
 // THIS WILL BE THE SECOND FILE THAT GETS RUN ONLY ON THE HOMEPAGE
 
@@ -7,7 +7,7 @@ var userMonster;
 if (localStorage.getItem('userMonster')){
   userMonster = JSON.parse(localStorage.getItem('userMonster'));
 } else {
-  userMonster = getRandomMonster();
+  userMonster = monsterDatabase['mKrapken'];
   localStorage.setItem('userMonster', JSON.stringify(userMonster));
 }
 
@@ -44,17 +44,27 @@ function renderUserSpriteHomepage(){
 
 
 }
-renderUserSpriteHomepage();
 
-var resetButton = document.getElementById('resetButton');
-resetButton.addEventListener('click', function(){
+var spriteTrayL = document.getElementById('spriteTrayL');
+var spriteTrayR = document.getElementById('spriteTrayR');
+
+
+// New array with monster names, check in that array for id, and then match up that name in the monsterDatabase
+function chooseMonster(event) {
   localStorage.clear();
 
-  userMonster = getRandomMonster();
+  var monKeyArray = Object.keys(monsterDatabase);
+  for (var mon in monKeyArray){
+    if ('m' + event.target.id === monKeyArray[mon]){
+      userMonster = monsterDatabase[monKeyArray[mon]];
+    }
+  }
   var userMonsterStringy = JSON.stringify(userMonster);
   localStorage.setItem('userMonster', userMonsterStringy);
 
   location.reload();
+}
+spriteTrayL.addEventListener('click', chooseMonster);
+spriteTrayR.addEventListener('click', chooseMonster);
 
-});
-
+renderUserSpriteHomepage();

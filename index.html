@@ -10,50 +10,48 @@
   <link rel="stylesheet" href="styles/indexstyle.css">
 </head>
 <body>
-
-  <nav>
-    <a href="about.html">About</a>
-  </nav>
-
   <header>
-   <img src="assets/logo_transparent.png" alt="Logo" id='logo'>
+   <img src="assets/logo_transparent.png" alt="Logo" id="logo">
   </header>
 <main>
-  <section class='spriteTray spriteTrayL'>
-    <img src="assets/sprites/Krapken_160px_transparent.png" alt="Krapken Sprite">
-    <img src="assets/sprites/genrath_160px.png" alt="Genrath Sprite">
-    <img src="assets/sprites/amphylisk_160px.png" alt="Basitrice Sprite">
+  <section class="spriteTray" id="spriteTrayL">
+    <img src="assets/sprites/Krapken_160px_transparent.png" alt="Krapken Sprite" id="Krapken">
+    <!-- <img src="assets/sprites/genrath_160px.png" alt="Genrath Sprite" id="Genrath">
+    <img src="assets/sprites/amphylisk_160px.png" alt="Basitrice Sprite" id="Amphylisk"> -->
 
   </section>
-  <div class='buttons&Info'>
+  <div class="buttons&Info">
 
     <section class="buttons">
-      <a href="game.html"> <button id='startButton'>Start Game</button></a>
-      <button id='resetButton'>Get a New Monster</button>
+      <a href="howto.html"> <button id='topButton'>How to Play</button></a>
+      <a href="monsterroster.html"><button>Monster Roster</button></a>
+      <a href="about.html"><button>About Us</button></a>
+      <a href="game.html"> <button>Start Game</button></a>
+      <h2 class='monChoice'>Choose a Monster by clicking their image!</h2>
     </section>
     <section id="userMonsterProfile">
       <section class="monsterInfoandImg">
         <section class="picTray" id="picTray"></section>
-          <div class='monsterInfo'>
-            <h2 id='userMonsterName'></h2>
-            <section id='monsterStats'>
-              <p id='userMonsterAtk'></p>
-              <p id='userMonsterDef'></p>
-              <p id='userMonsterSpd'></p>
+          <div class="monsterInfo">
+            <h2 id="userMonsterName"></h2>
+            <section id="monsterStats">
+              <p id="userMonsterAtk"></p>
+              <p id="userMonsterDef"></p>
+              <p id="userMonsterSpd"></p>
             </section>
           </div>
         </section>
         <p id="userMonsterDescription"></p>
       </section>
   </div>
-  <section class='spriteTray spriteTrayR'>
-    <img src="assets/sprites/MWP_160px_transparent.png" alt="MWP Sprite">
-    <img src="assets/sprites/wishbone.png" alt="Wishbone Sprite">
-    <img src="assets/sprites/daedalus_160px.png" alt="Daedalus Sprite">
+  <section class="spriteTray" id="spriteTrayR">
+    <img src="assets/sprites/MWP_160px_transparent.png" alt="MWP Sprite" id="ManWolfPig">
+    <!-- <img src="assets/sprites/wishbone.png" alt="Wishbone Sprite" id="Wishbone">
+    <img src="assets/sprites/daedalus_160px.png" alt="Daedalus Sprite" id="Daedalus"> -->
 
   </section>
 </main>
-<script src='apps/monsters.js'></script>
+<script src="apps/monsters.js"></script>
 <script src="apps/homepage.js"></script>
 </body>
 </html>

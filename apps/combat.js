@@ -1,5 +1,4 @@
 'use strict';
-
 /* global MonsterBattler, getRandomMonster, AbilityDatabase, renderHealthBars, renderMonsterStats, renderBattleSprites, enableAbilityTray, disableAbilityTray, renderTurn, updateHealthBars, updateMonsterStats */
 /* eslint-disable no-unused-vars */
 
@@ -66,11 +65,11 @@ function initializeCombat() {
   enemyMonster.target = userMonster;
   userMonster.target = enemyMonster;
 
-  var htmlBody = document.getElementById('body');
+  var directionSection = document.getElementById('directionSection');
   var directions = document.createElement('h1');
   directions.textContent = 'Press a number on the keyboard to choose an attack';
   directions.className = 'directions';
-  htmlBody.appendChild(directions);
+  directionSection.appendChild(directions);
 
   // Create health bars and battle positions at start
   renderHealthBars();
@@ -89,8 +88,8 @@ function executeTurn(abilitySel) {
 
   // Each battler rolls initiative and their turn order is placed
   var firstBattler, secondBattler;
-  userMonster.initiativeRoll = rollInitiative(userMonster.currentSpeed);
-  enemyMonster.initiativeRoll = rollInitiative(enemyMonster.currentSpeed);
+  userMonster.initiativeRoll = rollInitiative(userMonster.currentSpeed + userMonster.nextAction.spdMod);
+  enemyMonster.initiativeRoll = rollInitiative(enemyMonster.currentSpeed + enemyMonster.nextAction.spdMod);
 
   if (userMonster.initiativeRoll >= enemyMonster.initiativeRoll) {
     firstBattler = userMonster;
@@ -101,15 +100,15 @@ function executeTurn(abilitySel) {
   }
 
   // Each battler takes their turn; no turns are taken if either battler is defeated
-  if (!firstBattler.isDefeated && !firstBattler.isStunned && !secondBattler.isDefeated) {
+  if (!firstBattler.isDefeated && !secondBattler.isDefeated) {
     firstBattler.applyPersistentEffects();
-    firstBattler.nextAction.execute(firstBattler);
+    if(!firstBattler.isStunned) firstBattler.nextAction.execute(firstBattler);
     firstBattler.tickConditions(firstBattler);
   }
 
-  if (!firstBattler.isDefeated && !secondBattler.isDefeated && !secondBattler.isDefeated) {
+  if (!firstBattler.isDefeated && !secondBattler.isDefeated) {
     secondBattler.applyPersistentEffects();
-    secondBattler.nextAction.execute(secondBattler);
+    if(!secondBattler.isStunned) secondBattler.nextAction.execute(secondBattler);
     secondBattler.tickConditions(secondBattler);
   }
 
