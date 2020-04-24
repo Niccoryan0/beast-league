@@ -1,6 +1,6 @@
 'use strict';
 /* eslint-disable no-unused-vars */
-/* global StatusEffect */
+/* global StatusEffect, addDialogueBoxEntry */
 
 // Effect: This is an effect that an ability can apply.
 /*
