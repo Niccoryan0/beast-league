@@ -101,6 +101,7 @@ function executeTurn(abilitySel) {
 
   // Each battler takes their turn; no turns are taken if either battler is defeated
   if (!firstBattler.isDefeated && !secondBattler.isDefeated) {
+    addDialogueBoxEntry('p' , '===' + firstBattler.monsterData.name + '\'s Turn ===');
     firstBattler.applyPersistentEffects();
     if (!firstBattler.isStunned) firstBattler.nextAction.execute(firstBattler);
     else addDialogueBoxEntry('p', firstBattler.monsterData.name + ' is stunned!');
@@ -108,6 +109,7 @@ function executeTurn(abilitySel) {
   }
 
   if (!firstBattler.isDefeated && !secondBattler.isDefeated) {
+    addDialogueBoxEntry('p' , '===' + secondBattler.monsterData.name + '\'s Turn ===');
     secondBattler.applyPersistentEffects();
     if (!secondBattler.isStunned) secondBattler.nextAction.execute(secondBattler);
     else addDialogueBoxEntry('p' , secondBattler.monsterData.name + ' is stunned!');
@@ -153,7 +155,7 @@ function dialogueBox(turnNumber) {
   // This is all placed in one list item so that we can control where in the list it is placed with the insertBefore method at the end of this function
   currentDialogueLiEl = document.createElement('li');
   var headerEl = document.createElement('h3');
-  headerEl.textContent = 'Turn Number: ' + turnNumber;
+  headerEl.textContent = 'Round ' + turnNumber;
   currentDialogueLiEl.appendChild(headerEl);
   // Place the new item at the top of the list, this came from W3 schools on the insertBefore method
   dialogueUlEl.insertBefore(currentDialogueLiEl, dialogueUlEl.childNodes[0]);
