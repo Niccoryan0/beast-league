@@ -25,7 +25,7 @@ function eff_damageEffect(user) {
   if('attackMultiplier' in this.customValues) attackMult += (this.customValues['attackMultiplier'] - 1);
 
   var damageRoll = Math.floor((Math.random() * this.customValues['damage']) + (this.customValues['damage'] * 0.5));
-  console.log(damageRoll  * damageMult);
+
   user.target.takeDamage(damageRoll * damageMult, user.currentAttack * attackMult);
   // Sends function to View for rendering effect
 }
@@ -43,7 +43,7 @@ function eff_modifyStatEffect(user){
   var statModified = this.customValues['statMod'];
   user.target[statModified['statName']] = user.target[statModified['statName']] + statModified['statModValue'];
   if(user.target[statModified['statName']] < 0) user.target[statModified['statName']] = 0;
-  console.log(user.target.monsterData.name + ' ' + statModified['statName'] + ' now equals ' + user.target[statModified['statName']]);
+  addDialogueBoxEntry('p', user.target.monsterData.name + ' ' + statModified['statName'] + ' now equals ' + user.target[statModified['statName']]);
 }
 
 // STUN EFFECT: Sets whether a target is stunned or not, preventing them from acting.

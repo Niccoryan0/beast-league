@@ -102,15 +102,15 @@ function executeTurn(abilitySel) {
   // Each battler takes their turn; no turns are taken if either battler is defeated
   if (!firstBattler.isDefeated && !secondBattler.isDefeated) {
     firstBattler.applyPersistentEffects();
-    if(!firstBattler.isStunned) firstBattler.nextAction.execute(firstBattler);
-    else console.log(firstBattler.monsterData.name + ' is stunned!');
+    if (!firstBattler.isStunned) firstBattler.nextAction.execute(firstBattler);
+    else addDialogueBoxEntry('p', firstBattler.monsterData.name + ' is stunned!');
     firstBattler.tickConditions(firstBattler);
   }
 
   if (!firstBattler.isDefeated && !secondBattler.isDefeated) {
     secondBattler.applyPersistentEffects();
-    if(!secondBattler.isStunned) secondBattler.nextAction.execute(secondBattler);
-    else console.log(secondBattler.monsterData.name + ' is stunned!');
+    if (!secondBattler.isStunned) secondBattler.nextAction.execute(secondBattler);
+    else addDialogueBoxEntry('p' , secondBattler.monsterData.name + ' is stunned!');
     secondBattler.tickConditions(secondBattler);
   }
 
@@ -125,40 +125,41 @@ function rollInitiative(speedValue) {
 }
 function userAttack(event) {
   if (event.keyCode === 97 || event.keyCode === 49) {
+    // Call dialoguebox and pass in turnTimer then increase it
+    dialogueBox(turnTimer);
+    turnTimer++;
+    // Attempting to get the health bars to change dynamically when an attack happens
+    updateHealthBars();
+    updateMonsterStats();
     executeTurn(0);
   } else if (event.keyCode === 98 || event.keyCode === 50) {
+    // Call dialoguebox and pass in turnTimer then increase it
+    dialogueBox(turnTimer);
+    turnTimer++;
+    // Attempting to get the health bars to change dynamically when an attack happens
+    updateHealthBars();
+    updateMonsterStats();
     executeTurn(1);
   }
-
-
-  // Call dialoguebox and pass in turnTimer then increase it
-  dialogueBox(turnTimer);
-  turnTimer++;
-
-  // Attempting to get the health bars to change dynamically when an attack happens
-  updateHealthBars();
-  updateMonsterStats();
-
 }
 
 // This function is to render the dialogue box to the screen each turn, it is called in the userAttack function
 var dialogueBoxEl = document.getElementById('dialogueTrayDiv');
 var dialogueUlEl = document.createElement('ul');
+var currentDialogueLiEl;
 function dialogueBox(turnNumber) {
   dialogueBoxEl.appendChild(dialogueUlEl);
   // This is all placed in one list item so that we can control where in the list it is placed with the insertBefore method at the end of this function
-  var dialogueLiEl = document.createElement('li');
+  currentDialogueLiEl = document.createElement('li');
   var headerEl = document.createElement('h3');
-  var userParaEl = document.createElement('p');
-  var enemyParaEl = document.createElement('p');
-
   headerEl.textContent = 'Turn Number: ' + turnNumber;
-  userParaEl.textContent = userMonster.monsterData.name + ' (player) used ' + userMonster.nextAction.name;
-  enemyParaEl.textContent = enemyMonster.monsterData.name + ' (enemy) used ' + enemyMonster.nextAction.name;
-
-  dialogueLiEl.appendChild(headerEl);
-  dialogueLiEl.appendChild(userParaEl);
-  dialogueLiEl.appendChild(enemyParaEl);
+  currentDialogueLiEl.appendChild(headerEl);
   // Place the new item at the top of the list, this came from W3 schools on the insertBefore method
-  dialogueUlEl.insertBefore(dialogueLiEl, dialogueUlEl.childNodes[0]);
+  dialogueUlEl.insertBefore(currentDialogueLiEl, dialogueUlEl.childNodes[0]);
+}
+
+function addDialogueBoxEntry(element, text) {
+  var newEntryEl = document.createElement(element);
+  newEntryEl.textContent = text;
+  currentDialogueLiEl.appendChild(newEntryEl);
 }

@@ -57,7 +57,7 @@ MonsterBattler.prototype.takeDamage = function (damage, attackValue) {
     this.currentHealth = 0;
     this.isDefeated = true;
   }
-
+  addDialogueBoxEntry('p', this.monsterData.name + ' took ' + damage + ' damage.');
   renderQueue.push(new RenderQueueEntry(this.imgElement, 'animShake'));
 };
 
@@ -96,7 +96,7 @@ MonsterBattler.prototype.addNewStatusEffect = function (newStatusEffect) {
   this.target = this;
   newStatusEffect.applyEffect.effectMethod(this);
   this.target = enemyMonster;
-
+  addDialogueBoxEntry('p', this.monsterData.name + ' was afflicted with ' + newStatusEffect.name);
   this.currentStatusEffects[newStatusEffect.name] = newStatusEffect;
 };
 
@@ -114,6 +114,7 @@ MonsterBattler.prototype.applyPersistentEffects = function () {
           this.target = this;
           this.persistentEffects[i].effect.effectMethod(this);
           this.target = enemyMonster;
+          addDialogueBoxEntry('p', this.persistentEffects[i].name + ' afflicts ' + this.monsterData.name);
         }
         else console.log(this.monsterData.name + 'STATUS NOT APPLIED, EXECUTION ROLL :', randomExecutionRoll);
       }
