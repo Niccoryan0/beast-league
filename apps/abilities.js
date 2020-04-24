@@ -1,8 +1,4 @@
 'use strict';
-<<<<<<< HEAD
-=======
-
->>>>>>> 4c8beabc2eede1bc09312685f57f6c6748f84d73
 /* global Effect, eff_applyStatusEffect, eff_damageEffect, StatusEffectDatabase, eff_selfEffect */
 
 // Ability class
