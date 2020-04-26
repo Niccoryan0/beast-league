@@ -79,7 +79,7 @@ StatusEffectDatabase['Confused'] = new StatusEffect('Confused', 3,
     'persistentEffect': {
       'name': 'Confused', 'effect': new Effect(50, {
         'effectFunc1': eff_applyStatusEffect, 'effectFunc2': eff_damageEffect,
-        'customValues': { 'damage': 12, 'statusToApply': StatusEffectDatabase['Flinch'] },
+        'customValues': { 'damage': 3, 'statusToApply': StatusEffectDatabase['Flinch'] },
       }, eff_linkedEffect)
     }
   }, eff_persistentEffect),
@@ -113,9 +113,9 @@ StatusEffectDatabase['Terrify'] = new StatusEffect('Terrify', 2,
 
 // 2-turn stun and defense debuff
 
-StatusEffectDatabase['Mirror Image'] = new StatusEffect('Mirror Image', 2,
-  new Effect(100, { 'statMod': { 'statName': 'evasionRate', 'statModValue': 30 } }, eff_modifyStatEffect),
-  new Effect(100, { 'statMod': { 'statName': 'evasionRate', 'statModValue': -30 } }, eff_modifyStatEffect)
+StatusEffectDatabase['Mirror Image'] = new StatusEffect('Mirror Image', 3,
+  new Effect(100, { 'statMod': { 'statName': 'evasionRate', 'statModValue': 50 } }, eff_modifyStatEffect),
+  new Effect(100, { 'statMod': { 'statName': 'evasionRate', 'statModValue': -50 } }, eff_modifyStatEffect)
 );
 
 // 3-turn stun
@@ -136,7 +136,7 @@ StatusEffectDatabase['Overdrive'] = new StatusEffect('Overdrive', 2,
 // 3-turn damage over time, ignores half defense
 StatusEffectDatabase['Poisoned'] = new StatusEffect('Poisoned', 3,
   new Effect(100, {
-    'persistentEffect': { 'name': 'Poisoned', 'effect': new Effect(100, { 'damage': 4, 'attackMultBonus': 1 }, eff_damageEffect) }
+    'persistentEffect': { 'name': 'Poisoned', 'effect': new Effect(100, { 'damage': 3, 'attackMultBonus': 1 }, eff_damageEffect) }
   }, eff_persistentEffect),
   new Effect(100, {
     'persistentEffectName': 'Poisoned'
@@ -146,7 +146,7 @@ StatusEffectDatabase['Poisoned'] = new StatusEffect('Poisoned', 3,
 // 3-turn damage over time
 StatusEffectDatabase['Bleeding'] = new StatusEffect('Bleeding', 3,
   new Effect(100, {
-    'persistentEffect': { 'name': 'Bleeding', 'effect': new Effect(100, { 'damage': 8 }, eff_damageEffect) }
+    'persistentEffect': { 'name': 'Bleeding', 'effect': new Effect(100, { 'damage': 6 }, eff_damageEffect) }
   }, eff_persistentEffect),
   new Effect(100, {
     'persistentEffectName': 'Bleeding'

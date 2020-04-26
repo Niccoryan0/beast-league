@@ -88,8 +88,10 @@ function executeTurn(abilitySel) {
 
   // Each battler rolls initiative and their turn order is placed
   var firstBattler, secondBattler;
-  userMonster.initiativeRoll = rollInitiative(userMonster.currentSpeed + userMonster.nextAction.spdMod);
-  enemyMonster.initiativeRoll = rollInitiative(enemyMonster.currentSpeed + enemyMonster.nextAction.spdMod);
+  userMonster.initiativeRoll = rollInitiative(userMonster.currentSpeed)  + userMonster.nextAction.spdMod;
+  enemyMonster.initiativeRoll = rollInitiative(enemyMonster.currentSpeed)  + enemyMonster.nextAction.spdMod;
+  console.log(userMonster.monsterData.name + ' rolled ' + userMonster.initiativeRoll);
+  console.log(enemyMonster.monsterData.name + ' rolled ' + enemyMonster.initiativeRoll);
 
   if (userMonster.initiativeRoll >= enemyMonster.initiativeRoll) {
     firstBattler = userMonster;
@@ -123,7 +125,7 @@ function executeTurn(abilitySel) {
 
 // Rolls initiative and passes back speed value
 function rollInitiative(speedValue) {
-  var randomRoll = Math.floor(Math.random * 100) + speedValue;
+  var randomRoll = Math.round(Math.floor(Math.random() * 100) + speedValue);
   return randomRoll;
 }
 function userAttack(event) {
