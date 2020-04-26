@@ -15,11 +15,7 @@ function renderBattleSprites(userImgSrc, enemyMonsterImgSrc){
   userImgEl.className = 'startingUser';
   userImgEl.src = userImgSrc;
   userImgEl.height = 80;
-  console.log(userMonster);
   userTarget.appendChild(userImgEl);
-
-  console.log(userImgEl);
-
   userMonster.imgElement = userImgEl;
 
   // THIS RENDERS THE ENEMY SPRITE

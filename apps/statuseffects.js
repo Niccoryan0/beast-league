@@ -13,13 +13,11 @@ function StatusEffect(name, maxDuration = 1, applyEffect, removeEffect = null) {
 
 StatusEffect.prototype.tickCondition = function (user) {
   this.currDuration++;
-  console.log(this.name + ' has ' + (this.maxDuration - this.currDuration) + ' turns remaining.');
   if (this.currDuration >= this.maxDuration && this.removeEffect !== null) {
     var enemyMonster = user.target;
     user.target = user;
     this.removeEffect.effectMethod(user);
     user.target = enemyMonster;
-    console.log(this.name + ' has been removed.');
     return null;
   }
   else return this;

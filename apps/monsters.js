@@ -127,7 +127,6 @@ MonsterBattler.prototype.applyPersistentEffects = function () {
           this.target = enemyMonster;
           addDialogueBoxEntry('p', this.persistentEffects[i].name + ' afflicts ' + this.monsterData.name);
         }
-        else console.log(this.monsterData.name + 'STATUS NOT APPLIED, EXECUTION ROLL :', randomExecutionRoll);
       }
     }
   }
