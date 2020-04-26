@@ -67,7 +67,7 @@ function initializeCombat() {
 
   var directionSection = document.getElementById('directionSection');
   var directions = document.createElement('h1');
-  directions.textContent = 'Press a number on the keyboard to choose an attack';
+  directions.textContent = 'Press a number on the keyboard to choose an attack. View each monster\'s current stats below.';
   directions.className = 'directions';
   directionSection.appendChild(directions);
 

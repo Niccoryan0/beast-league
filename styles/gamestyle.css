@@ -137,10 +137,11 @@ main {
   font-size: 20px;
   margin-top: 20px;
   background-color:rgba(255, 255, 255, 0.8);
-  width: fit-content;
+  width: 620px;
   margin-right:auto;
   margin-left:auto;
   padding: 5px 10px;
+  text-align: center;
 }
 
 #abilityUlEl {
