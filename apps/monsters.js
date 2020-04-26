@@ -127,7 +127,6 @@ MonsterBattler.prototype.applyPersistentEffects = function () {
           this.persistentEffects[i].effect.effectMethod(this);
           this.target = enemyMonster;
         }
-        else console.log(this.monsterData.name + 'STATUS NOT APPLIED, EXECUTION ROLL :', randomExecutionRoll);
       }
     }
   }

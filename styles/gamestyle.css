@@ -84,7 +84,6 @@ main {
 #abilityTrayDiv > ul > li {
   border: 1px solid black;
   font-size: 16.5px;
-  /* font-weight: bold; */
   padding: 5px;
   margin: 10px 5px 10px 5px;
   background-color: rgba(255, 255, 255, 0.8);
@@ -132,7 +131,6 @@ main {
   margin-top: 110px;
   margin-left: 50px;
   margin-right: 50px;
-  /* margin-bottom: 10px; */
 }
 
 .directions {
